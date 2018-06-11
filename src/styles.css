@@ -1,7 +1,11 @@
 .App {
-  font-family: sans-serif;
   text-align: center;
   background: linear-gradient(to right, #dee4ed , #b4cff7);
-  height: 900px;
+  height: 1100px;
   font-family: 'Copse', serif;
+}
+
+.recipeList {
+  overflow-y: scroll;
+  height: 200px;
 }

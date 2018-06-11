@@ -3,21 +3,36 @@ import { Card } from 'semantic-ui-react'
 
 const RecipeList = props => {
 
-const items = [
-
-]
+  const recipeListStyle = {
+    padding: '15px',
+    border: '5px solid #4b4b4b',
+    borderCollapse: 'separate',
+    borderSpacing: '20px',
+    borderRadius: '20px'
+  }
 
   return (
-    <div>
-    <Card fluid color='red' header='Option 1' />
-    <Card fluid color='orange' header='Option 2' />
-    <Card fluid color='yellow' header='Option 3' />
-
-    <Card>
+    <div className='recipeList' style={recipeListStyle}>
+    <Card fluid color='yellow' header='Porridge' />
+    <Card fluid color='red' >
       <Card.Content>
-        <Card.Header>Matthew Harris</Card.Header>
-        <Card.Meta>Co-Worker</Card.Meta>
-        <Card.Description>Matthew is a pianist living in Nashville.</Card.Description>
+        <Card.Header>Chicken Curry</Card.Header>
+       
+        <Card.Description>Making Indian at home doesnt have to be intimidating.</Card.Description>
+      </Card.Content>
+    </Card>
+    <Card compact fluid color='blue' >
+      <Card.Content>
+        <Card.Header>Cloud Bread</Card.Header>
+      
+        <Card.Description>Light and fluffy, this bread substitute lives up to its name.</Card.Description>
+      </Card.Content>
+    </Card>
+    <Card compact fluid color='blue' >
+      <Card.Content>
+        <Card.Header>Cloud Bread</Card.Header>
+
+        <Card.Description>Light and fluffy, this bread substitute lives up to its name.</Card.Description>
       </Card.Content>
     </Card>
     </div>
