@@ -1,8 +1,10 @@
 import React from 'react';
-import { Grid, Image, Divider } from 'semantic-ui-react';
+import { Grid, Image, Divider, Header } from 'semantic-ui-react';
 import Title from '../components/Title';
 import RecipeList from '../components/RecipeList';
 import MainView from '../components/MainView';
+import ResultsSide from '../components/ResultsSide';
+import Search from '../components/Search';
 
 const GridLayout = props => (
   <div>
@@ -19,9 +21,10 @@ const GridLayout = props => (
 
       <Grid.Row>
         <Grid.Column width={3}>
-         
+        <Search />
         </Grid.Column>
         <Grid.Column width={10}>
+          <Header as='h2'>Popular recipes</Header>
           <RecipeList />
         
         </Grid.Column>
@@ -32,7 +35,7 @@ const GridLayout = props => (
 
       <Grid.Row>
         <Grid.Column width={3}>
-
+          <ResultsSide />
         </Grid.Column>
         <Grid.Column width={11}>
           <Divider />

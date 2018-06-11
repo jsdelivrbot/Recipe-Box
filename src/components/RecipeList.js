@@ -4,8 +4,8 @@ import { Card } from 'semantic-ui-react'
 const RecipeList = props => {
 
   const recipeListStyle = {
-    padding: '15px',
-    border: '5px solid #4b4b4b',
+    padding: '10px',
+    border: '3px solid #4b4b4b',
     borderCollapse: 'separate',
     borderSpacing: '20px',
     borderRadius: '20px'
