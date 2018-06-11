@@ -19,6 +19,7 @@ const Title = props => (
     <Header as='h1' icon textAlign='center'>
       <Image style={imageStyle} src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/8BGG-roller.png' circular />
       <Header.Content>Recipe-Box</Header.Content>
+      <Header.Subheader>Order, customise, enjoy! </Header.Subheader>
     </Header>
    
   </div>

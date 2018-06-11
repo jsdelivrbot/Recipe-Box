@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Image, Divider } from 'semantic-ui-react';
 import Title from '../components/Title';
 import RecipeList from '../components/RecipeList';
+import MainView from '../components/MainView';
 
 const GridLayout = props => (
   <div>
@@ -33,11 +34,12 @@ const GridLayout = props => (
         <Grid.Column width={3}>
 
         </Grid.Column>
-        <Grid.Column width={13}>
+        <Grid.Column width={11}>
           <Divider />
+          <MainView />
 
         </Grid.Column>
-        
+        <Grid.Column width={1} />
       </Grid.Row>
     </Grid>
   </div>
