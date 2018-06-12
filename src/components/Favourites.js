@@ -1,8 +1,6 @@
 import React from 'react';
 import { Image, Header } from 'semantic-ui-react';
 
-
-
 const Favourites = props => (
   <div >
     <Header as='h3' block>Your favourites </Header>

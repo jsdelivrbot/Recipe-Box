@@ -47,7 +47,10 @@ const GridLayout = props => (
         <Grid.Column width={11}>
           <Divider />
           <MainView 
-          mainRecipe={props.mainRecipe} 
+          mainRecipe={props.mainRecipe}
+          editOnClick={props.editOnClick}
+          deleteOnClick={props.deleteOnClick} 
+          addOnClick={props.addOnClick} 
           />
         </Grid.Column>
         <Grid.Column width={1} />

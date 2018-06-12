@@ -41,6 +41,10 @@ class App extends React.Component {
    searchResults: []
  }
 
+   addRecipeHandler(data) {
+
+   }
+
   render () {
      return (
     <div className="App">
@@ -50,6 +54,9 @@ class App extends React.Component {
     popularRecipes={this.state.popularRecipes}
     favourites={this.state.favourites}
     searchResults={this.state.searchResults}
+    addOnClick={this.addRecipeHandler}
+    deleteOnClick={this.deleteRecipeHandler}
+    editOnClick={this.editRecipeHandler}
      />
     </div>
   );

@@ -1,33 +1,37 @@
-import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { Menu } from "semantic-ui-react";
 
 export default class MenuBar extends Component {
-  state = { activeItem: 'home' }
+  state = { activeItem: "home" };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.state;
 
     return (
       <Menu inverted>
-        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
         <Menu.Item
-          name='Favourites'
-          active={activeItem === 'messages'}
+          name="home"
+          active={activeItem === "home"}
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          name='Order'
-          active={activeItem === 'friends'}
+          name="Favourites"
+          active={activeItem === "messages"}
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          name='Who we are'
-          active={activeItem === 'friends'}
+          name="Order"
+          active={activeItem === "friends"}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name="Who we are"
+          active={activeItem === "friends"}
           onClick={this.handleItemClick}
         />
       </Menu>
-    )
+    );
   }
 }

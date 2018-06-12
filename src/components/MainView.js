@@ -1,5 +1,15 @@
 import React from "react";
-import { Container, Segment, Item, Image, Header, Icon } from "semantic-ui-react";
+import {
+  Container,
+  Segment,
+  Item,
+  Image,
+  Header,
+  Icon,
+  Button,
+  Modal,
+  Form,
+} from "semantic-ui-react";
 
 const mainViewStyle = {
   padding: "15px",
@@ -11,33 +21,40 @@ const mainViewStyle = {
 };
 
 const recipeTitleStyle = {
-  color: '#FF5252'
-}
+  color: "#FF5252"
+};
 
-const iconStyle= {
-  display: 'inline',
-  height: '35px',
- 
-  padding: '5px 15px'
-}
+const iconStyle = {
+  display: "inline",
+  height: "35px",
+
+  padding: "5px 15px"
+};
 
 const MainView = props => (
   <div style={mainViewStyle}>
     <Container>
-      <Segment  raised>
+      <Segment raised>
         <Header
-         as='h2' 
-         style={recipeTitleStyle}
-         image='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/7J0H-pan.png'
-        content={props.mainRecipe.title}/>
-     
-      <Image className='icon' 
-        style={iconStyle} 
-        src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png' />
-       
-        <Image className='icon' 
-        style={iconStyle} 
-        src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/ekQ6-edit.png' />
+          as="h2"
+          style={recipeTitleStyle}
+          image="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/7J0H-pan.png"
+          content={props.mainRecipe.title}
+        />
+
+        <Image
+          className="icon"
+          style={iconStyle}
+          onClick={props.deleteOnClick}
+          src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png"
+        />
+
+        <Image
+          className="icon"
+          style={iconStyle}
+          onClick={props.editOnClick}
+          src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/ekQ6-edit.png"
+        />
       </Segment>
       <Item.Group>
         <Item>
@@ -45,21 +62,36 @@ const MainView = props => (
 
           <Item.Content>
             <Item.Header as="a">Ingredients</Item.Header>
-          
-            <Item.Description>
-            {props.mainRecipe.ingredients}
-            </Item.Description>
+
+            <Item.Description>{props.mainRecipe.ingredients}</Item.Description>
             <Item.Header as="a">Directions</Item.Header>
 
-            <Item.Description>
-            {props.mainRecipe.directions}        
-            </Item.Description>
+            <Item.Description>{props.mainRecipe.directions}</Item.Description>
           </Item.Content>
         </Item>
       </Item.Group>
-      <Segment raised> Add a custom order!
-       <Image className='icon addIcon' style={iconStyle} src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/v_LL-001-plus.png' />
-      </Segment>
+      <Modal size='small' trigger={<Button 
+        inverted color='olive' 
+        onClick={props.addOnClick}>
+        {" "}
+        Add a custom order!
+        <Image
+          className="icon addIcon"
+          style={iconStyle}         
+          src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/v_LL-001-plus.png"
+        />
+      </Button>}>
+        <Modal.Header>Tell us what you want!</Modal.Header>
+        <Modal.Content image>
+          <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
+          <Modal.Description>
+            <Form>
+              <Form.TextArea style={{ minHeight: 100, minWidth: 100 }} label='Ingredients' placeholder='What are we going to need?' />
+              <Form.TextArea style={{ minHeight: 100 }} label='Directions' placeholder='What way do you want it done?' />
+            </Form>
+          </Modal.Description>
+         </Modal.Content> 
+      </Modal>
     </Container>
   </div>
 );
