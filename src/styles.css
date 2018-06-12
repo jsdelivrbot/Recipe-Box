@@ -29,6 +29,14 @@
 
 .icon:hover {
   cursor: pointer;
+
+}
+
+.addIcon:hover {
+  background: #a3c6ff;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
 }
 
 .popRecipes:hover {

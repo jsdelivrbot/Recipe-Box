@@ -26,11 +26,15 @@ const GridLayout = props => (
         </Grid.Column>
         <Grid.Column width={10}>
           <Header as='h2'>Popular recipes this week</Header>
-          <RecipeList />
+          <RecipeList 
+          results={props.searchResults}
+           />
         
         </Grid.Column>
         <Grid.Column width={3}>
-         <Favourites />
+         <Favourites 
+         favourties={props.favourites}
+         />
         </Grid.Column>
       </Grid.Row>
 
@@ -40,8 +44,9 @@ const GridLayout = props => (
         </Grid.Column>
         <Grid.Column width={11}>
           <Divider />
-          <MainView />
-
+          <MainView 
+          mainRecipe={props.mainRecipe} 
+          />
         </Grid.Column>
         <Grid.Column width={1} />
       </Grid.Row>

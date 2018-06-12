@@ -19,7 +19,7 @@ class App extends React.Component {
                   1 tsp. turmeric
                   1 tsp. coriander
                   1/2 tsp. cumin`,
-      direction: `In a large pot over medium-high heat, heat oil. Add onion and cook until softened and lightly golden, 5 to 7 minutes. Add chicken and sear until golden on all sides, 5 minutes more. Stir in garlic and ginger and cook until fragrant, 2 minutes more.
+      directions: `In a large pot over medium-high heat, heat oil. Add onion and cook until softened and lightly golden, 5 to 7 minutes. Add chicken and sear until golden on all sides, 5 minutes more. Stir in garlic and ginger and cook until fragrant, 2 minutes more.
                   Coat aromatics in spices and cook until very fragrant, less than a minute more. Pour in tomatoes and chicken broth and bring to a simmer.
                   Stir in heavy cream, then season with salt and pepper. Simmer until chicken pieces are cooked through and tender, about 10 minutes.
                    Garnish with cilantro and serve over rice or with naan, with lemon wedges for squeezing.`,
@@ -33,7 +33,12 @@ class App extends React.Component {
      return (
     <div className="App">
     <Menu />
-    <GridLayout />
+    <GridLayout
+    mainRecipe={this.state.mainRecipe}
+    popularRecipes={this.state.popularRecipes}
+    favourites={this.state.favourites}
+    searchResults={this.state.searchResults}
+     />
     </div>
   );
   }
