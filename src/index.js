@@ -24,7 +24,19 @@ class App extends React.Component {
                   Stir in heavy cream, then season with salt and pepper. Simmer until chicken pieces are cooked through and tender, about 10 minutes.
                    Garnish with cilantro and serve over rice or with naan, with lemon wedges for squeezing.`,
    },
-   popularRecipes: [],
+   popularRecipes: [{
+     header: 'Chicken Curry',
+     description: 'Making Indian at home doesnt have to be intimidating.'
+   }, {
+     header: 'Cloud Bread',
+     description: '>Light and fluffy, this bread substitute lives up to its name.'
+   },
+   {
+     header: 'Fish Pie',
+     description: 'Generous chunks of fish in a creamy sauce made with a few secret ingredients, topped with buttery mash and a crispy garnish'
+   }
+   
+   ],
    favourites: [],
    searchResults: []
  }
@@ -53,7 +65,7 @@ ReactDOM.render(<App />, rootElement);
 /*
 0. Add hearts to recipes -Done
 0.5/ Add pseudoSelectors to icons and to buttons - Done
-1. Main recipe comes from a list from state.
+1. Main recipe comes from a list from state. - Done
 2. Popular recipes come from a list from state.
 3. Main recipe can be deleted and edited.
 4. Can add a custom order

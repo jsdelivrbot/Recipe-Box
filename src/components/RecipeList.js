@@ -10,40 +10,30 @@ const RecipeList = props => {
     borderRadius: '20px'
   }
 
+  const recipeList = props.popularRecipes.map((el, i) => {
+    
+    let color;
+    if (i % 2 === 0) {
+      color = 'red';
+    } else {
+      color = 'blue';
+    }
+    return ( <Card className='popRecipes' fluid color={color}>
+             <Card.Content>
+        <Card.Header>{el.header}</Card.Header>      
+        <Card.Description>{el.description}
+          <Image className='popHeartStyle' size='mini' src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/jV5Y-heart.png' />
+        </Card.Description>
+      </Card.Content>
+    </Card>
+    )
+  });
+
   return (
     <div className='recipeList' style={recipeListStyle}>
-    
-    <Card className='popRecipes' fluid color='red' >
-      <Card.Content>
-        <Card.Header>Chicken Curry</Card.Header>
-        
-        <Card.Description>Making Indian at home doesnt have to be intimidating.
-         <Image className='popHeartStyle' size='mini' src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/jV5Y-heart.png' />
-        </Card.Description>
-      </Card.Content>
-    </Card>
-    <Card className='popRecipes' compact fluid color='blue' >
-      <Card.Content>
-        <Card.Header>Cloud Bread</Card.Header>
-      
-        <Card.Description>Light and fluffy, this bread substitute lives up to its name.
-         <Image className='popHeartStyle' size='mini' src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/jV5Y-heart.png' />
-        </Card.Description>
-      </Card.Content>
-    </Card>
-    <Card className='popRecipes' compact fluid color='blue' >
-      <Card.Content>
-        <Card.Header>Fish Pie
-       
-        </Card.Header>
 
-        <Card.Description>
-        Generous chunks of fish in a creamy sauce made with a few secret ingredients, topped with buttery mash and a crispy garnish
-          <Image className='popHeartStyle' size='mini' src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/jV5Y-heart.png' />
-        
-        </Card.Description>
-      </Card.Content>
-    </Card>
+     {recipeList}
+       
     </div>
   )
 }
