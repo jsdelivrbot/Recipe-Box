@@ -1,4 +1,5 @@
 import React from "react";
+import OrderForm from './OrderForm';
 import {
   Container,
   Segment,
@@ -72,7 +73,7 @@ const MainView = props => (
       </Item.Group>
       <Modal size='small' trigger={<Button 
         inverted color='olive' 
-        onClick={props.addOnClick}>
+       >
         {" "}
         Add a custom order!
         <Image
@@ -85,10 +86,7 @@ const MainView = props => (
         <Modal.Content image>
           <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
           <Modal.Description>
-            <Form>
-              <Form.TextArea style={{ minHeight: 100, minWidth: 100 }} label='Ingredients' placeholder='What are we going to need?' />
-              <Form.TextArea style={{ minHeight: 100 }} label='Directions' placeholder='What way do you want it done?' />
-            </Form>
+             <OrderForm />
           </Modal.Description>
          </Modal.Content> 
       </Modal>

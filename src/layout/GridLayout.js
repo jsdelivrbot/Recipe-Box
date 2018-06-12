@@ -50,7 +50,7 @@ const GridLayout = props => (
           mainRecipe={props.mainRecipe}
           editOnClick={props.editOnClick}
           deleteOnClick={props.deleteOnClick} 
-          addOnClick={props.addOnClick} 
+          addRecipe={props.addRecipe} 
           />
         </Grid.Column>
         <Grid.Column width={1} />

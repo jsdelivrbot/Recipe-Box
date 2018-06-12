@@ -42,7 +42,8 @@ class App extends React.Component {
  }
 
    addRecipeHandler(data) {
-
+     console.log('called')
+     console.log(data)
    }
 
   render () {
@@ -54,7 +55,7 @@ class App extends React.Component {
     popularRecipes={this.state.popularRecipes}
     favourites={this.state.favourites}
     searchResults={this.state.searchResults}
-    addOnClick={this.addRecipeHandler}
+    addRecipe={(data) => this.addRecipeHandler(data)}
     deleteOnClick={this.deleteRecipeHandler}
     editOnClick={this.editRecipeHandler}
      />
