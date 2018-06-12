@@ -26,8 +26,8 @@ const MainView = props => (
     <Container>
       <Segment  raised>
         <Header as='h2' style={recipeTitleStyle} image='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/7J0H-pan.png' content='Chicken Curry' />
-        <Image style={iconStyle} src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png' />
-        <Image style={iconStyle} src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/ekQ6-edit.png' />
+        <Image className='icon' style={iconStyle} src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png' />
+        <Image className='icon' style={iconStyle} src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/ekQ6-edit.png' />
       </Segment>
       <Item.Group>
         <Item>
@@ -59,7 +59,7 @@ Garnish with cilantro and serve over rice or with naan, with lemon wedges for sq
         </Item>
       </Item.Group>
       <Segment raised> Add a custom order!
-       <Image style={iconStyle} src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/v_LL-001-plus.png' />
+       <Image className='icon' style={iconStyle} src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/v_LL-001-plus.png' />
       </Segment>
     </Container>
   </div>

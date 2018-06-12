@@ -8,4 +8,25 @@
 .recipeList {
   overflow-y: scroll;
   height: 150px;
+  border-spacing: 20px;
+}
+
+.favHeartStyle {
+  padding-left: 40px;
+}
+
+.favHeartStyle:hover {
+  cursor: pointer;
+}
+
+.popHeartStyle {
+   padding-left: 10px;
+}
+
+.popHeartStyle:hover {
+   cursor: pointer;
+}
+
+.icon:hover {
+  cursor: pointer;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Header } from 'semantic-ui-react';
 
 
 const resultsStyle = {
@@ -8,7 +8,7 @@ const resultsStyle = {
 }
 const RecipeResults = props => (
   <div style={resultsStyle}>
-  
+    <Header as='h4'> Search Results </Header>
   </div>
 )
 

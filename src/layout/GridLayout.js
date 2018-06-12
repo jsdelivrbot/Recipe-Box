@@ -12,7 +12,7 @@ const GridLayout = props => (
     <Grid celled>
       <Grid.Row>
         <Grid.Column width={2}>
-          <Image src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/xeT5-soup.png' size='large'/>
+          <Image className='icon' src='https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/xeT5-soup.png' size='large'/>
         </Grid.Column>
         <Grid.Column width={12}>
          <Title />
@@ -25,7 +25,7 @@ const GridLayout = props => (
         <SearchRecipes />
         </Grid.Column>
         <Grid.Column width={10}>
-          <Header as='h2'>Popular recipes</Header>
+          <Header as='h2'>Popular recipes this week</Header>
           <RecipeList />
         
         </Grid.Column>
