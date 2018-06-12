@@ -22,6 +22,11 @@ export default class MenuBar extends Component {
           active={activeItem === 'friends'}
           onClick={this.handleItemClick}
         />
+        <Menu.Item
+          name='Who we are'
+          active={activeItem === 'friends'}
+          onClick={this.handleItemClick}
+        />
       </Menu>
     )
   }

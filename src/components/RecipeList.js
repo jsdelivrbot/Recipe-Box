@@ -13,7 +13,7 @@ const RecipeList = props => {
   return (
     <div className='recipeList' style={recipeListStyle}>
     
-    <Card fluid color='red' >
+    <Card className='popRecipes' fluid color='red' >
       <Card.Content>
         <Card.Header>Chicken Curry</Card.Header>
         
@@ -22,7 +22,7 @@ const RecipeList = props => {
         </Card.Description>
       </Card.Content>
     </Card>
-    <Card compact fluid color='blue' >
+    <Card className='popRecipes' compact fluid color='blue' >
       <Card.Content>
         <Card.Header>Cloud Bread</Card.Header>
       
@@ -31,7 +31,7 @@ const RecipeList = props => {
         </Card.Description>
       </Card.Content>
     </Card>
-    <Card compact fluid color='blue' >
+    <Card className='popRecipes' compact fluid color='blue' >
       <Card.Content>
         <Card.Header>Fish Pie
        

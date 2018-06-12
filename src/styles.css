@@ -30,3 +30,8 @@
 .icon:hover {
   cursor: pointer;
 }
+
+.popRecipes:hover {
+  background: #a3c6ff;
+  cursor: pointer;
+}
