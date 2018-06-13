@@ -1,6 +1,6 @@
 import React from "react";
 import OrderForm from './OrderForm';
-import EditOrder from './EditOrder';
+import EditOrder from './editRecipe/EditOrder';
 import {
   Container,
   Segment,
@@ -40,7 +40,7 @@ const MainView = props => (
           as="h2"
           style={recipeTitleStyle}
           image="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/7J0H-pan.png"
-          content={props.mainRecipe.title}
+          content={props.mainRecipe.header}
         />
 
         <Image
@@ -50,7 +50,10 @@ const MainView = props => (
           src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png"
         />
       
-        <EditOrder />
+        <EditOrder 
+         recipe={props.recipe}
+         editSubmit={props.editOnClick}
+         />
       </Segment>
       <Item.Group>
         <Item>

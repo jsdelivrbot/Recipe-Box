@@ -5,7 +5,7 @@ import {
   Modal,
   Form,
 } from "semantic-ui-react";
-
+import EditForm from './EditForm';
 
 const iconStyle = {
   display: "inline",
@@ -24,13 +24,14 @@ const EditOrder = props => {
   return (
     <div>
     <Modal trigger={icon}>
-        <Modal.Header>Select a Photo</Modal.Header>
+        <Modal.Header>Edit your meal</Modal.Header>
         <Modal.Content image>
           <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
           <Modal.Description>
-            <Header>Default Profile Image</Header>
-            <p>We've found the following gravatar image associated with your e-mail address.</p>
-            <p>Is it okay to use this photo?</p>
+             <EditForm 
+             recipe={props.recipe} 
+             editSubmit={props.editSubmit}
+             />
           </Modal.Description>
         </Modal.Content>
     </Modal>

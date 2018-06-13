@@ -16,7 +16,7 @@ class App extends React.Component {
 
  state = {
    mainRecipe: {
-    title: 'Chicken Curry',
+    header: 'Chicken Curry',
     image: 'https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*',
     ingredients: `2 tbsp. extra-virgin olive oil
                   1 medium yellow onion, chopped
@@ -56,10 +56,13 @@ class App extends React.Component {
      this.setState({ popularRecipes: popularRecipes })
    }
 
-   editRecipeHandler(id) {
-      this.setState((prevState) => {
-        return {
-          editMode: !prevState.editMode
+   editRecipeHandler(editedRecipe) {
+      const { header, ingredients, directions } = editedRecipe;
+      this.setState({
+        mainRecipe: {
+          header,
+          ingredients,
+          directions
         }
       });
    }
@@ -81,6 +84,7 @@ class App extends React.Component {
     addRecipe={(data) => this.addRecipeHandler(data)}
     deleteOnClick={this.deleteRecipeHandler}
     editOnClick={this.editRecipeHandler}
+    recipe={this.state.mainRecipe}
      />
     </div>
   );
