@@ -51,7 +51,7 @@ const MainView = props => (
         />
       
         <EditOrder 
-         recipe={props.recipe}
+         recipe={props.mainRecipe}
          editSubmit={props.editOnClick}
          />
       </Segment>

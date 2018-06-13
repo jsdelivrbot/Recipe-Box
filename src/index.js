@@ -139,7 +139,7 @@ small splash Pernod (optional)
           addRecipe={data => this.addRecipeHandler(data)}
           deleteOnClick={this.deleteRecipeHandler}
           editOnClick={this.editRecipeHandler}
-          recipe={this.state.mainRecipe}
+         
         />
       </div>
     );

@@ -4,23 +4,14 @@ export default class OrderForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ingredients: "",
-      directions: "",
-      header: ""
+      ingredients: props.recipe.ingredients,
+      directions: props.recipe.directions,
+      header: props.recipe.header
     };
     this.handleChangeIngredients = this.handleChangeIngredients.bind(this);
     this.handleChangeDirections = this.handleChangeDirections.bind(this);
     this.handleChangeHeader = this.handleChangeHeader.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentHasMounted() {
-    const [ingredients, directions, header] = this.props.recipe;
-    this.setState({
-      ingredients,
-      directions,
-      header,
-    }, console.log(this.state));
   }
 
   handleChangeIngredients(e) {
@@ -41,6 +32,7 @@ export default class OrderForm extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Input
