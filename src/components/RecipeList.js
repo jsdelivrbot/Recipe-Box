@@ -17,7 +17,7 @@ const RecipeList = props => {
       color = "blue";
     }
     return (
-      <Card className="popRecipes" fluid color={color}>
+      <Card className="popRecipes" key={el.header} fluid color={color}>
         <Card.Content>
           <Card.Header>{el.header}</Card.Header>
           <Card.Description>

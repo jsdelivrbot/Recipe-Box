@@ -4,7 +4,15 @@ import "semantic-ui-css/semantic.min.css";
 import "./styles.css";
 import GridLayout from './layout/GridLayout';
 import Menu from './components/Menu';
+
+
 class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
+    this.editRecipeHandler = this.editRecipeHandler.bind(this);
+  }
+  
 
  state = {
    mainRecipe: {
@@ -38,19 +46,33 @@ class App extends React.Component {
    
    ],
    favourites: [],
-   searchResults: []
+   searchResults: [],
+   editMode: false,
  }
 
    addRecipeHandler(recipe) {
      let popularRecipes = [...this.state.popularRecipes];
      popularRecipes.push(recipe);
-     this.setState({popularRecipes: popularRecipes})
+     this.setState({ popularRecipes: popularRecipes })
+   }
+
+   editRecipeHandler(id) {
+      this.setState((prevState) => {
+        return {
+          editMode: !prevState.editMode
+        }
+      });
+   }
+
+   deleteRecipeHandler(id) {
+
    }
 
   render () {
      return (
     <div className="App">
     <Menu />
+   
     <GridLayout
     mainRecipe={this.state.mainRecipe}
     popularRecipes={this.state.popularRecipes}
@@ -77,7 +99,8 @@ ReactDOM.render(<App />, rootElement);
 1. Main recipe comes from a list from state. - Done
 2. Popular recipes come from a list from state. - Done
 3. Main recipe can be deleted and edited.
-4. Can add a custom order
+4. Can add a custom order -Done
+4.5. Display Add custom roder message when form is sent
 5. Responsive design -search bar and favourites text
 6. Re-design main look with bullet points
 7. Create favourite Modal

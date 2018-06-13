@@ -1,5 +1,6 @@
 import React from "react";
 import OrderForm from './OrderForm';
+import EditOrder from './EditOrder';
 import {
   Container,
   Segment,
@@ -28,7 +29,6 @@ const recipeTitleStyle = {
 const iconStyle = {
   display: "inline",
   height: "35px",
-
   padding: "5px 15px"
 };
 
@@ -49,13 +49,8 @@ const MainView = props => (
           onClick={props.deleteOnClick}
           src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png"
         />
-
-        <Image
-          className="icon"
-          style={iconStyle}
-          onClick={props.editOnClick}
-          src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/ekQ6-edit.png"
-        />
+      
+        <EditOrder />
       </Segment>
       <Item.Group>
         <Item>
