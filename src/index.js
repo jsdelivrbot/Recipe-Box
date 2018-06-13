@@ -41,9 +41,10 @@ class App extends React.Component {
    searchResults: []
  }
 
-   addRecipeHandler(data) {
-     console.log('called')
-     console.log(data)
+   addRecipeHandler(recipe) {
+     let popularRecipes = [...this.state.popularRecipes];
+     popularRecipes.push(recipe);
+     this.setState({popularRecipes: popularRecipes})
    }
 
   render () {
@@ -74,7 +75,7 @@ ReactDOM.render(<App />, rootElement);
 0. Add hearts to recipes -Done
 0.5/ Add pseudoSelectors to icons and to buttons - Done
 1. Main recipe comes from a list from state. - Done
-2. Popular recipes come from a list from state.
+2. Popular recipes come from a list from state. - Done
 3. Main recipe can be deleted and edited.
 4. Can add a custom order
 5. Responsive design -search bar and favourites text

@@ -5,10 +5,12 @@ export default class OrderForm extends React.Component {
     super(props);
     this.state = {
       ingredients: "",
-      directions: ""
+      directions: "",
+      header: ""
     };
     this.handleChangeIngredients = this.handleChangeIngredients.bind(this);
     this.handleChangeDirections = this.handleChangeDirections.bind(this);
+    this.handleChangeHeader = this.handleChangeHeader.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -19,14 +21,25 @@ export default class OrderForm extends React.Component {
     this.setState({ directions: e.target.value });
   }
 
+  handleChangeHeader(e) {
+    this.setState({ header: e.target.value });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state)
+    const recipe = { ...this.state  }
+    this.props.addRecipe(recipe)
   }
 
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
+        <Form.Input
+          label='Title'
+          value={this.state.header}
+          onChange={this.handleChangeHeader}
+          placeholder='Title' 
+          />
         <Form.TextArea
           style={{ minHeight: 100, minWidth: 100 }}
           value={this.state.ingredients}

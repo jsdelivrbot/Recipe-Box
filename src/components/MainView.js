@@ -86,7 +86,7 @@ const MainView = props => (
         <Modal.Content image>
           <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
           <Modal.Description>
-             <OrderForm />
+             <OrderForm addRecipe={props.addRecipe}/>
           </Modal.Description>
          </Modal.Content> 
       </Modal>
