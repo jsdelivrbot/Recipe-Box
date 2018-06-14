@@ -45,7 +45,7 @@ const MainView = props => (
           image="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/7J0H-pan.png"
           content={props.mainRecipe.header}
         />
-
+      <div style={{display: 'flex'}}>
         <Image
           className="icon"
           style={iconStyle}
@@ -57,6 +57,7 @@ const MainView = props => (
          recipe={props.mainRecipe}
          editSubmit={props.editOnClick}
          />
+        </div> 
       </Segment>
       <Item.Group>
         <Item>
