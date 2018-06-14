@@ -1,6 +1,9 @@
 import React from "react";
 import OrderForm from './OrderForm';
 import EditOrder from '../editRecipe/EditOrder';
+import directionsCleaner from './directionsCleaner';
+import ingredientsCleaner from './ingredientsCleaner';
+
 import {
   Container,
   Segment,
@@ -62,10 +65,10 @@ const MainView = props => (
           <Item.Content>
             <Item.Header as="a">Ingredients</Item.Header>
 
-            <Item.Description>{props.mainRecipe.ingredients}</Item.Description>
+            <Item.Description>{ingredientsCleaner(props.mainRecipe.ingredients)}</Item.Description>
             <Item.Header as="a">Directions</Item.Header>
 
-            <Item.Description>{props.mainRecipe.directions}</Item.Description>
+            <Item.Description>{directionsCleaner(props.mainRecipe.directions)}</Item.Description>
           </Item.Content>
         </Item>
       </Item.Group>

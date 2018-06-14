@@ -1,6 +1,6 @@
 
-const directionsCleaner = directions => {
-
+const directionsCleaner = props => {
+ 
 };
 
-export default directionsCleaner
+export default directionsCleaner;

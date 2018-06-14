@@ -18,14 +18,14 @@ class App extends React.Component {
       header: "Chicken Curry",
       image:
         "https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*",
-      ingredients: `2 tbsp. extra-virgin olive oil
-                  1 medium yellow onion, chopped
-                  2 lb. boneless skinless chicken breasts
-                  3 cloves garlic, minced
-                  1 tbsp. freshly grated ginger
-                  1 tsp. paprika
-                  1 tsp. turmeric
-                  1 tsp. coriander
+      ingredients: `2 tbsp. extra-virgin olive oil,
+                  1 medium yellow onion, chopped,
+                  2 lb. boneless skinless chicken breasts,
+                  3 cloves garlic, minced,
+                  1 tbsp. freshly grated ginger,
+                  1 tsp. paprika,
+                  1 tsp. turmeric,
+                  1 tsp. coriander,
                   1/2 tsp. cumin`,
       directions: `In a large pot over medium-high heat, heat oil. Add onion and cook until softened and lightly golden, 5 to 7 minutes. Add chicken and sear until golden on all sides, 5 minutes more. Stir in garlic and ginger and cook until fragrant, 2 minutes more.
                   Coat aromatics in spices and cook until very fragrant, less than a minute more. Pour in tomatoes and chicken broth and bring to a simmer.
@@ -45,12 +45,12 @@ class App extends React.Component {
         header: "Cloud Bread",
         description:
           "Light and fluffy, this bread substitute lives up to its name.",
-        ingredients: `oil or butter for greasing
+        ingredients: `oil or butter for greasing,
 4 eggs
 
 , separated
-50g cream cheese
-¼ tsp cream of tartar
+50g cream cheese,
+¼ tsp cream of tartar,
 ½ tsp nigella seeds`,
         directions: `Heat oven to 150C/130C fan/gas 2 and line 2 large baking sheets with baking paper, then grease well with butter or oil.
 
@@ -68,18 +68,16 @@ the yolk mixture, be as gentle as you can with this so you don’t knock out too
           "Generous chunks of fish in a creamy sauce made with a few secret ingredients, topped with buttery mash and a crispy garnish",
         ingredients: `150g butter
 
-1 shallot
+1 shallot finely chopped,
+400g shell-on raw prawns- peeled= heads and shells kept for stock,
+400g smoked haddock,
 
-, finely chopped
-400g shell-on raw prawns, peeled, heads and shells kept for stock
-400g smoked haddock
+ skinned and trimmed (reserve these), flesh diced into large chunks,
+1 bay leaf,
+1 star anise,
 
-, skinned and trimmed (reserve these), flesh diced into large chunks
-1 bay leaf
-1 star anise
-
-small splash Pernod (optional)
-150ml white wine
+small splash Pernod (optional),
+150ml white wine,
 1.2l whole milk`,
         directions: `Heat oven to 220C/200C fan/gas 8. 
         Bring the potatoes to the boil in a large pan of water,
