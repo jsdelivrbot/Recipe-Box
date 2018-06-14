@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
     this.editRecipeHandler = this.editRecipeHandler.bind(this);
+    this.addFavHandler = this.addFavHandler.bind(this);
   }
 
   state = {
@@ -125,6 +126,19 @@ small splash Pernod (optional),
     }});
   }
 
+  addFavHandler(e, id) {
+  const popularRecipes = [...this.state.popularRecipes];
+  let favourites = [...this.state.favourites];
+  const recipe = popularRecipes.find(el => el.id === id);
+  const alreadyThere = favourites.indexOf(recipe);
+  console.log(alreadyThere)
+  favourites.push(recipe);
+  this.setState({
+    favourites
+  })
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -137,7 +151,7 @@ small splash Pernod (optional),
           addRecipe={data => this.addRecipeHandler(data)}
           deleteOnClick={this.deleteRecipeHandler}
           editOnClick={this.editRecipeHandler}
-         
+          addFav={this.addFavHandler}
         />
       </div>
     );
@@ -152,12 +166,12 @@ ReactDOM.render(<App />, rootElement);
 0.5/ Add pseudoSelectors to icons and to buttons - Done
 1. Main recipe comes from a list from state. - Done
 2. Popular recipes come from a list from state. - Done
-3. Main recipe can be deleted and edited.
+3. Main recipe can be deleted and edited. - Done
 4. Can add a custom order -Done
 4.5. Display Add custom order message when form is sent -Done
-5. Responsive design -search bar and favourites text -
+5. Responsive design -search bar and favourites text - Done
 6. Re-design main look with bullet points - Done
-7. Create favourite Modal
+7. Create favourite Modal - Done
 8. Add favourites to modal
 
 9. Implement search from forkify

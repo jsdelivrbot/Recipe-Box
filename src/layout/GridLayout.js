@@ -26,7 +26,7 @@ const GridLayout = props => (
         </Grid.Column>
         <Grid.Column only='mobile' width={3}>
           <ResultsSide
-            responsive='yes'
+            responsive={true}
             results={props.searchResults}
           />
         </Grid.Column> 
@@ -35,6 +35,7 @@ const GridLayout = props => (
           <Header as='h2'>Popular recipes this week</Header>
           <RecipeList 
           popularRecipes={props.popularRecipes}
+          addFav={props.addFav}
            />
         
         </Grid.Column>
@@ -48,7 +49,7 @@ const GridLayout = props => (
       <Grid.Row>
         <Grid.Column only='computer' width={3}>
           <ResultsSide
-            responsive='no'
+            responsive={false}
             results={props.searchResults} 
             />
         </Grid.Column>

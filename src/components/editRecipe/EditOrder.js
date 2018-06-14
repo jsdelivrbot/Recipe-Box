@@ -20,7 +20,6 @@ const icon = <Image
 />
 
 const EditOrder = props => {
- console.log(props)
   return (
     <div>
     <Modal trigger={icon}>

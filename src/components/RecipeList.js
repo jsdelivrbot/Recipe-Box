@@ -16,13 +16,16 @@ const RecipeList = props => {
     } else {
       color = "blue";
     }
+    const id = el.id;
+   
     return (
-      <Card className="popRecipes" key={el.header} fluid color={color}>
+      <Card className="popRecipes" key={el.id} fluid color={color}>
         <Card.Content>
           <Card.Header>{el.header}</Card.Header>
           <Card.Description>
             {el.description}
             <Image
+              onClick={(e) => props.addFav(e, id)}
               className="popHeartStyle"
               size="mini"
               src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/jV5Y-heart.png"

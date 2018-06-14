@@ -16,7 +16,7 @@ const RecipeResults = props => {
   };
   let resultsStyle;
  
-  props.responsive === 'yes' ? resultsStyle = computer : resultsStyle = mobile;
+  props.responsive !== true ? resultsStyle = computer : resultsStyle = mobile;
 
   return  (
   <div style={resultsStyle}>
