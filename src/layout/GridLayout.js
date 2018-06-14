@@ -4,7 +4,7 @@ import Title from '../components/Title';
 import RecipeList from '../components/RecipeList';
 import MainView from '../components/mainView/MainView';
 import ResultsSide from '../components/ResultsSide';
-import SearchRecipes from '../components/Search';
+import SearchRecipes from '../components/search/Search';
 import Favourites from '../components/favourites/Favourites';
 
 const GridLayout = props => (
