@@ -156,7 +156,7 @@ ReactDOM.render(<App />, rootElement);
 2. Popular recipes come from a list from state. - Done
 3. Main recipe can be deleted and edited.
 4. Can add a custom order -Done
-4.5. Display Add custom roder message when form is sent
+4.5. Display Add custom order message when form is sent -Done
 5. Responsive design -search bar and favourites text
 6. Re-design main look with bullet points
 7. Create favourite Modal

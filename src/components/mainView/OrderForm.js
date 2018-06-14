@@ -1,12 +1,16 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
+import { Form } from "semantic-ui-react"
+
+const successMsg = <p>Your order has beenn saved, go to checkout to finalise! </p>
+
 export default class OrderForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       ingredients: "",
       directions: "",
-      header: ""
+      header: "",
+      sent: false,
     };
     this.handleChangeIngredients = this.handleChangeIngredients.bind(this);
     this.handleChangeDirections = this.handleChangeDirections.bind(this);
@@ -29,6 +33,11 @@ export default class OrderForm extends React.Component {
     e.preventDefault();
     const recipe = { ...this.state  }
     this.props.addRecipe(recipe)
+    this.setState((prevState) =>{
+      return {
+        sent: !prevState.sent
+      }
+    })
   }
 
   render() {
@@ -55,6 +64,7 @@ export default class OrderForm extends React.Component {
           placeholder="What way do you want it done?"
         />
         <Form.Button type="submit" value="Submit" >Submit</Form.Button>
+        {this.state.sent ? successMsg : null}
       </Form>
     );
   }

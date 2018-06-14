@@ -1,6 +1,6 @@
 import React from "react";
 import OrderForm from './OrderForm';
-import EditOrder from './editRecipe/EditOrder';
+import EditOrder from '../editRecipe/EditOrder';
 import {
   Container,
   Segment,
