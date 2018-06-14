@@ -131,8 +131,14 @@ small splash Pernod (optional),
   let favourites = [...this.state.favourites];
   const recipe = popularRecipes.find(el => el.id === id);
   const alreadyThere = favourites.indexOf(recipe);
-  console.log(alreadyThere)
-  favourites.push(recipe);
+  
+  if(alreadyThere === -1){
+    favourites.push(recipe);
+  } else {
+    const index = favourites.findIndex(el => el.id === id);
+    favourites.splice(index, 1);
+  }
+  
   this.setState({
     favourites
   })
