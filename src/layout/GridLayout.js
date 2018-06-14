@@ -5,7 +5,7 @@ import RecipeList from '../components/RecipeList';
 import MainView from '../components/mainView/MainView';
 import ResultsSide from '../components/ResultsSide';
 import SearchRecipes from '../components/Search';
-import Favourites from '../components/Favourites';
+import Favourites from '../components/favourites/Favourites';
 
 const GridLayout = props => (
   <div>
@@ -41,7 +41,7 @@ const GridLayout = props => (
         </Grid.Column>
         <Grid.Column width={3}>
          <Favourites 
-         favourties={props.favourites}
+         favourites={props.favourites}
          />
         </Grid.Column>
       </Grid.Row>
