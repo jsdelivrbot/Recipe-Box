@@ -23,7 +23,7 @@ const GridLayout = props => (
       <Grid.Row>
         <Grid.Column width={3}>
         <SearchRecipes 
-            searchHandleResultSelect={props.handleResultSelect}
+            searchHandleResultSelect={props.searchHandleResultSelect}
             handleSearchChange={props.handleSearchChange}
             searchValue={props.searchValue}
             searchResults={props.searchResults}

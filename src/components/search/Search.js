@@ -13,9 +13,7 @@ const SearchRecipes = props => {
     const isLoading = props.searchIsLoading;
     const value = props.searchValue;
     const results = props.searchResults;
-    console.log(isLoading)
-    console.log(value)
-    console.log(results)
+    
 
     return (
       <div>
@@ -24,14 +22,14 @@ const SearchRecipes = props => {
         </Header>
         <Search
           loading={isLoading}
-          onResultSelect={props.handleResultSelect}
+          onResultSelect={props.searchHandleResultSelect}
           onSearchChange={_.debounce(props.handleSearchChange, 500, {
             leading: true
           })}
           results={results}
           value={value}
-          onClick={props.onClickHandler}
-        
+          onClick={props.searchOnClickHandler}
+         
         />
       </div>
     );

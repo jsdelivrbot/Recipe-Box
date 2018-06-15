@@ -155,9 +155,10 @@ small splash Pernod (optional),
       const recipeName = this.state.searchValue;
       const recipes = [...this.state.searchResults];
       const recipeObj = recipes.find(el => el.title === recipeName);
-
+       console.log(recipeObj)
       if (recipeObj != undefined) {
         const id = recipeObj.recipe_id;
+        console.log(id)
         const recipe = getRecipe(id);
         recipe.then(recipe => {
           this.setState({
@@ -174,16 +175,14 @@ small splash Pernod (optional),
   resetComponent = () =>
     this.setState({ seardchIsLoading: false, searchResults: [], searchValue: "" });
 
-  handleResultSelect = (e, { result }) =>
-    this.setState({ searchValue: result.title });
+  handleResultSelect = (e, { result }) => this.setState({ searchValue: result.title });
 
   handleSearchChange = (e) => {
-   
-   
     const searchValue = e.target.value;
     this.setState({ 
       searchIsLoading: true, 
-      searchValue });
+      searchValue 
+      });
   
     setTimeout(() => {
       if (this.state.searchValue.length < 1) return this.resetComponent();
