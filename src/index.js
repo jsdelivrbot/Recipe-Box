@@ -5,6 +5,8 @@ import R from "ramda";
 import "./styles.css";
 import GridLayout from "./layout/GridLayout";
 import Menu from "./components/Menu";
+import getResults from "./components/search/getResults";
+import getRecipe from './components/search/getRecipe';
 
 class App extends React.Component {
   constructor(props) {
@@ -88,8 +90,11 @@ small splash Pernod (optional),
       }
     ],
     favourites: [],
+    editMode: false,
     searchResults: [],
-    editMode: false
+    searchValue: "",
+    searchIsLoading: false,
+    searchID: ""
   };
 
   addRecipeHandler(recipe) {
@@ -115,35 +120,77 @@ small splash Pernod (optional),
     const sortById = R.sortBy(R.compose(R.prop("id")));
     const sorted = sortById(popularRecipes);
     const recipeToReplace = sorted[sorted.length - 1];
-    console.log(sorted)
-    console.log(recipeToReplace)
+    console.log(sorted);
+    console.log(recipeToReplace);
     const { header, directions, ingredients } = recipeToReplace;
     this.setState({
-      mainRecipe:  {
-         header,
-         directions,
-         ingredients
-    }});
+      mainRecipe: {
+        header,
+        directions,
+        ingredients
+      }
+    });
   }
 
   addFavHandler(e, id) {
-  const popularRecipes = [...this.state.popularRecipes];
-  let favourites = [...this.state.favourites];
-  const recipe = popularRecipes.find(el => el.id === id);
-  const alreadyThere = favourites.indexOf(recipe);
-  
-  if(alreadyThere === -1){
-    favourites.push(recipe);
-  } else {
-    const index = favourites.findIndex(el => el.id === id);
-    favourites.splice(index, 1);
-  }
-  
-  this.setState({
-    favourites
-  })
+    const popularRecipes = [...this.state.popularRecipes];
+    let favourites = [...this.state.favourites];
+    const recipe = popularRecipes.find(el => el.id === id);
+    const alreadyThere = favourites.indexOf(recipe);
 
+    if (alreadyThere === -1) {
+      favourites.push(recipe);
+    } else {
+      const index = favourites.findIndex(el => el.id === id);
+      favourites.splice(index, 1);
+    }
+
+    this.setState({
+      favourites
+    });
   }
+
+  searchOnClickHandler() {
+    setTimeout(() => {
+      const recipeName = this.state.value;
+      const recipes = [...this.state.results];
+      const recipeObj = recipes.find(el => el.title === recipeName);
+
+      if (recipeObj != undefined) {
+        const id = recipeObj.recipe_id;
+        const recipe = getRecipe(id);
+        recipe.then(recipe => {
+          this.setState({
+            recipe
+          });
+        });
+      }
+    }, 300);
+  }
+  componentWillMount() {
+    this.resetComponent();
+  }
+
+  resetComponent = () =>
+    this.setState({ isLoading: false, results: [], value: "" });
+
+  handleResultSelect = (e, { result }) =>
+    this.setState({ value: result.title });
+
+  handleSearchChange = (e, { value }) => {
+    this.setState({ isLoading: true, value });
+
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.resetComponent();
+      const source = getResults(value);
+      source.then(data => {
+        this.setState({
+          isLoading: false,
+          results: data
+        });
+      });
+    }, 300);
+  };
 
   render() {
     return (
@@ -153,11 +200,19 @@ small splash Pernod (optional),
           mainRecipe={this.state.mainRecipe}
           popularRecipes={this.state.popularRecipes}
           favourites={this.state.favourites}
-          searchResults={this.state.searchResults}
+       
           addRecipe={data => this.addRecipeHandler(data)}
           deleteOnClick={this.deleteRecipeHandler}
           editOnClick={this.editRecipeHandler}
           addFav={this.addFavHandler}
+          
+          searchValue={this.state.searchValue}
+          searchResults={this.state.searchResults}
+          searchID={this.state.searchID}
+          searchIsLoading={this.state.searchIsLoading}
+          searchHandleResultSelect={this.handleResultSelect.bind(this)}
+          searchOnClickHandler={this.searchOnClickHandler.bind(this)}
+          handleSearchChange={this.handleSearchChange.bind(this)}
         />
       </div>
     );

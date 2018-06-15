@@ -22,7 +22,14 @@ const GridLayout = props => (
 
       <Grid.Row>
         <Grid.Column width={3}>
-        <SearchRecipes />
+        <SearchRecipes 
+            searchHandleResultSelect={props.handleResultSelect}
+            handleSearchChange={props.handleSearchChange}
+            searchValue={props.searchValue}
+            searchResults={props.searchResults}
+            searchID={props.searchID}
+            searchIsLoading={props.searchIsLoading}
+            searchOnClickHandler={props.searchOnClickHandler} />
         </Grid.Column>
         <Grid.Column only='mobile' width={3}>
           <ResultsSide

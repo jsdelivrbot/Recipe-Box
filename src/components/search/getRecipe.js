@@ -5,12 +5,8 @@ async function getRecipe(id) {
 
   try {
 
-    const res = await axios(`${proxy}http://food2fork.com/api/get?key=${key}&rId=${id}`);
-    this.title = res.data.recipe.title;
-    this.author = res.data.recipe.publisher;
-    this.img = res.data.recipe.image_url;
-    this.url = res.data.recipe.source_url;
-    this.ingredients = res.data.recipe.ingredients;
+    const result = await axios(`${proxy}http://food2fork.com/api/get?key=${key}&rId=${id}`);
+    return result;
 
   } catch (error) {
     console.log('err: ' + error);
