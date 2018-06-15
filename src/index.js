@@ -178,9 +178,10 @@ ReactDOM.render(<App />, rootElement);
 5. Responsive design -search bar and favourites text - Done
 6. Re-design main look with bullet points - Done
 7. Create favourite Modal - Done
-8. Add favourites to modal
+8. Add favourites to modal - Done
 
-9. Implement search from forkify
+9. Implement search from forkify - Done
+9.5 Reduce lsit of results
 10. Add search results to main when clicked
 
 11. Use firebase to store favourites

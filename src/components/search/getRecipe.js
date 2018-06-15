@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { proxy, key } from './searchConfig';
 
-async function getRecipe() {
+async function getRecipe(id) {
 
   try {
 
-    const res = await axios(`${proxy}http://food2fork.com/api/get?key=${key}&rId=${this.id}`);
+    const res = await axios(`${proxy}http://food2fork.com/api/get?key=${key}&rId=${id}`);
     this.title = res.data.recipe.title;
     this.author = res.data.recipe.publisher;
     this.img = res.data.recipe.image_url;
