@@ -152,8 +152,8 @@ small splash Pernod (optional),
 
   searchOnClickHandler() {
     setTimeout(() => {
-      const recipeName = this.state.value;
-      const recipes = [...this.state.results];
+      const recipeName = this.state.searchValue;
+      const recipes = [...this.state.searchResults];
       const recipeObj = recipes.find(el => el.title === recipeName);
 
       if (recipeObj != undefined) {
@@ -161,7 +161,7 @@ small splash Pernod (optional),
         const recipe = getRecipe(id);
         recipe.then(recipe => {
           this.setState({
-            recipe
+            mainRecipe: recipe
           });
         });
       }
@@ -172,21 +172,26 @@ small splash Pernod (optional),
   }
 
   resetComponent = () =>
-    this.setState({ isLoading: false, results: [], value: "" });
+    this.setState({ seardchIsLoading: false, searchResults: [], searchValue: "" });
 
   handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.title });
+    this.setState({ searchValue: result.title });
 
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
-
+  handleSearchChange = (e) => {
+   
+   
+    const searchValue = e.target.value;
+    this.setState({ 
+      searchIsLoading: true, 
+      searchValue });
+  
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent();
-      const source = getResults(value);
+      if (this.state.searchValue.length < 1) return this.resetComponent();
+      const source = getResults(searchValue);
       source.then(data => {
         this.setState({
-          isLoading: false,
-          results: data
+          searchIsLoading: false,
+          searchResults: data
         });
       });
     }, 300);

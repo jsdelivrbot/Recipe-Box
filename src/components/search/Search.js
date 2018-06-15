@@ -12,7 +12,11 @@ const SearchRecipes = props => {
  
     const isLoading = props.searchIsLoading;
     const value = props.searchValue;
-    const results =props.searhResults;
+    const results = props.searchResults;
+    console.log(isLoading)
+    console.log(value)
+    console.log(results)
+
     return (
       <div>
         <Header as="h2" style={recipeTitleStyle}>
