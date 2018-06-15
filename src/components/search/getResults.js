@@ -5,6 +5,7 @@ import {proxy, key} from './searchConfig';
   try {
     const result = await axios(`${proxy}http://food2fork.com/api/search?key=${key}&q=${query}`);
     const recipes = result.data.recipes;
+   
     return recipes;
   } catch (error) {
     console.log(error);
@@ -12,3 +13,4 @@ import {proxy, key} from './searchConfig';
 
 }
 
+export default getResults
