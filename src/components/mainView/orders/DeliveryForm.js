@@ -1,25 +1,27 @@
 import React from "react";
-import { Form, Message } from "semantic-ui-react"
+import { Form, Message } from "semantic-ui-react";
 
-const successMsg = <p>Your details have been saved, go to the next page to finalise! </p>
+const successMsg = (
+  <Message success>
+    Your details have been saved, go to the next page to finalise!{" "}
+  </Message>
+);
 
 export default class DeliveryForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
-      address: {
-        street: '',
-        town: '',
-        postcode: ''
-      },
+      street: "",
+      town: "",
+      postcode: "",
       email: "",
-      sent: false,
+      sent: false
     };
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeStreet = this.handleChangeStreet.bind(this);
     this.handleChangeTown = this.handleChangeTown.bind(this);
-    this.handleChangeStreet = this.handleChangeStreet.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePostcode = this.handleChangePostcode.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -28,23 +30,19 @@ export default class DeliveryForm extends React.Component {
     this.setState({ name: e.target.value });
   }
   handleChangeStreet(e) {
-    this.setState({ address: {
+    this.setState({
       street: e.target.value
-    }});
+    });
   }
 
   handleChangeTown(e) {
     this.setState({
-      address: {
-        town: e.target.value
-      }
+      town: e.target.value
     });
   }
   handleChangePostcode(e) {
     this.setState({
-      address: {
-        street: e.target.value
-      }
+      postcode: e.target.value
     });
   }
 
@@ -55,49 +53,56 @@ export default class DeliveryForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const deliveryInfo = { ...this.state };
-    this.props.updatedDelivery(deliveryInfo)
-    this.setState((prevState) => {
+
+    this.props.updateDelivery(deliveryInfo);
+    this.setState(prevState => {
       return {
         sent: !prevState.sent
-      }
+      };
     });
   }
 
   render() {
     return (
-      <Form success onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <Form.Input
-          label='Name'
+          label="Name"
           value={this.state.name}
           onChange={this.handleChangeName}
-          placeholder='Title'
+          placeholder="Title"
         />
         <Form.Input
-          label='Street'
-          value={this.state.address.Street}
+          label="Street"
+          value={this.state.Street}
           onChange={this.handleChangeStreet}
-          placeholder='Street'
+          placeholder="Street"
         />
         <Form.Input
-          label='Town'
-          value={this.state.address.town}
+          label="Town"
+          value={this.state.town}
           onChange={this.handleChangeTown}
-          placeholder='Town'
+          placeholder="Town"
         />
         <Form.Input
-          label='Postcode'
-          value={this.state.address.postcode}
+          label="Postcode"
+          value={this.state.postcode}
           onChange={this.handleChangePostcode}
-          placeholder='Postcode'
+          placeholder="Postcode"
         />
         <Form.Input
-          label='Email'
+          label="Email"
           value={this.state.email}
           onChange={this.handleChangeEmail}
-          placeholder='Email'
+          placeholder="Email"
         />
-        <Message success header='Form Completed' content="Go to the final page to finalise the order" />
-        <Form.Button type="submit" value="Submit" >Submit delivery info</Form.Button>
+        <Message
+          success
+          header="Form Completed"
+          content="Go to the final page to finalise the order"
+        />
+        <Form.Button type="submit" value="Submit">
+          Submit delivery info
+        </Form.Button>
         {this.state.sent ? successMsg : null}
       </Form>
     );

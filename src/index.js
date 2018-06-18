@@ -155,8 +155,7 @@ small splash Pernod (optional),
     const sortById = R.sortBy(R.compose(R.prop("id")));
     const sorted = sortById(popularRecipes);
     const recipeToReplace = sorted[sorted.length - 1];
-    console.log(sorted);
-    console.log(recipeToReplace);
+ 
     const { header, directions, ingredients } = recipeToReplace;
     this.setState({
       mainRecipe: {
@@ -245,7 +244,7 @@ small splash Pernod (optional),
           addFav={this.addFavHandler}
 
           orderRecipe={this.orderRecipeHandler}
-          updateDelivery={this.deliveryInfohandler}
+          updateDelivery={this.deliveryInfoHandler}
           
           searchValue={this.state.searchValue}
           searchResults={this.state.searchResults}

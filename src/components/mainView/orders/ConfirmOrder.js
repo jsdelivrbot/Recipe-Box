@@ -52,7 +52,9 @@ class NestedModalSecond extends Component {
 
 const ConfirmOrder = props => {
   const recipeInfo = props.mainRecipe;
-  const Info = <DeliveryForm />
+  console.log(props)
+  const Info = <DeliveryForm 
+                updateDelivery={props.updateDelivery}/>
   return (
     <Modal
       size="small"
