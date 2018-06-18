@@ -16,6 +16,7 @@ class App extends React.Component {
     this.editRecipeHandler = this.editRecipeHandler.bind(this);
     this.addFavHandler = this.addFavHandler.bind(this);
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
+    this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this)
   }
 
   state = {
@@ -94,12 +95,19 @@ small splash Pernod (optional),
     favourites: [],
     editMode: false,
     orderLoading: false,
+    deliveryInfo: {},
     searchResults: [],
     searchValue: "",
     searchIsLoading: false,
     searchID: "",
 
   };
+
+  deliveryInfoHandler(deliveryInfo) {
+      this.setState({
+        deliveryInfo
+      })
+  }
 
   orderRecipeHandler() {
     const ingredients = {...this.state.mainRecipe.ingredients};
@@ -237,6 +245,7 @@ small splash Pernod (optional),
           addFav={this.addFavHandler}
 
           orderRecipe={this.orderRecipeHandler}
+          updateDelivery={this.deliveryInfohandler}
           
           searchValue={this.state.searchValue}
           searchResults={this.state.searchResults}
@@ -269,7 +278,7 @@ ReactDOM.render(<App />, rootElement);
 
 9. Implement search from forkify - Done
 9.5 Reduce lsit of results
-10. Add search results to main when clicked
+10. Add search results to main when clicked - Done
 
 11. Use firebase to store favourites
 

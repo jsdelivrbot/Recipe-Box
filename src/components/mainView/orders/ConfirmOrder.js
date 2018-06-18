@@ -35,8 +35,8 @@ class NestedModalSecond extends Component {
         <Modal.Header>Finalise Order</Modal.Header>
         <Modal.Content>
           <p>Is this information correct?</p>
-          <Button primary Icon onClick={this.setState({orderSent: true})}> Order!</Button>
-          {OrderSummary } 
+          <Button primary Icon onClick={() => this.props.orderRecipe()}> Order!</Button>
+          { } 
         </Modal.Content>
         <Modal.Actions>
           
@@ -50,34 +50,41 @@ class NestedModalSecond extends Component {
 
 
 
-const ConfirmOrder = props => (
-  <Modal
-    size="small"
-    trigger={
-      <Button inverted color="red" onClick={props.orderRecipe}>
-        Order this recipe now!
+const ConfirmOrder = props => {
+  const recipeInfo = props.mainRecipe;
+  const Info = <DeliveryForm />
+  return (
+    <Modal
+      size="small"
+      trigger={
+        <Button inverted color="red" onClick={props.orderRecipe}>
+          Order this recipe now!
       </Button>
-    }
-  >
-    <Modal.Header>You are close to getting your delicious meal!</Modal.Header>
-    <Modal.Content image>
-      <Image
-        wrapped
-        size="medium"
-        src="/assets/images/avatar/large/rachel.png"
-      />
-      <Modal.Description>
-        Is your order correct? Add your delivery information below
-        {<DeliveryForm />}
-         <Modal.Actions>
-          <NestedModalSecond />
-        </Modal.Actions>
-         Progress
-         <Progress percent={33} success/>
-         <StepsFirst mainRecipe={props.mainRecipe} />
-      </Modal.Description>
-    </Modal.Content>
-  </Modal>
-);
+      }
+    >
+      <Modal.Header>You are close to getting your delicious meal!</Modal.Header>
+      <Modal.Content image>
+        <Image
+          wrapped
+          size="medium"
+          src="/assets/images/avatar/large/rachel.png"
+        />
+        <Modal.Description>
+          Add your delivery information below
+        {Info}
+          <Modal.Actions>
+            <NestedModalSecond 
+            deliverInfo={Info} 
+            recipeInfo={recipeInfo} 
+            orderRecipe={props.orderRecipe}/>
+          </Modal.Actions>
+          Progress
+         <Progress percent={33} success />
+          <StepsFirst  />
+        </Modal.Description>
+      </Modal.Content>
+    </Modal>
+  );
+} 
 
 export default ConfirmOrder;

@@ -54,13 +54,13 @@ export default class DeliveryForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const recipe = { ...this.state }
-    this.props.addRecipe(recipe)
+    const deliveryInfo = { ...this.state };
+    this.props.updatedDelivery(deliveryInfo)
     this.setState((prevState) => {
       return {
         sent: !prevState.sent
       }
-    })
+    });
   }
 
   render() {
@@ -97,7 +97,7 @@ export default class DeliveryForm extends React.Component {
           placeholder='Email'
         />
         <Message success header='Form Completed' content="Go to the final page to finalise the order" />
-        <Form.Button type="submit" value="Submit" >Submit</Form.Button>
+        <Form.Button type="submit" value="Submit" >Submit delivery info</Form.Button>
         {this.state.sent ? successMsg : null}
       </Form>
     );
