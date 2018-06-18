@@ -3,6 +3,7 @@ import OrderForm from './OrderForm';
 import EditOrder from '../editRecipe/EditOrder';
 import directionsCleaner from './directionsCleaner';
 import ingredientsCleaner from './ingredientsCleaner';
+import ConfirmOrder from './ConfirmOrder';
 
 import {
   Container,
@@ -92,12 +93,7 @@ const MainView = props => (
           </Modal.Description>
          </Modal.Content> 
       </Modal>
-      <Button 
-      inverted color='red'
-      onClick={props.orderRecipe}
-      >
-       Order this recipe now!
-       </Button> 
+     <ConfirmOrder />
     </Container>
   </div>
 );
