@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, Modal, Icon, Image, Progress } from "semantic-ui-react";
+import StepsFirst from './steps/StepsFirst';
+import StepsSecond from './steps/StepsSecond';
 
 class NestedModal extends Component {
   state = { open: false };
@@ -16,10 +18,11 @@ class NestedModal extends Component {
         open={open}
         onOpen={this.open}
         onClose={this.close}
-        size="small"
+        size="large"
         trigger={
           <Button primary icon>
             Proceed <Icon name="right chevron" />
+        
           </Button>
         }
       >
@@ -29,6 +32,8 @@ class NestedModal extends Component {
         </Modal.Content>
         <Modal.Actions>
           <Button icon="check" content="All Done" onClick={this.close} />
+          <Progress percent={66} success />
+          <StepsSecond />
         </Modal.Actions>
       </Modal>
     );
@@ -37,7 +42,7 @@ class NestedModal extends Component {
 
 const ConfirmOrder = props => (
   <Modal
-    size="small"
+    size="large"
     trigger={
       <Button inverted color="red" onClick={props.orderRecipe}>
         Order this recipe now!
@@ -59,6 +64,7 @@ const ConfirmOrder = props => (
         </Modal.Actions>
          Progress
          <Progress percent={33} success/>
+         <StepsFirst />
       </Modal.Description>
     </Modal.Content>
   </Modal>

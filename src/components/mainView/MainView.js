@@ -3,7 +3,7 @@ import OrderForm from './OrderForm';
 import EditOrder from '../editRecipe/EditOrder';
 import directionsCleaner from './directionsCleaner';
 import ingredientsCleaner from './ingredientsCleaner';
-import ConfirmOrder from './ConfirmOrder';
+import ConfirmOrder from './orders/ConfirmOrder';
 
 import {
   Container,
