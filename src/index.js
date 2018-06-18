@@ -18,8 +18,8 @@ class App extends React.Component {
 
   state = {
     mainRecipe: {
-      header: "Chicken Curry",
-      image:
+      title: "Chicken Curry",
+      image_url:
         "https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*",
       ingredients: `2 tbsp. extra-virgin olive oil,
                   1 medium yellow onion, chopped,
@@ -155,14 +155,13 @@ small splash Pernod (optional),
       const recipeName = this.state.searchValue;
       const recipes = [...this.state.searchResults];
       const recipeObj = recipes.find(el => el.title === recipeName);
-       console.log(recipeObj)
+     
       if (recipeObj != undefined) {
-        const id = recipeObj.recipe_id;
-        console.log(id)
-        const recipe = getRecipe(id);
-        recipe.then(recipe => {
+        const id = recipeObj.recipe_id;      
+        const recipe = getRecipe(id);    
+        recipe.then(recipe => {      
           this.setState({
-            mainRecipe: recipe
+            mainRecipe: recipe.data.recipe
           });
         });
       }

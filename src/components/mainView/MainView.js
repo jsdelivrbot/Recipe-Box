@@ -43,7 +43,7 @@ const MainView = props => (
           as="h2"
           style={recipeTitleStyle}
           image="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/7J0H-pan.png"
-          content={props.mainRecipe.header}
+          content={props.mainRecipe.title}
         />
       <div style={{display: 'flex'}}>
         <Image
@@ -61,7 +61,7 @@ const MainView = props => (
       </Segment>
       <Item.Group>
         <Item>
-          <Item.Image size="large" src={props.mainRecipe.image} />
+          <Item.Image size="large" src={props.mainRecipe.image_url} />
 
           <Item.Content>
             <Item.Header as="a">Ingredients</Item.Header>
@@ -69,7 +69,7 @@ const MainView = props => (
             <Item.Description>{ingredientsCleaner(props.mainRecipe.ingredients)}</Item.Description>
             <Item.Header as="a">Directions</Item.Header>
 
-            <Item.Description>{directionsCleaner(props.mainRecipe.directions)}</Item.Description>
+            <Item.Description>{directionsCleaner(props.mainRecipe)}</Item.Description>
           </Item.Content>
         </Item>
       </Item.Group>
