@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "semantic-ui-react"
 
-const successMsg = <p>Your order has beenn saved, go to checkout to finalise! </p>
+const successMsg = <p>Your order has been saved, go to checkout to finalise! </p>
 
 export default class OrderForm extends React.Component {
   constructor(props) {

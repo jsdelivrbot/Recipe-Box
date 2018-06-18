@@ -11,13 +11,7 @@ const StepsFirst = () => (
       </Step.Content>
     </Step>
 
-    <Step disabled>
-      <Icon name='payment' />
-      <Step.Content>
-        <Step.Title>Billing</Step.Title>
-        <Step.Description>Enter billing information</Step.Description>
-      </Step.Content>
-    </Step>
+
 
     <Step disabled>
       <Icon name='info' />

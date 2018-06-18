@@ -2,15 +2,20 @@ import React, { Component } from "react";
 import { Button, Modal, Icon, Image, Progress } from "semantic-ui-react";
 import StepsFirst from './steps/StepsFirst';
 import StepsSecond from './steps/StepsSecond';
+import Loader from '../Loader';
+import DeliveryForm from './DeliveryForm';
 
-class NestedModal extends Component {
-  state = { open: false };
+class NestedModalSecond extends Component {
+  state = { open: false, orderSent: false };
 
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
 
   render() {
+
     const { open } = this.state;
+    const loading = this.props.orderLoading === false ? Loader : orderSummary
+    const orderSummary = this.state.orderSent === true ? loading : null;
 
     return (
       <Modal
@@ -18,7 +23,8 @@ class NestedModal extends Component {
         open={open}
         onOpen={this.open}
         onClose={this.close}
-        size="large"
+        closeIcon
+        size="small"
         trigger={
           <Button primary icon>
             Proceed <Icon name="right chevron" />
@@ -26,13 +32,15 @@ class NestedModal extends Component {
           </Button>
         }
       >
-        <Modal.Header>Modal #2</Modal.Header>
+        <Modal.Header>Finalise Order</Modal.Header>
         <Modal.Content>
-          <p>That's everything!</p>
+          <p>Is this information correct?</p>
+          <Button primary Icon onClick={this.setState({orderSent: true})}> Order!</Button>
+          {OrderSummary } 
         </Modal.Content>
         <Modal.Actions>
-          <Button icon="check" content="All Done" onClick={this.close} />
-          <Progress percent={66} success />
+          
+        
           <StepsSecond />
         </Modal.Actions>
       </Modal>
@@ -40,9 +48,11 @@ class NestedModal extends Component {
   }
 }
 
+
+
 const ConfirmOrder = props => (
   <Modal
-    size="large"
+    size="small"
     trigger={
       <Button inverted color="red" onClick={props.orderRecipe}>
         Order this recipe now!
@@ -57,14 +67,14 @@ const ConfirmOrder = props => (
         src="/assets/images/avatar/large/rachel.png"
       />
       <Modal.Description>
-        Is your order correct? If so continue to the next page for delivery
-        information
+        Is your order correct? Add your delivery information below
+        {<DeliveryForm />}
          <Modal.Actions>
-          <NestedModal />
+          <NestedModalSecond />
         </Modal.Actions>
          Progress
          <Progress percent={33} success/>
-         <StepsFirst />
+         <StepsFirst mainRecipe={props.mainRecipe} />
       </Modal.Description>
     </Modal.Content>
   </Modal>

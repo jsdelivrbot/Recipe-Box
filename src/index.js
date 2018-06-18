@@ -93,10 +93,12 @@ small splash Pernod (optional),
     ],
     favourites: [],
     editMode: false,
+    orderLoading: false,
     searchResults: [],
     searchValue: "",
     searchIsLoading: false,
-    searchID: ""
+    searchID: "",
+
   };
 
   orderRecipeHandler() {
