@@ -2,7 +2,7 @@ import React from "react";
 import { List } from "semantic-ui-react";
 
 const ingredientsCleaner = props => {
- console.log(props)
+
   let createList
   if (!Array.isArray(props)) {
      const split = props.split(",");

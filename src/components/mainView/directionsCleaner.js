@@ -2,7 +2,7 @@ import React from "react";
 import { List } from "semantic-ui-react";
 
 const directionsCleaner = props => {
-  console.log(props);
+ 
   if (props.directions != undefined) {
     const split = props.directions.split(".");
     const displayDirections = split.map(el => {

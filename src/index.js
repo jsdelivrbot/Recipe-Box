@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "semantic-ui-css/semantic.min.css";
 import R from "ramda";
+import axios from './components/axios-orders'
 import "./styles.css";
 import GridLayout from "./layout/GridLayout";
 import Menu from "./components/Menu";
@@ -14,6 +15,7 @@ class App extends React.Component {
     this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
     this.editRecipeHandler = this.editRecipeHandler.bind(this);
     this.addFavHandler = this.addFavHandler.bind(this);
+    this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
   }
 
   state = {
@@ -96,6 +98,29 @@ small splash Pernod (optional),
     searchIsLoading: false,
     searchID: ""
   };
+
+  orderRecipeHandler() {
+    const ingredients = {...this.state.mainRecipe.ingredients};
+    const price = '$20';
+    const order = {
+      ingredients,
+      price,
+      customer: {
+        name: 'Max',
+        address: {
+          street: '2 Anshaw Close',
+          town: 'bolton',
+          postcode: 'BL7'
+        },
+        email: 'test@test.com',
+        deliverMethod: 'fastest'
+      }
+    }
+
+    axios.post('orders/json', order)
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
+  }
 
   addRecipeHandler(recipe) {
     let popularRecipes = [...this.state.popularRecipes];
@@ -208,6 +233,8 @@ small splash Pernod (optional),
           deleteOnClick={this.deleteRecipeHandler}
           editOnClick={this.editRecipeHandler}
           addFav={this.addFavHandler}
+
+          orderRecipe={this.orderRecipeHandler}
           
           searchValue={this.state.searchValue}
           searchResults={this.state.searchResults}

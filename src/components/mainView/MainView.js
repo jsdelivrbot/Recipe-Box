@@ -92,6 +92,12 @@ const MainView = props => (
           </Modal.Description>
          </Modal.Content> 
       </Modal>
+      <Button 
+      inverted color='red'
+      onClick={props.orderRecipe}
+      >
+       Order this recipe now!
+       </Button> 
     </Container>
   </div>
 );
