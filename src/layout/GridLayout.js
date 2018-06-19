@@ -7,6 +7,7 @@ import ResultsSide from '../components/ResultsSide';
 import SearchRecipes from '../components/search/Search';
 import Favourites from '../components/favourites/Favourites';
 
+
 const GridLayout = props => {
   console.log(props)
   return (
