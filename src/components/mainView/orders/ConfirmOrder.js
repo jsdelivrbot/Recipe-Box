@@ -33,7 +33,13 @@ class NestedModalSecond extends Component {
         <p>Your food is on its way!! Enjoy!!</p>
       </Message>
     );
-
+    const failureMsg = (
+      <Message negative>
+        <Message.Header>Something went wrong!</Message.Header>
+        <p>Please try again</p>
+      </Message>
+    );
+  console.log(this.props)
     return (
       <Modal
         scrolling
@@ -55,7 +61,9 @@ class NestedModalSecond extends Component {
           <Button primary Icon onClick={this.orderSent.bind(this)}> Order!</Button>
           <p>Is this information correct?</p>
            {(this.state.orderSent && !this.props.orderAccepted) ? Loading : null }
-           {this.props.orderAccepted ? successMsg : null}
+           {(this.props.orderAccepted && this.props.orderLoaded ) ? successMsg : null}
+           {(!this.props.orderAccepted && this.props.orderLoaded) ? failureMsg : null}
+           <Header as='h3'>{recipeTitle}</Header>
            <Header as='h3'>{recipeTitle}</Header>
            <List bulleted>
              {ingredientsDisplay}
@@ -104,7 +112,8 @@ const ConfirmOrder = props => {
             deliverInfo={props.deliverInfo} 
             recipeInfo={recipeInfo} 
             orderRecipe={props.orderRecipe}
-            orderAccepted={props.orderAccepted}/>
+            orderAccepted={props.orderAccepted}
+            orderLoaded={props.orderLoaded}/>
           </Modal.Actions>
          
         

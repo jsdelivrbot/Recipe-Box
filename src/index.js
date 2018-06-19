@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "semantic-ui-css/semantic.min.css";
 import R from "ramda";
-import axios from './components/axios-orders'
+import axios from "./components/axios-orders";
 import "./styles.css";
 import GridLayout from "./layout/GridLayout";
 import Menu from "./components/Menu";
 import getResults from "./components/search/getResults";
-import getRecipe from './components/search/getRecipe';
+import getRecipe from "./components/search/getRecipe";
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class App extends React.Component {
     this.editRecipeHandler = this.editRecipeHandler.bind(this);
     this.addFavHandler = this.addFavHandler.bind(this);
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
-    this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this)
+    this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this);
   }
 
   state = {
@@ -95,36 +95,46 @@ small splash Pernod (optional),
     favourites: [],
     editMode: false,
     orderAccepted: false,
+    orderLoaded: false,
     deliveryInfo: {},
     searchResults: [],
     searchValue: "",
     searchIsLoading: false,
-    searchID: "",
-
+    searchID: ""
   };
 
   deliveryInfoHandler(deliveryInfo) {
-      this.setState({
-        deliveryInfo
-      })
+    this.setState({
+      deliveryInfo
+    });
   }
 
   orderRecipeHandler() {
-    const ingredients = {...this.state.mainRecipe.ingredients};
-    const deliveryInfo = {...this.state.deliveryInfo};
-    const price = '$20';
+    const ingredients = { ...this.state.mainRecipe.ingredients };
+    const deliveryInfo = { ...this.state.deliveryInfo };
+    const price = "$20";
     const order = {
       ingredients,
       price,
       deliveryInfo
-    }
-    console.log('ordering')
-    axios.post('orders.json', order)
-    .then(response =>{
-      console.log(response)
-      this.setState({orderAccepted: true})
-    } )
-    .catch(error => console.log(error))
+    };
+    console.log("ordering");
+    axios
+      .post("orders.json", order)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          orderLoaded: true,
+          orderAccepted: true
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({
+          orderLoaded: true,
+          orderAccepted: false
+        });
+      });
   }
 
   addRecipeHandler(recipe) {
@@ -150,7 +160,7 @@ small splash Pernod (optional),
     const sortById = R.sortBy(R.compose(R.prop("id")));
     const sorted = sortById(popularRecipes);
     const recipeToReplace = sorted[sorted.length - 1];
- 
+
     const { header, directions, ingredients } = recipeToReplace;
     this.setState({
       mainRecipe: {
@@ -184,11 +194,11 @@ small splash Pernod (optional),
       const recipeName = this.state.searchValue;
       const recipes = [...this.state.searchResults];
       const recipeObj = recipes.find(el => el.title === recipeName);
-     
+
       if (recipeObj != undefined) {
-        const id = recipeObj.recipe_id;      
-        const recipe = getRecipe(id);    
-        recipe.then(recipe => {      
+        const id = recipeObj.recipe_id;
+        const recipe = getRecipe(id);
+        recipe.then(recipe => {
           this.setState({
             mainRecipe: recipe.data.recipe
           });
@@ -201,17 +211,22 @@ small splash Pernod (optional),
   }
 
   resetComponent = () =>
-    this.setState({ seardchIsLoading: false, searchResults: [], searchValue: "" });
+    this.setState({
+      seardchIsLoading: false,
+      searchResults: [],
+      searchValue: ""
+    });
 
-  handleResultSelect = (e, { result }) => this.setState({ searchValue: result.title });
+  handleResultSelect = (e, { result }) =>
+    this.setState({ searchValue: result.title });
 
-  handleSearchChange = (e) => {
+  handleSearchChange = e => {
     const searchValue = e.target.value;
-    this.setState({ 
-      searchIsLoading: true, 
-      searchValue 
-      });
-  
+    this.setState({
+      searchIsLoading: true,
+      searchValue
+    });
+
     setTimeout(() => {
       if (this.state.searchValue.length < 1) return this.resetComponent();
       const source = getResults(searchValue);
@@ -232,7 +247,6 @@ small splash Pernod (optional),
           mainRecipe={this.state.mainRecipe}
           popularRecipes={this.state.popularRecipes}
           favourites={this.state.favourites}
-       
           addRecipe={data => this.addRecipeHandler(data)}
           deleteOnClick={this.deleteRecipeHandler}
           editOnClick={this.editRecipeHandler}
@@ -242,6 +256,7 @@ small splash Pernod (optional),
           updateDelivery={this.deliveryInfoHandler}
           deliveryInfo={this.state.deliveryInfo}
           orderAccepted={this.state.orderAccepted}
+          orderLoaded={this.state.orderLoaded}
 
           searchValue={this.state.searchValue}
           searchResults={this.state.searchResults}

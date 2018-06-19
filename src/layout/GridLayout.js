@@ -73,6 +73,7 @@ const GridLayout = props => {
               updateDelivery={props.updateDelivery}
               deliveryInfo={props.deliveryInfo}
               orderAccepted={props.orderAccepted}
+              orderLoaded={props.orderLoaded}
             />
           </Grid.Column>
           <Grid.Column width={1} />
