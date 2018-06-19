@@ -97,7 +97,9 @@ const MainView = props => (
       mainRecipe={props.mainRecipe}
       orderRecipe={props.orderRecipe}
       updateDelivery={props.updateDelivery}
-      deliveryInfo={props.deliverInfo}/>
+      deliveryInfo={props.deliverInfo}
+      orderAccepted={props.orderAccepted}/>
+      
   
     </Container>
   </div>

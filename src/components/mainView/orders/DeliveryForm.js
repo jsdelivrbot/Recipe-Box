@@ -1,11 +1,7 @@
 import React from "react";
 import { Form, Message } from "semantic-ui-react";
 
-const successMsg = (
-  <Message success>
-    Your details have been saved, go to the next page to finalise!{" "}
-  </Message>
-);
+
 
 export default class DeliveryForm extends React.Component {
   constructor(props) {
@@ -57,20 +53,29 @@ export default class DeliveryForm extends React.Component {
     this.props.updateDelivery(deliveryInfo);
     this.setState(prevState => {
       return {
-        sent: !prevState.sent
+        sent: true
       };
     });
+  
   }
 
   render() {
+    
+    const successMsg = (
+      <Message positive>
+      <Message.Header> Success!</Message.Header>  
+<p>Your details have been saved, go to the next page to finalise!</p>
+      </Message>
+    );
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form size='small' onSubmit={this.handleSubmit}>
         <Form.Input
           label="Name"
           value={this.state.name}
           onChange={this.handleChangeName}
           placeholder="Title"
         />
+        <Form.Group inline>
         <Form.Input
           label="Street"
           value={this.state.Street}
@@ -89,6 +94,7 @@ export default class DeliveryForm extends React.Component {
           onChange={this.handleChangePostcode}
           placeholder="Postcode"
         />
+        </Form.Group>
         <Form.Input
           label="Email"
           value={this.state.email}
@@ -103,7 +109,7 @@ export default class DeliveryForm extends React.Component {
         <Form.Button type="submit" value="Submit">
           Submit delivery info
         </Form.Button>
-        {this.state.sent ? successMsg : null}
+        {this.state.sent === true ? successMsg : null}
       </Form>
     );
   }

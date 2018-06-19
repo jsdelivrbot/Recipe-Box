@@ -94,7 +94,7 @@ small splash Pernod (optional),
     ],
     favourites: [],
     editMode: false,
-    orderLoading: false,
+    orderAccepted: false,
     deliveryInfo: {},
     searchResults: [],
     searchValue: "",
@@ -111,24 +111,19 @@ small splash Pernod (optional),
 
   orderRecipeHandler() {
     const ingredients = {...this.state.mainRecipe.ingredients};
+    const deliveryInfo = {...this.state.deliveryInfo};
     const price = '$20';
     const order = {
       ingredients,
       price,
-      customer: {
-        name: 'Max',
-        address: {
-          street: '2 Anshaw Close',
-          town: 'bolton',
-          postcode: 'BL7'
-        },
-        email: 'test@test.com',
-        deliverMethod: 'fastest'
-      }
+      deliveryInfo
     }
     console.log('ordering')
     axios.post('orders.json', order)
-    .then(response => console.log(response))
+    .then(response =>{
+      console.log(response)
+      this.setState({orderAccepted: true})
+    } )
     .catch(error => console.log(error))
   }
 
@@ -246,6 +241,7 @@ small splash Pernod (optional),
           orderRecipe={this.orderRecipeHandler}
           updateDelivery={this.deliveryInfoHandler}
           deliveryInfo={this.state.deliveryInfo}
+          orderAccepted={this.state.orderAccepted}
 
           searchValue={this.state.searchValue}
           searchResults={this.state.searchResults}
