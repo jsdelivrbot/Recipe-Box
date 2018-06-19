@@ -8,7 +8,8 @@ import Menu from "../components/Menu";
 import getResults from "../components/search/getResults";
 import getRecipe from "../components/search/getRecipe";
 import withErrorHandler from '../containers/RecipeBox';
-import { Modal } from 'semantic-ui-react';
+import ErrorHandler from '../withErrorHandler/ErrorHandler'
+
  class RecipeBox extends React.Component {
   constructor(props) {
     super(props);
@@ -109,7 +110,7 @@ small splash Pernod (optional),
       this.setState({ error: null })
     })
     axios.interceptors.response.use(null, error => {
-      this.setState({ error })
+      this.setState({ error: error })
     })
   }
 
@@ -130,16 +131,16 @@ small splash Pernod (optional),
     };
     console.log("ordering");
     axios
-      .post("orders.json", order)
+      .post("ordersjson", order)
       .then(response => {
         console.log(response);
         this.setState({
           orderLoaded: true,
           orderAccepted: true
         });
-      })
-      .catch(error => {
+      }).catch(error => {
         console.log(error);
+        console.log('here')
         this.setState({
           orderLoaded: true,
           orderAccepted: false
@@ -253,13 +254,7 @@ small splash Pernod (optional),
     return (
       <div className="">
         <Menu />
-        <Modal open={this.state.error} >
-          <Modal.Content>
-            <p>
-             {this.state.error }
-             </p>
-          </Modal.Content>
-        </Modal>
+        <ErrorHandler error={this.state.error}/>
         <GridLayout
           mainRecipe={this.state.mainRecipe}
           popularRecipes={this.state.popularRecipes}
