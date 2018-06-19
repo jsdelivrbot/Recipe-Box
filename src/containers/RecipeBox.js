@@ -25,15 +25,14 @@ import ErrorHandler from '../withErrorHandler/ErrorHandler'
       title: "Chicken Curry",
       image_url:
         "https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*",
-      ingredients: `2 tbsp. extra-virgin olive oil,
-                  1 medium yellow onion, chopped,
-                  2 lb. boneless skinless chicken breasts,
-                  3 cloves garlic, minced,
-                  1 tbsp. freshly grated ginger,
-                  1 tsp. paprika,
-                  1 tsp. turmeric,
-                  1 tsp. coriander,
-                  1/2 tsp. cumin`,
+      ingredients: {
+        oliveOil: 2,
+        onion: 1,
+        garlic: 3,
+        ginger: 1,
+        coriander: 1,
+        cumin: 0.5
+      }, 
       directions: `In a large pot over medium-high heat, heat oil. Add onion and cook until softened and lightly golden, 5 to 7 minutes. Add chicken and sear until golden on all sides, 5 minutes more. Stir in garlic and ginger and cook until fragrant, 2 minutes more.
                   Coat aromatics in spices and cook until very fragrant, less than a minute more. Pour in tomatoes and chicken broth and bring to a simmer.
                   Stir in heavy cream, then season with salt and pepper. Simmer until chicken pieces are cooked through and tender, about 10 minutes.
