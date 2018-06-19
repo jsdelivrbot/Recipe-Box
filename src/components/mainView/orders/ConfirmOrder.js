@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Header, Button, Modal, Icon, Image, Progress, List } from "semantic-ui-react";
+import { Message, Header, Button, Modal, Icon, Image, Progress, List } from "semantic-ui-react";
 import StepsFirst from './steps/StepsFirst';
 import StepsSecond from './steps/StepsSecond';
 import Loader from '../Loader';
@@ -9,26 +9,30 @@ class NestedModalSecond extends Component {
   state = {
   open: false, 
   orderSent: false,
-  orderAccepted: false };
+   };
 
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
   
   orderSent() {
     this.setState({orderSent: true})
-    this.props.orderRecipe()
+    this.props.orderRecipe();
   }
 
   render() {
  
-    const { open } = this.state;
-    const loading = <div className='loader'>Loading...</div>
-    const orderSummary = this.state.orderSent === true ? loading : null;
-   
+    const { open } = this.state;  
     const ingredientsDisplay = this.props.recipeInfo.ingredients.split(',').map(el => {
       return <List.Item>{el}</List.Item>;
     });
     const recipeTitle = this.props.recipeInfo.title;
+    const Loading = <div className='loader'>Laoding.. </div>
+    const successMsg = (
+      <Message positive>
+        <Message.Header> Success!</Message.Header>
+        <p>Your food is on its way!! Enjoy!!</p>
+      </Message>
+    );
 
     return (
       <Modal
@@ -50,7 +54,8 @@ class NestedModalSecond extends Component {
         <Modal.Content scrolling>
           <Button primary Icon onClick={this.orderSent.bind(this)}> Order!</Button>
           <p>Is this information correct?</p>
-           {this.state.orderSent === true ? loading : null}
+           {(this.state.orderSent && !this.props.orderAccepted) ? Loading : null }
+           {this.props.orderAccepted ? successMsg : null}
            <Header as='h3'>{recipeTitle}</Header>
            <List bulleted>
              {ingredientsDisplay}
@@ -76,14 +81,14 @@ class NestedModalSecond extends Component {
 
 const ConfirmOrder = props => {
   const recipeInfo = props.mainRecipe;
-  console.log(props)
+ 
   const Info = <DeliveryForm 
                 updateDelivery={props.updateDelivery}/>
   return (
     <Modal
       size="large"
       trigger={
-        <Button inverted color="red" onClick={props.orderRecipe}>
+        <Button inverted color="red">
           Order this recipe now!
       </Button>
       }
@@ -98,7 +103,8 @@ const ConfirmOrder = props => {
             <NestedModalSecond 
             deliverInfo={props.deliverInfo} 
             recipeInfo={recipeInfo} 
-            orderRecipe={props.orderRecipe}/>
+            orderRecipe={props.orderRecipe}
+            orderAccepted={props.orderAccepted}/>
           </Modal.Actions>
          
         
