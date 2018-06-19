@@ -71,6 +71,7 @@ const GridLayout = props => {
               addRecipe={props.addRecipe}
               orderRecipe={props.orderRecipe}
               updateDelivery={props.updateDelivery}
+              deliveryInfo={props.deliveryInfo}
             />
           </Grid.Column>
           <Grid.Column width={1} />

@@ -95,8 +95,10 @@ const MainView = props => (
       </Modal>
      <ConfirmOrder
       mainRecipe={props.mainRecipe}
-      OrderRecipe={props.orderRecipe}
-      updateDelivery={props.updateDelivery}/>
+      orderRecipe={props.orderRecipe}
+      updateDelivery={props.updateDelivery}
+      deliveryInfo={props.deliverInfo}/>
+  
     </Container>
   </div>
 );

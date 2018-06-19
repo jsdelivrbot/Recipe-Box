@@ -126,7 +126,7 @@ small splash Pernod (optional),
         deliverMethod: 'fastest'
       }
     }
-
+    console.log('ordering')
     axios.post('orders.json', order)
     .then(response => console.log(response))
     .catch(error => console.log(error))
@@ -245,7 +245,8 @@ small splash Pernod (optional),
 
           orderRecipe={this.orderRecipeHandler}
           updateDelivery={this.deliveryInfoHandler}
-          
+          deliveryInfo={this.state.deliveryInfo}
+
           searchValue={this.state.searchValue}
           searchResults={this.state.searchResults}
           searchID={this.state.searchID}
