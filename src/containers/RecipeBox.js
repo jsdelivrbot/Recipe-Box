@@ -7,7 +7,6 @@ import GridLayout from "../layout/GridLayout";
 import Menu from "../components/Menu";
 import getResults from "../components/search/getResults";
 import getRecipe from "../components/search/getRecipe";
-import withErrorHandler from '../containers/RecipeBox';
 import ErrorHandler from '../withErrorHandler/ErrorHandler'
 
  class RecipeBox extends React.Component {
@@ -99,18 +98,24 @@ small splash Pernod (optional),
 
   componentDidMount() {
    
-    axios.get('https://recipe-box-15453.firebaseio.com/Ingredients')
-    .then(response => {
-      console.log(response)
-     // this.setState({ingredients: response.data})
-    }).catch(response => console.log(response))
+  
 
-    axios.interceptors.request.use(req => {
+    this.reqInterceptor = axios.interceptors.request.use(req => {
       this.setState({ error: null })
     });
-    axios.interceptors.response.use(null, error => {
+    this.resInterceptor = axios.interceptors.response.use(null, error => {
       this.setState({ error: error })
     });
+ 
+    axios.get("Ingredients.json").then(data => {
+      console.log(data)
+      // this.setState({ingredients: response.data})
+    }).catch(response => console.log(response))
+  }
+
+  componentWillUnmount() {
+    axios.interceptors.request.eject(this.reqInterceptor);
+    axios.interceptors.response.eject(this.resInterceptor);
   }
 
   deliveryInfoHandler(deliveryInfo) {
@@ -128,9 +133,9 @@ small splash Pernod (optional),
       price,
       deliveryInfo
     };
-    console.log("ordering");
+  
     axios
-      .post("ordersjson", order)
+      .post("orders.json", order)
       .then(response => {
         console.log(response);
         this.setState({

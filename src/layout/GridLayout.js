@@ -9,7 +9,7 @@ import Favourites from '../components/favourites/Favourites';
 
 
 const GridLayout = props => {
-  console.log(props)
+ 
   return (
     <div>
       <Grid celled stackable>
