@@ -20,10 +20,14 @@ class NestedModalSecond extends Component {
   }
 
   render() {
- 
+    console.log(this.props)
     const { open } = this.state;  
-    const ingredientsDisplay = this.props.recipeInfo.ingredients.split(',').map(el => {
-      return <List.Item>{el}</List.Item>;
+    const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
+    const ingredientsDisplay = ingredientsArray.map(el => {
+      let [item, num] = el;
+
+      const upper = item[0].toUpperCase() + item.substr(1);
+      return <List.Item key={el.id}>{upper} : {num}</List.Item>;
     });
     const recipeTitle = this.props.recipeInfo.title;
     const Loading = <div className='loader'>Laoding.. </div>
