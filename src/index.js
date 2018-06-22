@@ -1,15 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import RecipeBox from './containers/RecipeBox';
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./styles.css";
+
+import RecipeBox from "./containers/RecipeBox";
+import Menu from "./components/Menu";
+import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
+
+
 class App extends React.Component {
-
-
   render() {
     return (
-      <div className='App'>
-        <RecipeBox />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Menu />
+          <Route path="/" component={<RecipeBox />} />
+          <Route path="/team" exact component={<WhoWeAre />} />
+        </div>
+      </BrowserRouter>
     );
   }
 }

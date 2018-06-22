@@ -4,7 +4,7 @@ import "semantic-ui-css/semantic.min.css";
 import R from "ramda";
 import axios from "../components/axios-orders";
 import GridLayout from "../layout/GridLayout";
-import Menu from "../components/Menu";
+
 import getResults from "../components/search/getResults";
 import getRecipe from "../components/search/getRecipe";
 import ErrorHandler from '../withErrorHandler/ErrorHandler'
@@ -262,7 +262,7 @@ small splash Pernod (optional),
   render() {
     return (
       <div className="">
-        <Menu />
+       
         <ErrorHandler error={this.state.error}/>
         <GridLayout
           mainRecipe={this.state.mainRecipe}

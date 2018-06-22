@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, Image, Divider, Header, Search } from 'semantic-ui-react';
-import Title from '../components/Title';
+import { Grid, Image, Divider, Header, Search, Card } from 'semantic-ui-react';
+import Title from '../../components/Title';
 import SearchRecipes from '../../components/search/Search';
 
 export default class WhoWeAre extends React.Component {
@@ -8,18 +8,31 @@ export default class WhoWeAre extends React.Component {
     team: [{
       name: 'Oliver Yates',
       role: 'Developer',
-      do: 'Makes all the gears and cogs, and keeps them well oiled',
+      description: 'Makes all the gears and cogs, and keeps them well oiled',
       quote: 'Don\'t worry it might never happen!'
     }, {
       name: 'James Steevenson',
       role: 'Chef',
-      do: 'Comes up with all the good ideas',
+      description: 'Comes up with all the good ideas',
       quote: 'Time for a drink'
     }]
   }
 
 
   render() {
+
+  const teamTitle = <Header as='h2'>The amazing team</Header>;
+  const team = [...this.state.team];
+  const displayCards = team.map(teamMember => {
+    return ( <Card
+      image='/assets/images/avatar/large/elliot.jpg'
+      header={teamMember.name}
+      meta={teamMember.role}
+      description={teamMember.description}
+      extra={teamMember.quote}
+    />
+    )
+  })
 
     return (
       <div>
@@ -37,13 +50,13 @@ export default class WhoWeAre extends React.Component {
           <Grid.Row>
             <Grid.Column width={3}>
               <SearchRecipes
-                searchHandleResultSelect={props.searchHandleResultSelect}
-                handleSearchChange={props.handleSearchChange}
-                searchValue={props.searchValue}
-                searchResults={props.searchResults}
-                searchID={props.searchID}
-                searchIsLoading={props.searchIsLoading}
-                searchOnClickHandler={props.searchOnClickHandler} />
+                searchHandleResultSelect={this.props.searchHandleResultSelect}
+                handleSearchChange={this.props.handleSearchChange}
+                searchValue={this.props.searchValue}
+                searchResults={this.props.searchResults}
+                searchID={this.props.searchID}
+                searchIsLoading={this.props.searchIsLoading}
+                searchOnClickHandler={this.props.searchOnClickHandler} />
             </Grid.Column>
           <Grid.Column width={12}>
 
