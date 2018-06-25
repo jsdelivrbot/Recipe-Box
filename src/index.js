@@ -4,20 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
 class Index extends React.Component {
-
-render() {
- return  (
-    <div>
+  render() {
+    return (
       <BrowserRouter>
-        <App />
+        <div>
+          <App />
+        </div>
       </BrowserRouter>
-    </div>
-
-  );
+    );
+  }
 }
-
-}
-     
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<Index />, rootElement);

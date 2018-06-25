@@ -1,6 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { Route, } from "react-router-dom";
+
+import { Route, Switch } from "react-router-dom";
 import "./styles.css";
 import Recipe from './containers/recipeBox/Recipe';
 import RecipeBox from "./containers/recipeBox/RecipeBox";
@@ -13,8 +13,11 @@ export default class App extends React.Component {
      
         <div className="App">
           <Menu />
-          <WhoWeAre />
-          
+          <Switch>
+          <Route path="/" exact component={Recipe} />
+          <Route path="/team" exact component={WhoWeAre} />
+          <Route render={() => <h1> 404 Error </h1>} />
+          </Switch>
         </div>
     );
   }
