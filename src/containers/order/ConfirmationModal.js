@@ -2,10 +2,9 @@ import React from 'react';
 import { Modal, Message, Grid, Image, Divider, Header, Search, Card, List } from 'semantic-ui-react';
 import Title from '../../components/Title';
 import SearchRecipes from '../../components/search/Search';
-import StepsFirst from './steps/StepsFirst';
-import StepsSecond from './steps/StepsSecond';
-import Loader from '../Loader';
-import DeliveryForm from './DeliveryForm';
+import StepsSecond from './steps/StepSecond';
+import Loader from '../../components/mainView/Loader';
+
 
 export default class ConfirmationModal extends React.Component {
   state = {

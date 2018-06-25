@@ -3,14 +3,14 @@ import { Grid, Image, Divider, Header, Search, Card } from 'semantic-ui-react';
 import Title from '../../components/Title';
 import SearchRecipes from '../../components/search/Search';
 import ConfirmationModal from './ConfirmationModal';
-
+import DeliveryForm from '../../components/mainView/orders/DeliveryForm';
 export default class Confirm extends React.Component {
  
   render() {
-    const recipeInfo = props.mainRecipe;
+    const recipeInfo = this.props.mainRecipe;
 
     const Info = <DeliveryForm
-      updateDelivery={props.updateDelivery} />
+      updateDelivery={this.props.updateDelivery} />
    
     return (
       <div>
@@ -38,9 +38,9 @@ export default class Confirm extends React.Component {
               <ConfirmationModal
                 deliverInfo={props.deliverInfo}
                 recipeInfo={recipeInfo}
-                orderRecipe={props.orderRecipe}
-                orderAccepted={props.orderAccepted}
-                orderLoaded={props.orderLoaded} />
+                orderRecipe={this.props.orderRecipe}
+                orderAccepted={this.props.orderAccepted}
+                orderLoaded={this.props.orderLoaded} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
