@@ -9,29 +9,34 @@ export default class WhoWeAre extends React.Component {
       name: 'Oliver Yates',
       role: 'Developer',
       description: 'Makes all the gears and cogs, and keeps them well oiled',
-      quote: 'Don\'t worry it might never happen!'
+      quote: 'Don\'t worry it might never happen!',
+      img: ''
     }, {
       name: 'James Steevenson',
       role: 'Chef',
       description: 'Comes up with all the good ideas',
-      quote: 'Time for a drink'
+      quote: 'Time for a drink',
+      img: ''
     }]
   }
 
-
   render() {
-
-  const teamTitle = <Header as='h2'>The amazing team</Header>;
+ 
+  const cardsStyle = {
+    display: 'flex',
+    margin: '60px'
+  }
+ 
   const team = [...this.state.team];
   const displayCards = team.map(teamMember => {
-    return ( <Card
-      image='/assets/images/avatar/large/elliot.jpg'
+    return <Card
+      image={teamMember.img}
       header={teamMember.name}
       meta={teamMember.role}
       description={teamMember.description}
       extra={teamMember.quote}
     />
-    )
+    
   })
 
     return (
@@ -48,19 +53,12 @@ export default class WhoWeAre extends React.Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={3}>
-              <SearchRecipes
-                searchHandleResultSelect={this.props.searchHandleResultSelect}
-                handleSearchChange={this.props.handleSearchChange}
-                searchValue={this.props.searchValue}
-                searchResults={this.props.searchResults}
-                searchID={this.props.searchID}
-                searchIsLoading={this.props.searchIsLoading}
-                searchOnClickHandler={this.props.searchOnClickHandler} />
+            <Grid.Column width={2}>
+             
             </Grid.Column>
           <Grid.Column width={12}>
-               <teamTitle />
-               <displayCards />
+              <Header as='h1'>The Team</Header>
+             <div style={cardsStyle}> {displayCards} </div>  
           </Grid.Column>        
           </Grid.Row>        
         </Grid>
