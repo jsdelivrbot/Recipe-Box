@@ -10,13 +10,13 @@ export default class WhoWeAre extends React.Component {
       role: 'Developer',
       description: 'Makes all the gears and cogs, and keeps them well oiled',
       quote: 'Don\'t worry it might never happen!',
-      img: ''
+      img: 'https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/TN1m-myAvatar%20(1).png'
     }, {
       name: 'James Steevenson',
       role: 'Chef',
       description: 'Comes up with all the good ideas',
       quote: 'Time for a drink',
-      img: ''
+      img: 'https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/bkwC-myAvatar.png'
     }]
   }
 
@@ -26,10 +26,14 @@ export default class WhoWeAre extends React.Component {
     display: 'flex',
     margin: '60px'
   }
+
+  const individualCardStyle= {
+    margin: '40px'
+  }
  
   const team = [...this.state.team];
   const displayCards = team.map(teamMember => {
-    return <Card
+    return <Card style={individualCardStyle}
       image={teamMember.img}
       header={teamMember.name}
       meta={teamMember.role}
@@ -60,7 +64,17 @@ export default class WhoWeAre extends React.Component {
               <Header as='h1'>The Team</Header>
              <div style={cardsStyle}> {displayCards} </div>  
           </Grid.Column>        
-          </Grid.Row>        
+          </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={2}>
+
+            </Grid.Column>
+            <Grid.Column width={12}>
+              <p>Our aim is to provide you with an easy
+                 way to get high-quality dishes wherever you are  </p>
+              <p>We are two passionate guys trying to make your life easier! </p>   
+            </Grid.Column>
+          </Grid.Row>              
         </Grid>
       </div>
     )
