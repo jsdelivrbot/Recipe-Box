@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "semantic-ui-css/semantic.min.css";
 import R from "ramda";
-import axios from "../components/axios-orders";
-import GridLayout from "../layout/GridLayout";
+import axios from "../../components/axios-orders";
+import GridLayout from "../../layout/GridLayout";
 
-import getResults from "../components/search/getResults";
-import getRecipe from "../components/search/getRecipe";
-import ErrorHandler from '../withErrorHandler/ErrorHandler'
+import getResults from "../../components/search/getResults";
+import getRecipe from "../../components/search/getRecipe";
+import ErrorHandler from '../../withErrorHandler/ErrorHandler'
 
- class RecipeBox extends React.Component {
+class RecipeBox extends React.Component {
   constructor(props) {
     super(props);
     this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
@@ -23,11 +23,13 @@ import ErrorHandler from '../withErrorHandler/ErrorHandler'
     mainRecipe: {
       title: "Chicken Curry",
       image_url:
-        "https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*",
-      ingredients: {chicken: 1,
-                    leek: 2,
-                    onions: 7,
-                    peppers: 4}, 
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*",
+      ingredients: {
+        chicken: 1,
+        leek: 2,
+        onions: 7,
+        peppers: 4
+      },
       directions: `In a large pot over medium-high heat, heat oil. Add onion and cook until softened and lightly golden, 5 to 7 minutes. Add chicken and sear until golden on all sides, 5 minutes more. Stir in garlic and ginger and cook until fragrant, 2 minutes more.
                   Coat aromatics in spices and cook until very fragrant, less than a minute more. Pour in tomatoes and chicken broth and bring to a simmer.
                   Stir in heavy cream, then season with salt and pepper. Simmer until chicken pieces are cooked through and tender, about 10 minutes.
@@ -45,18 +47,15 @@ import ErrorHandler from '../withErrorHandler/ErrorHandler'
         id: 1,
         header: "Cloud Bread",
         description:
-          "Light and fluffy, this bread substitute lives up to its name.",
+        "Light and fluffy, this bread substitute lives up to its name.",
         ingredients: `oil or butter for greasing,
 4 eggs
-
 , separated
 50g cream cheese,
 ¼ tsp cream of tartar,
 ½ tsp nigella seeds`,
         directions: `Heat oven to 150C/130C fan/gas 2 and line 2 large baking sheets with baking paper, then grease well with butter or oil.
-
 In a large bowl and using electric beaters, whisk the egg whites together until stiff peaks form. You should be able to carefully turn the bowl upside down without it falling out.
-
 In another bowl, put the egg yolks, cream cheese and cream of tartar 
 then whisk together (no need to wash the beaters first) until smooth, 
 pale and frothy. Next, fold the egg whites, a spoonful at a time into 
@@ -66,17 +65,14 @@ the yolk mixture, be as gentle as you can with this so you don’t knock out too
         id: 2,
         header: "Fish Pie",
         description:
-          "Generous chunks of fish in a creamy sauce made with a few secret ingredients, topped with buttery mash and a crispy garnish",
+        "Generous chunks of fish in a creamy sauce made with a few secret ingredients, topped with buttery mash and a crispy garnish",
         ingredients: `150g butter
-
 1 shallot finely chopped,
 400g shell-on raw prawns- peeled= heads and shells kept for stock,
 400g smoked haddock,
-
  skinned and trimmed (reserve these), flesh diced into large chunks,
 1 bay leaf,
 1 star anise,
-
 small splash Pernod (optional),
 150ml white wine,
 1.2l whole milk`,
@@ -100,8 +96,8 @@ small splash Pernod (optional),
   };
 
   componentDidMount() {
-   
-  
+
+
 
     this.reqInterceptor = axios.interceptors.request.use(req => {
       this.setState({ error: null })
@@ -109,13 +105,13 @@ small splash Pernod (optional),
     this.resInterceptor = axios.interceptors.response.use(null, error => {
       this.setState({ error: error })
     });
-  
+
     fetch('https://recipe-box-15453.firebaseio.com/ingredients.json').then(data => {
-    console.log(data)
-    return data.json()
+      console.log(data)
+      return data.json()
       //  this.setState({ingredients: response.data})
-    }).then(ingredients => this.setState({ingredients}))
-    .catch(response => console.log(response))
+    }).then(ingredients => this.setState({ ingredients }))
+      .catch(response => console.log(response))
   }
 
   componentWillUnmount() {
@@ -138,7 +134,7 @@ small splash Pernod (optional),
       price,
       deliveryInfo
     };
-  
+
     axios
       .post("orders.json", order)
       .then(response => {
@@ -262,8 +258,8 @@ small splash Pernod (optional),
   render() {
     return (
       <div className="">
-       
-        <ErrorHandler error={this.state.error}/>
+
+        <ErrorHandler error={this.state.error} />
         <GridLayout
           mainRecipe={this.state.mainRecipe}
           popularRecipes={this.state.popularRecipes}

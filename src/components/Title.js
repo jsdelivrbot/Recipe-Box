@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Icon, Image } from "semantic-ui-react";
+import { Header, Image } from "semantic-ui-react";
 
 const titleStyle = {
   color: "#4b4b4b",

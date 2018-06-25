@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   Image,
-  Header,
   Modal,
-  Form,
 } from "semantic-ui-react";
 import EditForm from './EditForm';
 

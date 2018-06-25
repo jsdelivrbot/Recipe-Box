@@ -1,21 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, } from "react-router-dom";
 import "./styles.css";
-
-import RecipeBox from "./containers/RecipeBox";
+import Recipe from './containers/recipeBox/Recipe';
+import RecipeBox  from "./containers/recipeBox/RecipeBox";
 import Menu from "./components/Menu";
 import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
 
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Menu />
-          <Route path="/" component={<RecipeBox />} />
+          <Menu /> 
+          <Recipe />     
           <Route path="/team" exact component={<WhoWeAre />} />
+          
         </div>
       </BrowserRouter>
     );
@@ -42,7 +43,7 @@ ReactDOM.render(<App />, rootElement);
 
 9.5 Reduce lsit of results
 11. Use firebase to store favourites
-12. Fix axios get request
+12. Fix axios get request - Done
 13. Instead of showing main recipe- use routing to show and use body to 
     display extra info etc - Use routing parameters
     e.g a group of 10 recipes with thumbnail images
@@ -50,8 +51,8 @@ ReactDOM.render(<App />, rootElement);
 
 Checkout 
 
-1.First a modal displaying order - is correct?
-2. Routing to delivery order.
-3. Final review
-4. Success/ Failure    
+1. Fix mainView routing problem
+2. Transfer order form to own container and state
+3. Delivery form can still be a modal which can be used in two places
+
 */

@@ -59,7 +59,8 @@ export default class WhoWeAre extends React.Component {
                 searchOnClickHandler={this.props.searchOnClickHandler} />
             </Grid.Column>
           <Grid.Column width={12}>
-
+               <teamTitle />
+               <displayCards />
           </Grid.Column>        
           </Grid.Row>        
         </Grid>
