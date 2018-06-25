@@ -11,10 +11,8 @@ import {
   Item,
   Image,
   Header,
-  Icon,
   Button,
   Modal,
-  Form,
 } from "semantic-ui-react";
 
 const mainViewStyle = {

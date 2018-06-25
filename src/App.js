@@ -164,19 +164,17 @@ export default class App extends React.Component {
    });
  }
 
-
   render() {
- 
-
-
+   const state = {...this.state};
+  
     return (
   
         <div className="App">
           <Menu />
           <Switch>
-          <Route path="/" exact component={Recipe} />
+          <Route path="/" exact render={(props) => <Recipe {...props} props={state} />  } />
           <Route path="/team" exact component={WhoWeAre} />
-          <Route path="/order" exact component={Confirm} />
+          <Route path="/order" exact render={(state) => <Confirm {...state} />} />
           <Route render={() => <h1> 404 Error </h1>} />
           </Switch>
         </div>

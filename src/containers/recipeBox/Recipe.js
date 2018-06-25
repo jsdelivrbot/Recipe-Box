@@ -74,14 +74,15 @@ class RecipeBox extends React.Component {
   };
 
   render() {
+    console.log(this.props)
     return (
       <div className="">
 
         <ErrorHandler error={this.state.error} />
         <GridLayout
-          mainRecipe={this.state.mainRecipe}
+          mainRecipe={this.props.props.mainRecipe}
           popularRecipes={this.state.popularRecipes}
-          favourites={this.state.favourites}
+          favourites={this.props.props.favourites}
           addRecipe={data => this.addRecipeHandler(data)}
           deleteOnClick={this.deleteRecipeHandler}
           editOnClick={this.editRecipeHandler}
