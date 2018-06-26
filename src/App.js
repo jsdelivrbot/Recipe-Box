@@ -2,11 +2,12 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./styles.css";
 import Recipe from "./containers/recipeBox/Recipe";
-import Confirm from "./containers/order/Confirm";
+import ReviewInitial from "./containers/order/ReviewInitial";
 import Menu from "./components/Menu";
 import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
 import axios from "./components/axios-orders";
 import R from 'ramda';
+import DeliveryPage from './components/mainView/orders/DeliveryPage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
     this.addFavHandler = this.addFavHandler.bind(this);
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
     this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this);
+    this.addSearchHandler = this.addSearchHandler.bind(this);
   }
 
   state = {
@@ -195,6 +197,11 @@ export default class App extends React.Component {
     });
   }
 
+  addSearchHandler(searchData) {
+    const mainRecipe = searchData.data.recipe;
+     this.setState({ mainRecipe })  
+  }
+
   render() {
     const state = { ...this.state };
     const mainRecipe = { ...this.state.mainRecipe };
@@ -213,6 +220,7 @@ export default class App extends React.Component {
                 mainRecipe={mainRecipe}
                 addRecipe={data => this.addRecipeHandler(data)}
                 addFav={this.addFavHandler}
+                addSearch={this.addSearchHandler}
                 deleteRecipe={this.deleteRecipeHandler}
                 editRecipe={this.editRecipeHandler}
               />
@@ -220,15 +228,25 @@ export default class App extends React.Component {
           />
           <Route path="/team" exact component={WhoWeAre} />
           <Route path="/order" exact render={props =>
-            <Confirm  
-              {...props}
-              props={state}
-              orderRecipe={this.orderRecipeHandler}
-              updateDelivery={this.deliveryInfoHandler}
-              deliveryInfo={this.state.deliveryInfo}
-              orderAccepted={this.state.orderAccepted}
-              orderLoaded={this.state.orderLoaded}
+            <ReviewInitial  
+              {...props}            
+              mainRecipe={mainRecipe}
            />} />
+           <Route path="/delivery" exact render={props =>
+           <DeliveryPage
+              {...props} 
+                 deliveryInfo={this.state.deliveryInfo}
+                 updateDelivery={this.deliveryInfoHandler}
+           />
+           } />
+           {/*<Route path="/confirmation" exact render={props =>
+             <ConfirmationOrder
+               orderRecipe={this.orderRecipeHandler}
+               orderAccepted={this.state.orderAccepted}
+               orderLoaded={this.state.orderLoaded}
+             />
+           } />*/}
+
           <Route render={() => <h1> 404 Error </h1>} />
         </Switch>
       </div>

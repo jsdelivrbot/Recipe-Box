@@ -27,10 +27,9 @@ class RecipeBox extends React.Component {
       if (recipeObj != undefined) {
         const id = recipeObj.recipe_id;
         const recipe = getRecipe(id);
-        recipe.then(recipe => {
-          this.setState({
-            mainRecipe: recipe.data.recipe
-          });
+      
+        recipe.then(recipe => {    
+         this.props.addSearch(recipe);
         });
       }
     }, 300);
