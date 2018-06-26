@@ -54,7 +54,6 @@ export default class App extends React.Component {
       })
       .then(ingredients => {
         const mainRecipe = {...this.state.mainRecipe};
-        console.log(mainRecipe)
         mainRecipe.ingredients = ingredients;
         this.setState({
           mainRecipe
@@ -77,6 +76,11 @@ export default class App extends React.Component {
        
       )
       .catch(response => console.log(response));
+
+    fetch('https://recipe-box-15453.firebaseio.com/popular.json').then(data => {
+      return data.json()
+    }).then(popularRecipes => this.setState({ popularRecipes }))
+      .catch(response => console.log(response))  
 
     fetch("https://recipe-box-15453.firebaseio.com/favourites.json")
       .then(data => {
@@ -143,7 +147,10 @@ export default class App extends React.Component {
   }
 
   editRecipeHandler(editedRecipe) {
+   
     const { header, ingredients, directions } = editedRecipe;
+    const ingredientsString = JSON.stringify(ingredients, undefined , 2)
+
     this.setState({
       mainRecipe: {
         header,
@@ -158,11 +165,12 @@ export default class App extends React.Component {
     const sortById = R.sortBy(R.compose(R.prop("id")));
     const sorted = sortById(popularRecipes);
     const recipeToReplace = sorted[sorted.length - 1];
-
+    console.log(recipeToReplace)
     const { header, directions, ingredients } = recipeToReplace;
+  
     this.setState({
       mainRecipe: {
-        header,
+        title: header,
         directions,
         ingredients
       }

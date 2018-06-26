@@ -18,6 +18,12 @@ const icon = <Image
 />
 
 const EditOrder = props => {
+ const ingredients = {...props.recipe.ingredients}
+ const stringifiedIngredients = JSON.stringify(ingredients, undefined, 2)
+ const replaced = stringifiedIngredients.replace('"', '')
+ .replace('{', '')
+ .replace('}', '')
+
   return (
     <div>
     <Modal trigger={icon}>
@@ -26,7 +32,8 @@ const EditOrder = props => {
           <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
           <Modal.Description>
              <EditForm 
-             recipe={props.recipe} 
+             recipe={props.recipe}
+            ingredients={replaced}
              editSubmit={props.editSubmit}
              />
           </Modal.Description>

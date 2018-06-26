@@ -8,7 +8,7 @@ import ErrorHandler from '../../withErrorHandler/ErrorHandler'
 class RecipeBox extends React.Component {
 
   state = {
-    popularRecipes: [],
+   
     searchResults: [],
     searchValue: "",
     searchIsLoading: false,
@@ -16,12 +16,7 @@ class RecipeBox extends React.Component {
  
   };
 
- componentDidMount() {
-   fetch('https://recipe-box-15453.firebaseio.com/popular.json').then(data => {
-     return data.json()
-   }).then(popularRecipes => this.setState({ popularRecipes }))
-     .catch(response => console.log(response))
- }
+
   
   searchOnClickHandler() {
     setTimeout(() => {
@@ -80,7 +75,7 @@ class RecipeBox extends React.Component {
         <ErrorHandler error={this.state.error} />
         <GridLayout
           mainRecipe={this.props.props.mainRecipe}
-          popularRecipes={this.state.popularRecipes}
+          popularRecipes={this.props.props.popularRecipes}
           favourites={this.props.props.favourites}
           addRecipe={this.propsaddRecipe}
           deleteOnClick={this.props.deleteRecipe}

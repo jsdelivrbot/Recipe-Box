@@ -2,6 +2,10 @@ import React from "react";
 import { List } from "semantic-ui-react";
 
 const ingredientsCleaner = props => {
+  if (typeof props === 'string') {
+    return props;
+  }
+
 
   let createList
   if (!Array.isArray(props)) {
@@ -15,9 +19,10 @@ const ingredientsCleaner = props => {
       const upper = item[0].toUpperCase() + item.substr(1);
       return <List.Item key={el.id}>{upper} : {num}</List.Item>;
     });
-    } 
+    }
    
   } else {
+
     createList = props.map(el => {
       return <List.Item key={el.id}>{el}</List.Item>;
     });

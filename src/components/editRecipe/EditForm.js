@@ -4,10 +4,11 @@ import { Form } from "semantic-ui-react";
 export default class OrderForm extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
-      ingredients: props.recipe.ingredients,
+      ingredients: props.ingredients,
       directions: props.recipe.directions,
-      header: props.recipe.header
+      header: props.recipe.title
     };
     this.handleChangeIngredients = this.handleChangeIngredients.bind(this);
     this.handleChangeDirections = this.handleChangeDirections.bind(this);
@@ -33,7 +34,7 @@ export default class OrderForm extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+console.log(this.props)
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Input
