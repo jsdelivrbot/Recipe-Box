@@ -21,7 +21,7 @@ export default class ConfirmationModal extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+   
     const { open } = this.state;
     const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
     const ingredientsDisplay = ingredientsArray.map(el => {
@@ -44,7 +44,7 @@ export default class ConfirmationModal extends React.Component {
         <p>Please try again</p>
       </Message>
     );
-    console.log(this.props)
+
     return (
       <Modal
         scrolling

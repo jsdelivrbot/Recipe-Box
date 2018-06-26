@@ -6,8 +6,8 @@ import ReviewInitial from "./containers/order/ReviewInitial";
 import Menu from "./components/Menu";
 import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
 import axios from "./components/axios-orders";
-import R from 'ramda';
-import DeliveryPage from './components/mainView/orders/DeliveryPage';
+import R from "ramda";
+import DeliveryPage from "./components/mainView/orders/DeliveryPage";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,13 +55,12 @@ export default class App extends React.Component {
         return data.json();
       })
       .then(ingredients => {
-        const mainRecipe = {...this.state.mainRecipe};
+        const mainRecipe = { ...this.state.mainRecipe };
         mainRecipe.ingredients = ingredients;
         this.setState({
           mainRecipe
-        })
-      } 
-      )
+        });
+      })
       .catch(response => console.log(response));
 
     fetch("https://recipe-box-15453.firebaseio.com/directions/main.json")
@@ -69,20 +68,20 @@ export default class App extends React.Component {
         return data.json();
       })
       .then(directions => {
-         const mainRecipe ={...this.state.mainRecipe};
-         mainRecipe.directions = directions;
-         this.setState({
+        const mainRecipe = { ...this.state.mainRecipe };
+        mainRecipe.directions = directions;
+        this.setState({
           mainRecipe
-        })
-      }
-       
-      )
+        });
+      })
       .catch(response => console.log(response));
 
-    fetch('https://recipe-box-15453.firebaseio.com/popular.json').then(data => {
-      return data.json()
-    }).then(popularRecipes => this.setState({ popularRecipes }))
-      .catch(response => console.log(response))  
+    fetch("https://recipe-box-15453.firebaseio.com/popular.json")
+      .then(data => {
+        return data.json();
+      })
+      .then(popularRecipes => this.setState({ popularRecipes }))
+      .catch(response => console.log(response));
 
     fetch("https://recipe-box-15453.firebaseio.com/favourites.json")
       .then(data => {
@@ -107,6 +106,7 @@ export default class App extends React.Component {
   }
 
   deliveryInfoHandler(deliveryInfo) {
+    console.log(deliveryInfo)
     this.setState({
       deliveryInfo
     });
@@ -125,7 +125,6 @@ export default class App extends React.Component {
     axios
       .post("orders.json", order)
       .then(response => {
-      
         this.setState({
           orderLoaded: true,
           orderAccepted: true
@@ -133,7 +132,7 @@ export default class App extends React.Component {
       })
       .catch(error => {
         console.log(error);
- 
+
         this.setState({
           orderLoaded: true,
           orderAccepted: false
@@ -149,9 +148,8 @@ export default class App extends React.Component {
   }
 
   editRecipeHandler(editedRecipe) {
-   
     const { header, ingredients, directions } = editedRecipe;
-    const ingredientsString = JSON.stringify(ingredients, undefined , 2)
+    const ingredientsString = JSON.stringify(ingredients, undefined, 2);
 
     this.setState({
       mainRecipe: {
@@ -167,9 +165,8 @@ export default class App extends React.Component {
     const sortById = R.sortBy(R.compose(R.prop("id")));
     const sorted = sortById(popularRecipes);
     const recipeToReplace = sorted[sorted.length - 1];
-    console.log(recipeToReplace)
+
     const { header, directions, ingredients } = recipeToReplace;
-  
     this.setState({
       mainRecipe: {
         title: header,
@@ -184,14 +181,13 @@ export default class App extends React.Component {
     let favourites = [...this.state.favourites];
     const recipe = popularRecipes.find(el => el.id === id);
     const alreadyThere = favourites.indexOf(recipe);
-    console.log(recipe)
+
     if (alreadyThere === -1) {
       favourites.push(recipe);
     } else {
       const index = favourites.findIndex(el => el.id === id);
       favourites.splice(index, 1);
     }
-
     this.setState({
       favourites
     });
@@ -199,7 +195,7 @@ export default class App extends React.Component {
 
   addSearchHandler(searchData) {
     const mainRecipe = searchData.data.recipe;
-     this.setState({ mainRecipe })  
+    this.setState({ mainRecipe });
   }
 
   render() {
@@ -227,19 +223,25 @@ export default class App extends React.Component {
             )}
           />
           <Route path="/team" exact component={WhoWeAre} />
-          <Route path="/order" exact render={props =>
-            <ReviewInitial  
-              {...props}            
-              mainRecipe={mainRecipe}
-           />} />
-           <Route path="/delivery" exact render={props =>
-           <DeliveryPage
-              {...props} 
-                 deliveryInfo={this.state.deliveryInfo}
-                 updateDelivery={this.deliveryInfoHandler}
-           />
-           } />
-           {/*<Route path="/confirmation" exact render={props =>
+          <Route
+            path="/order"
+            exact
+            render={props => (
+              <ReviewInitial {...props} mainRecipe={mainRecipe} />
+            )}
+          />
+          <Route
+            path="/delivery"
+            exact
+            render={props => (
+              <DeliveryPage
+                {...props}
+                deliveryInfo={this.state.deliveryInfo}
+                updateDelivery={this.deliveryInfoHandler}
+              />
+            )}
+          />
+          {/*<Route path="/confirmation" exact render={props =>
              <ConfirmationOrder
                orderRecipe={this.orderRecipeHandler}
                orderAccepted={this.state.orderAccepted}

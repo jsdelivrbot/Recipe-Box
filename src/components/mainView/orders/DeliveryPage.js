@@ -7,10 +7,11 @@ import DeliveryForm from './DeliveryForm';
 export default class DeliveryPage extends React.Component {
 
   render() {
-    console.log(this.props)
+
    
 
     const Info = <DeliveryForm
+      deliveryInfo={this.props.deliveryInfo}
       updateDelivery={this.props.updateDelivery} />
 
     return (

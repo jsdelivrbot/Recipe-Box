@@ -1,8 +1,6 @@
 import React from "react";
 import { Form, Message } from "semantic-ui-react";
 
-
-
 export default class DeliveryForm extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +18,15 @@ export default class DeliveryForm extends React.Component {
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePostcode = this.handleChangePostcode.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const { name } = {...this.state};
+    const newInfo = {...this.props.deliveryInfo};
+    const oldName = name;
+    if ( oldName != false || oldName !== newInfo.name) {
+       this.setState( {...newInfo })
+    }
   }
 
   handleChangeName(e) {
@@ -49,7 +56,6 @@ export default class DeliveryForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const deliveryInfo = { ...this.state };
-
     this.props.updateDelivery(deliveryInfo);
     this.setState(prevState => {
       return {
@@ -60,7 +66,7 @@ export default class DeliveryForm extends React.Component {
   }
 
   render() {
-    
+
     const successMsg = (
       <Message positive>
       <Message.Header> Success!</Message.Header>  
@@ -78,7 +84,7 @@ export default class DeliveryForm extends React.Component {
         <Form.Group inline>
         <Form.Input
           label="Street"
-          value={this.state.Street}
+          value={this.state.street}
           onChange={this.handleChangeStreet}
           placeholder="Street"
         />
