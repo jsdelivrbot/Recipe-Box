@@ -53,7 +53,7 @@ export default class App extends React.Component {
         return data.json();
       })
       .then(ingredients => {
-        const mainRecipe = this.state.mainRecipe;
+        const mainRecipe = {...this.state.mainRecipe};
         console.log(mainRecipe)
         mainRecipe.ingredients = ingredients;
         this.setState({
@@ -68,8 +68,7 @@ export default class App extends React.Component {
         return data.json();
       })
       .then(directions => {
-         const mainRecipe =[...this.state.mainRecipe];
-     
+         const mainRecipe ={...this.state.mainRecipe};
          mainRecipe.directions = directions;
          this.setState({
           mainRecipe
@@ -191,7 +190,7 @@ export default class App extends React.Component {
   render() {
     const state = { ...this.state };
     const mainRecipe = { ...this.state.mainRecipe };
-    console.log(mainRecipe);
+
     return (
       <div className="App">
         <Menu />

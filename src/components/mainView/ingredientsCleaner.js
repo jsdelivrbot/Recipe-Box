@@ -16,12 +16,13 @@ const ingredientsCleaner = props => {
       return <List.Item key={el.id}>{upper} : {num}</List.Item>;
     });
     } 
-    createList = null;
+   
   } else {
     createList = props.map(el => {
       return <List.Item key={el.id}>{el}</List.Item>;
     });
   }
+
  
   return <List bulleted>{createList}</List>;
 };
