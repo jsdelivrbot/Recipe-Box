@@ -83,10 +83,10 @@ class RecipeBox extends React.Component {
           mainRecipe={this.props.props.mainRecipe}
           popularRecipes={this.state.popularRecipes}
           favourites={this.props.props.favourites}
-          addRecipe={data => this.addRecipeHandler(data)}
-          deleteOnClick={this.deleteRecipeHandler}
-          editOnClick={this.editRecipeHandler}
-          addFav={this.addFavHandler}
+          addRecipe={this.propsaddRecipe}
+          deleteOnClick={this.props.deleteRecipe}
+          editOnClick={this.props.editRecipe}
+          addFav={this.props.addFav}
 
           orderRecipe={this.orderRecipeHandler}
           updateDelivery={this.deliveryInfoHandler}
