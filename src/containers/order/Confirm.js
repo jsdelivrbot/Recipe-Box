@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Divider, Header, Search, Card } from 'semantic-ui-react';
+import { Grid, Image, Divider, Header, Search, Card, Button } from 'semantic-ui-react';
 import Title from '../../components/Title';
 import SearchRecipes from '../../components/search/Search';
 import ConfirmationModal from './ConfirmationModal';
@@ -7,7 +7,8 @@ import DeliveryForm from '../../components/mainView/orders/DeliveryForm';
 export default class Confirm extends React.Component {
  
   render() {
-    const recipeInfo = this.props.mainRecipe;
+    console.log(this.props)
+    const recipeInfo = this.props.props.mainRecipe;
 
     const Info = <DeliveryForm
       updateDelivery={this.props.updateDelivery} />
@@ -35,12 +36,14 @@ export default class Confirm extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={12}>
+              <Button negative style={{margin: '15px'}}>Cancel order </Button> 
               <ConfirmationModal
-                deliverInfo={props.deliverInfo}
+                deliverInfo={this.props.deliverInfo}
                 recipeInfo={recipeInfo}
                 orderRecipe={this.props.orderRecipe}
                 orderAccepted={this.props.orderAccepted}
                 orderLoaded={this.props.orderLoaded} />
+          
             </Grid.Column>
           </Grid.Row>
         </Grid>

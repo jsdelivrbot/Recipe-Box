@@ -9,7 +9,7 @@ import Favourites from '../components/favourites/Favourites';
 
 
 const GridLayout = props => {
- 
+
   return (
     <div>
       <Grid celled stackable>
@@ -75,6 +75,10 @@ const GridLayout = props => {
               deliveryInfo={props.deliveryInfo}
               orderAccepted={props.orderAccepted}
               orderLoaded={props.orderLoaded}
+
+              match={props.match}
+              history={props.history}
+              location={props.location}
             />
           </Grid.Column>
           <Grid.Column width={1} />

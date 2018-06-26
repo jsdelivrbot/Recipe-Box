@@ -69,6 +69,7 @@ class RecipeBox extends React.Component {
   };
 
   render() {
+    
     return (
       <div className="">
 
@@ -77,7 +78,7 @@ class RecipeBox extends React.Component {
           mainRecipe={this.props.props.mainRecipe}
           popularRecipes={this.props.props.popularRecipes}
           favourites={this.props.props.favourites}
-          addRecipe={this.propsaddRecipe}
+          addRecipe={this.props.addRecipe}
           deleteOnClick={this.props.deleteRecipe}
           editOnClick={this.props.editRecipe}
           addFav={this.props.addFav}
@@ -95,6 +96,10 @@ class RecipeBox extends React.Component {
           searchHandleResultSelect={this.handleResultSelect.bind(this)}
           searchOnClickHandler={this.searchOnClickHandler.bind(this)}
           handleSearchChange={this.handleSearchChange.bind(this)}
+
+          match={this.props.match}
+          location={this.props.location}
+          history={this.props.history}
         />
       </div>
     );

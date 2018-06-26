@@ -1,9 +1,9 @@
 import React from "react";
 import OrderForm from './OrderForm';
 import EditOrder from '../editRecipe/EditOrder';
-import directionsCleaner from './directionsCleaner';
-import ingredientsCleaner from './ingredientsCleaner';
-import ConfirmOrder from './orders/ConfirmOrder';
+import directionsCleaner from './cleaners/directionsCleaner';
+import ingredientsCleaner from './cleaners/ingredientsCleaner';
+
 
 import {
   Container,
@@ -91,13 +91,12 @@ const MainView = props => (
           </Modal.Description>
          </Modal.Content> 
       </Modal>
-     <ConfirmOrder
-      mainRecipe={props.mainRecipe}
-      orderRecipe={props.orderRecipe}
-      updateDelivery={props.updateDelivery}
-      deliveryInfo={props.deliverInfo}
-      orderAccepted={props.orderAccepted}
-      orderLoaded={props.orderLoaded}/>
+      <Button
+       inverted color="red"
+       onClick={() => props.history.push('/order')}
+        >
+        Order this recipe now!
+      </Button>
       
   
     </Container>

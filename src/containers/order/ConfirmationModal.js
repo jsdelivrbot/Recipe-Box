@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Message, Grid, Image, Divider, Header, Search, Card, List } from 'semantic-ui-react';
+import { Modal, Icon, Message, Grid, Image, Divider, Header, Search, Card, List, Button } from 'semantic-ui-react';
 import Title from '../../components/Title';
 import SearchRecipes from '../../components/search/Search';
 import StepsSecond from './steps/StepSecond';

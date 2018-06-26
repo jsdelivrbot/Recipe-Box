@@ -6,13 +6,11 @@ const ingredientsCleaner = props => {
     return props;
   }
 
-
   let createList
   if (!Array.isArray(props)) {
     if (props != null) {
        const ingredientsArray = Object.entries(props)
     
-
     createList = ingredientsArray.map(el => {
       let [item, num] = el;
     

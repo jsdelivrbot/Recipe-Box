@@ -4,7 +4,6 @@ import { Form } from "semantic-ui-react";
 export default class OrderForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       ingredients: props.ingredients,
       directions: props.recipe.directions,
@@ -34,7 +33,7 @@ export default class OrderForm extends React.Component {
   }
 
   render() {
-console.log(this.props)
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Input

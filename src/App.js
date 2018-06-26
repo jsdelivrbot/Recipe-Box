@@ -182,7 +182,7 @@ export default class App extends React.Component {
     let favourites = [...this.state.favourites];
     const recipe = popularRecipes.find(el => el.id === id);
     const alreadyThere = favourites.indexOf(recipe);
-
+    console.log(recipe)
     if (alreadyThere === -1) {
       favourites.push(recipe);
     } else {
@@ -219,7 +219,16 @@ export default class App extends React.Component {
             )}
           />
           <Route path="/team" exact component={WhoWeAre} />
-          <Route path="/order" exact render={state => <Confirm {...state} />} />
+          <Route path="/order" exact render={props =>
+            <Confirm  
+              {...props}
+              props={state}
+              orderRecipe={this.orderRecipeHandler}
+              updateDelivery={this.deliveryInfoHandler}
+              deliveryInfo={this.state.deliveryInfo}
+              orderAccepted={this.state.orderAccepted}
+              orderLoaded={this.state.orderLoaded}
+           />} />
           <Route render={() => <h1> 404 Error </h1>} />
         </Switch>
       </div>
