@@ -89,11 +89,11 @@ addCustomOrderHandler(order) {
             <Grid.Column width={13}>
               <Button negative
                 style={{ margin: '15px' }}
-                onClick={() => this.props.history.push('/')}
+                onClick={() => this.props.history.replace('/')}
 
               >Cancel order </Button>
               <Button primary icon
-                onClick={() => this.props.history.replace('/delivery')}
+                onClick={() => this.props.history.push('/delivery')}
 
               >
                 Proceed <Icon name="right chevron" />

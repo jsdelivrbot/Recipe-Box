@@ -3,7 +3,7 @@ import { Icon, Grid, Image, Divider, Header, Search, Card, Button } from 'semant
 import Title from '../../Title';
 import ConfirmationModal from '../../../containers/order/ConfirmationModal';
 import DeliveryForm from './DeliveryForm';
-
+import StepsFirst from './steps/StepsFirst';
 export default class DeliveryPage extends React.Component {
 
   render() {
@@ -39,17 +39,22 @@ export default class DeliveryPage extends React.Component {
             <Grid.Column width={12}>
               <Button negative
                 style={{ margin: '15px' }}
-                onClick={() => this.props.history.push('/')}
+                onClick={() => this.props.history.replace('/')}
 
               >Cancel order </Button>
+              <Button 
+                style={{ margin: '15px' }}
+                onClick={() => this.props.history.goBack()}
+
+              >Go back </Button>
               <Button primary icon
-                onClick={() => this.props.history.replace('/deliveryInfo')}
+                onClick={() => this.props.history.replace('/confirmation')}
 
               >
                 Proceed <Icon name="right chevron" />
 
               </Button>
-
+              <StepsFirst />
             </Grid.Column>
           </Grid.Row>
         </Grid>

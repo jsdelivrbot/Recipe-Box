@@ -58,7 +58,7 @@ export default class ReviewInitial extends React.Component {
               
               >Cancel order </Button> 
               <Button primary icon
-                onClick={() => this.props.history.replace('/delivery')}
+                onClick={() => this.props.history.push('/delivery')}
               
               >
                 Proceed <Icon name="right chevron" />

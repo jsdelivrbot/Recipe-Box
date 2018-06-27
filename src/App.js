@@ -11,6 +11,8 @@ import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
 import axios from "./components/axios-orders";
 import R from "ramda";
 import DeliveryPage from "./components/mainView/orders/DeliveryPage";
+import ConfirmationOrder from "./containers/order/ConfirmationOrder"
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,6 +21,7 @@ export default class App extends React.Component {
     this.editRecipeHandler = this.editRecipeHandler.bind(this);
     this.addFavHandler = this.addFavHandler.bind(this);
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
+    this.addCustomOrderHandler = this.addCustomOrderHandler.bind(this);
     this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this);
     this.addSearchHandler = this.addSearchHandler.bind(this);
     this.handleResultSelect = this.handleResultSelect.bind(this);
@@ -40,6 +43,7 @@ export default class App extends React.Component {
       directions: "",
       description: ""
     },
+    customOrder: null,
     popularRecipes: [],
     favourites: [],
     editMode: false,
@@ -200,11 +204,8 @@ export default class App extends React.Component {
       });
   }
 
-  addRecipeHandler(recipe) {
-    let popularRecipes = [...this.state.popularRecipes];
-    const findID = popularRecipes[popularRecipes];
-    popularRecipes.push(recipe);
-    this.setState({ popularRecipes: popularRecipes });
+  addCustomOrderHandler(customOrder) {
+     this.setState({ customOrder });
   }
 
   editRecipeHandler(editedRecipe) {
@@ -313,7 +314,7 @@ export default class App extends React.Component {
             render={props => (
               <CustomOrder {...props}
               addSearch={this.addSearchHandler} 
-              addRecipe={this.addRecipeHandler} 
+              addOrder={this.addCustomerOrderHandler} 
             searchValue={this.state.searchValue}
             searchResults={this.state.searchResults}
             searchID={this.state.searchID}
@@ -335,13 +336,14 @@ export default class App extends React.Component {
               />
             )}
           />
-          {/*<Route path="/confirmation" exact render={props =>
+          <Route path="/confirmation" exact render={props =>
              <ConfirmationOrder
+               {...props}
                orderRecipe={this.orderRecipeHandler}
                orderAccepted={this.state.orderAccepted}
                orderLoaded={this.state.orderLoaded}
              />
-           } />*/}
+           } />
 
           <Route render={() => <h1> 404 Error </h1>} />
         </Switch>
