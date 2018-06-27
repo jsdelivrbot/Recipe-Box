@@ -1,8 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./styles.css";
+import getResults from "./components/search/getResults";
+import getRecipe from "./components/search/getRecipe";
 import Recipe from "./containers/recipeBox/Recipe";
 import ReviewInitial from "./containers/order/ReviewInitial";
+import CustomOrder from "./containers/order/CustomOrder";
 import Menu from "./components/Menu";
 import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
 import axios from "./components/axios-orders";
@@ -18,6 +21,9 @@ export default class App extends React.Component {
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
     this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this);
     this.addSearchHandler = this.addSearchHandler.bind(this);
+    this.handleResultSelect = this.handleResultSelect.bind(this);
+    this.searchOnClickHandler = this.searchOnClickHandler.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   state = {
@@ -31,7 +37,8 @@ export default class App extends React.Component {
         onions: 7,
         peppers: 4
       },
-      directions: ""
+      directions: "",
+      description: ""
     },
     popularRecipes: [],
     favourites: [],
@@ -39,6 +46,10 @@ export default class App extends React.Component {
     orderAccepted: false,
     orderLoaded: false,
     deliveryInfo: {},
+    searchResults: [],
+    searchValue: "",
+    searchIsLoading: false,
+    searchID: "",
     error: null
   };
 
@@ -104,6 +115,55 @@ export default class App extends React.Component {
     axios.interceptors.request.eject(this.reqInterceptor);
     axios.interceptors.response.eject(this.resInterceptor);
   }
+
+  searchOnClickHandler() {
+    setTimeout(() => {
+      const recipeName = this.state.searchValue;
+      const recipes = [...this.state.searchResults];
+      const recipeObj = recipes.find(el => el.title === recipeName);
+
+      if (recipeObj != undefined) {
+        const id = recipeObj.recipe_id;
+        const recipe = getRecipe(id);
+
+        recipe.then(recipe => {
+          this.props.addSearch(recipe);
+        });
+      }
+    }, 300);
+  }
+  componentWillMount() {
+    this.resetComponent();
+  }
+
+  resetComponent = () =>
+    this.setState({
+      seardchIsLoading: false,
+      searchResults: [],
+      searchValue: ""
+    });
+
+  handleResultSelect = (e, { result }) =>
+    this.setState({ searchValue: result.title });
+
+  handleSearchChange = e => {
+    const searchValue = e.target.value;
+    this.setState({
+      searchIsLoading: true,
+      searchValue
+    });
+
+    setTimeout(() => {
+      if (this.state.searchValue.length < 1) return this.resetComponent();
+      const source = getResults(searchValue);
+      source.then(data => {
+        this.setState({
+          searchIsLoading: false,
+          searchResults: data
+        });
+      });
+    }, 300);
+  };
 
   deliveryInfoHandler(deliveryInfo) {
     console.log(deliveryInfo)
@@ -219,6 +279,15 @@ export default class App extends React.Component {
                 addSearch={this.addSearchHandler}
                 deleteRecipe={this.deleteRecipeHandler}
                 editRecipe={this.editRecipeHandler}
+
+                searchValue={this.state.searchValue}
+                searchResults={this.state.searchResults}
+                searchID={this.state.searchID}
+                searchIsLoading={this.state.searchIsLoading}
+                searchHandleResultSelect={this.state.handleResultSelect}
+                searchOnClickHandler={this.searchOnClickHandler}
+                handleSearchChange={this.handleSearchChange}
+
               />
             )}
           />
@@ -227,9 +296,34 @@ export default class App extends React.Component {
             path="/order"
             exact
             render={props => (
-              <ReviewInitial {...props} mainRecipe={mainRecipe} />
+              <ReviewInitial {...props}
+               mainRecipe={mainRecipe}
+               searchValue={this.state.searchValue}
+               searchResults={this.state.searchResults}
+               searchID={this.state.searchID}
+               searchIsLoading={this.state.searchIsLoading}
+               searchHandleResultSelect={this.state.handleResultSelect}
+               searchOnClickHandler={this.searchOnClickHandler}
+               handleSearchChange={this.handleSearchChange} />
             )}
           />
+          <Route 
+            path="/custom-order"
+            exact
+            render={props => (
+              <CustomOrder {...props}
+              addSearch={this.addSearchHandler} 
+              addRecipe={this.addRecipeHandler} 
+            searchValue={this.state.searchValue}
+            searchResults={this.state.searchResults}
+            searchID={this.state.searchID}
+            searchIsLoading={this.state.searchIsLoading}
+            searchHandleResultSelect={this.handleResultSelect}
+            searchOnClickHandler={this.searchOnClickHandler}
+            handleSearchChange={this.handleSearchChange}
+              />
+            )}
+            />
           <Route
             path="/delivery"
             exact

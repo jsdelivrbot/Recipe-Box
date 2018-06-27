@@ -35,10 +35,7 @@ const GridLayout = props => {
               searchOnClickHandler={props.searchOnClickHandler} />
           </Grid.Column>
           <Grid.Column only='mobile' width={3}>
-            <ResultsSide
-              responsive={true}
-              results={props.searchResults}
-            />
+           
           </Grid.Column>
 
           <Grid.Column width={10}>
@@ -58,10 +55,7 @@ const GridLayout = props => {
 
         <Grid.Row>
           <Grid.Column only='computer' width={3}>
-            <ResultsSide
-              responsive={false}
-              results={props.searchResults}
-            />
+          
           </Grid.Column>
           <Grid.Column width={11}>
             <Divider />

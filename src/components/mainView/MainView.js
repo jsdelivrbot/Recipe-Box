@@ -21,7 +21,7 @@ const mainViewStyle = {
   borderCollapse: "separate",
   borderSpacing: "20px",
   borderRadius: "20px",
-  background: "#607D8B"
+  background: "#e0ecff"
 };
 
 const recipeTitleStyle = {
@@ -72,27 +72,25 @@ const MainView = props => (
           </Item.Content>
         </Item>
       </Item.Group>
-      <Modal size='small' trigger={<Button 
-        inverted color='olive' 
+      <Button 
+        inverted color='red'
+        onClick={() => props.history.push('/custom-order')} 
        >
         {" "}
         Add a custom order!
         <Image
-          className="icon addIcon"
+          className="icon"
           style={iconStyle}         
           src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/v_LL-001-plus.png"
         />
-      </Button>}>
-        <Modal.Header>Tell us what you want!</Modal.Header>
-        <Modal.Content image>
-          <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
-          <Modal.Description>
-             <OrderForm addRecipe={props.addRecipe}/>
-          </Modal.Description>
-         </Modal.Content> 
-      </Modal>
+      </Button>
+       
+     
+         
+          
+             
       <Button
-       inverted color="red"
+       inverted color="orange"
        onClick={() => props.history.push('/order')}
         >
         Order this recipe now!

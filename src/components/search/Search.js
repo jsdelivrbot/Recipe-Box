@@ -14,7 +14,6 @@ const SearchRecipes = props => {
     const value = props.searchValue;
     const results = props.searchResults;
     
-
     return (
       <div>
         <Header as="h2" style={recipeTitleStyle}>
