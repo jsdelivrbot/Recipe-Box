@@ -178,11 +178,11 @@ export default class App extends React.Component {
   }
 
   orderRecipeHandler() {
-    const ingredients = { ...this.state.mainRecipe.ingredients };
-    const deliveryInfo = { ...this.state.deliveryInfo };
+    const instructions = this.state.customOrder;
+    const deliveryInfo = this.state.deliveryInfo;
     const price = "$20";
     const order = {
-      ingredients,
+      instructions,
       price,
       deliveryInfo
     };
@@ -201,12 +201,10 @@ export default class App extends React.Component {
             orderLoaded: true,
             orderAccepted: false
           });
-        }
-        
+        }        
       })
       .catch(error => {
         console.log(error);
-
         this.setState({
           orderLoaded: true,
           orderAccepted: false

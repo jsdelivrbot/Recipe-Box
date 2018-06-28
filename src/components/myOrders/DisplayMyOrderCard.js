@@ -13,9 +13,9 @@ const DisplayMyOrderCard = props => (
     <Header as='h4'>Your order</Header>
     {props.title !== '' ? props.title : null}
     <Divider />
-    {props.title !== '' ? props.directions : null}
+    {props.directions !== '' ? props.directions : null}
     <Divider />
-    {props.title !== '' ? props.specialRequests : null}
+    {props.specialRequests !== '' ? props.specialRequests : null}
     <Divider />
     {props.price !== '' ? props.price : null}
     <Divider />

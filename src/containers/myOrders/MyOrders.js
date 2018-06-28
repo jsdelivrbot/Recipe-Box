@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Image, Divider, Header, Button } from 'semantic-ui-react';
 import Title from '../../components/Title';
-
+import DisplayMyOrder from '../../components/myOrders/DisplayMyOrderCard'
 export default class MyOrders extends React.Component {
 
 state = {
@@ -13,15 +13,26 @@ componentDidMount() {
     .then(data => {
       return data.json();
     })
-    .then(orders => {   
+    .then(orders => { 
+      const ordersArray = [];
+      ordersArray.push(orders)  
       this.setState({
-        orders
+        orders: ordersArray
       });
     })
     .catch(response => console.log(response));
 }
   render() {
-          
+    const orders= this.state.orders  
+    console.log(orders)     
+    const DisplayOrders = this.state.orders.map(order => {
+      const instructionsArray = Object.entries(order)
+         return (<DisplayMyOrder
+          title={instructionsArray[0][1].title} 
+           directions={instructionsArray[0][1].directions}
+           specialRequests={instructionsArray[0][1].specialRequests} 
+           price={instructionsArray[0][1].price}/>
+    )});
          
     return (
       <div>
@@ -38,7 +49,8 @@ componentDidMount() {
 
           <Grid.Row>
 
-            <Grid.Column width={12}>            
+            <Grid.Column width={12}> 
+            {DisplayOrders}           
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
