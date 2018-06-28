@@ -1,14 +1,30 @@
 import React from 'react';
-import { Icon, Grid, Image, Divider, Header, Search, Card, Button } from 'semantic-ui-react';
+import { Icon, Grid, Image, Divider, Header, Search, Card, Button, Message } from 'semantic-ui-react';
 import Title from '../../Title';
 import DeliveryForm from './DeliveryForm';
 import StepsFirst from './steps/StepsFirst';
 export default class DeliveryPage extends React.Component {
 
+state = {
+  warning: false
+}
+
+proceedHandler() {
+   const { name, street, email } = this.props.deliveryInfo;
+
+   if (name && street && email) {
+     this.props.history.replace('/confirmation')
+   } else {
+    this.setState({warning: true});
+   } 
+}
+componentDidMount() {
+  this.setState({warning: false});
+}
+
   render() {
-
-   
-
+    
+    const DeliveryWarningMsg = <Message negative>Please input yourm delivery details </Message>
     const Info = <DeliveryForm
       deliveryInfo={this.props.deliveryInfo}
       updateDelivery={this.props.updateDelivery} />
@@ -32,6 +48,7 @@ export default class DeliveryPage extends React.Component {
               <Header >You are close to getting your delicious meal! </Header>
               Add your delivery information below
               {Info}
+              {this.state.warning === true ? DeliveryWarningMsg : false}
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
@@ -47,7 +64,7 @@ export default class DeliveryPage extends React.Component {
 
               >Go back </Button>
               <Button primary icon
-                onClick={() => this.props.history.replace('/confirmation')}
+                onClick={this.proceedHandler.bind(this)}
 
               >
                 Proceed <Icon name="right chevron" />

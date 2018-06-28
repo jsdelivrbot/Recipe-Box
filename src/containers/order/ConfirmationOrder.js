@@ -1,9 +1,11 @@
 import React from 'react';
-import { Modal, Icon, Message, Grid, Image, Divider, Header, Search, Card, List, Button } from 'semantic-ui-react';
+import { Message,  Header, List, Button } from 'semantic-ui-react';
 import Title from '../../components/Title';
-import SearchRecipes from '../../components/search/Search';
 import StepsSecond from './steps/StepSecond';
 import Loader from '../../components/mainView/Loader';
+import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
+import DisplayDelivery from '../../components/mainView/orders/DisplayDelivery';
+
 
 export default class ConfirmationOrder extends React.Component {
   
@@ -17,8 +19,8 @@ export default class ConfirmationOrder extends React.Component {
   }
 
   render() {
-   
-    
+     const { name, street, town, postcode, email } = this.props.deliveryInfo;
+     
     // const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
     // const ingredientsDisplay = ingredientsArray.map(el => {
     //   let [item, num] = el;
@@ -59,6 +61,24 @@ export default class ConfirmationOrder extends React.Component {
           <Header as='h3'>Delivery Details</Header>
           {this.props.deliverInfo !== undefined ? this.props.deliveryInfo : null}
           <Button primary Icon onClick={this.orderSent.bind(this)}> Order!</Button>
+          
+          <div className='groupBoxes'>  
+          <DisplayCustomOrder
+            title={title}
+            directions={directions}
+            specialRequests={specialRequests} 
+            />
+          <DisplayDelivery 
+            namer={name}
+            street={street}
+            town={town}
+            postcode={postcode}
+            email={email}
+          />  
+
+          </div>
+          
+          
           <Button negative
             style={{ margin: '15px' }}
             onClick={() => this.props.history.replace('/')}

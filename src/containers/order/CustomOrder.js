@@ -5,9 +5,7 @@ import CustomOrderForm from './CustomOrderForm';
 import SearchRecipes from '../../components/search/Search';
 import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
 
-const groupBoxes = {
-  display: 'flex'
-}
+
 
 export default class CustomOrder extends React.Component {
     state = {
@@ -66,9 +64,12 @@ this.props.addOrder(order);
               <Header >Tell us exactly what you want and how you want it! </Header>
 
               <Header as='h4' >Be as specific as you like!</Header>
-             <div style={groupBoxes}>  
+             <div className='groupBoxes'>  
              <CustomOrderForm addRecipe={this.addCustomOrderHandler.bind(this)}/>
-             <DisplayCustomOrder title={title} directions={directions} specialRequests={specialRequests} />
+             <DisplayCustomOrder
+              title={title} 
+              directions={directions} 
+              specialRequests={specialRequests} />
              </div> 
             </Grid.Column>
             

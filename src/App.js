@@ -346,6 +346,7 @@ export default class App extends React.Component {
                orderLoaded={this.state.orderLoaded}
                mainRecipe={this.state.mainRecipe}
                customOrder={this.state.customOrder}
+               deliveryInfo={this.state.deliveryInfo}
              />
            } />
           <Route path="/my-orders" exact render={props =>
