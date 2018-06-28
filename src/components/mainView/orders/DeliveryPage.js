@@ -22,12 +22,14 @@ componentDidMount() {
   this.setState({warning: false});
 }
 
+submitted() {
+  this.setState({warning: false});
+}
+
   render() {
     
-    const DeliveryWarningMsg = <Message negative>Please input yourm delivery details </Message>
-    const Info = <DeliveryForm
-      deliveryInfo={this.props.deliveryInfo}
-      updateDelivery={this.props.updateDelivery} />
+    const DeliveryWarningMsg = <Message negative>Please input your delivery details </Message>
+   
 
     return (
       <div>
@@ -43,16 +45,23 @@ componentDidMount() {
           </Grid.Row>
 
           <Grid.Row>
-
-            <Grid.Column width={12}>
+        <Grid.Column width={1} />
+            <Grid.Column centered width={14}>
               <Header >You are close to getting your delicious meal! </Header>
               Add your delivery information below
-              {Info}
+
+              <DeliveryForm
+                deliveryInfo={this.props.deliveryInfo}
+                updateDelivery={this.props.updateDelivery}
+                submitted={this.submitted.bind(this)}
+              />
+
               {this.state.warning === true ? DeliveryWarningMsg : false}
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={12}>
+            <Grid.Column width={1} />
+            <Grid.Column width={14}>
               <Button negative
                 style={{ margin: '15px' }}
                 onClick={() => this.props.history.replace('/')}

@@ -57,6 +57,7 @@ export default class DeliveryForm extends React.Component {
     e.preventDefault();
     const deliveryInfo = { ...this.state };
     this.props.updateDelivery(deliveryInfo);
+    this.props.submitted();
     this.setState(prevState => {
       return {
         sent: true

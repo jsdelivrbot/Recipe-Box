@@ -1,18 +1,17 @@
 import React from 'react';
-import { Icon, Grid, Image, Divider, Header, Card, Button } from 'semantic-ui-react';
+import { Icon, Grid, Image, Divider, Header, Card, Button, Message } from 'semantic-ui-react';
 import Title from '../../components/Title';
 import CustomOrderForm from './CustomOrderForm';
 import SearchRecipes from '../../components/search/Search';
 import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
-
-
 
 export default class CustomOrder extends React.Component {
     state = {
        title: '',
        directions: '',
        specialRequests: '',
-       ordered: false
+       ordered: false,
+       warning: false
     }
 
 addCustomOrderHandler(order) {
@@ -21,14 +20,29 @@ addCustomOrderHandler(order) {
     title,
     directions,
     specialRequests,
-    ordered: true
+    ordered: true,
+    warning: false
   });
 this.props.addOrder(order); 
 }
+   proceedhandler() {
+    const ordered = this.state.ordered;
+    const directions = this.state.directions;
+ 
+    if (ordered && directions) {
+      this.props.history.push('/delivery');
+    } else {
+      this.setState({warning: true})
+    }
+   }
+
+   componentDidMount() {
+     this.setState({warning: false})
+   }
 
   render() {
 
-
+    const errorOrder = <Message negative> Please add what you want our chefs to create for you</Message>
 
     let { title, directions, specialRequests} = this.state;
     
@@ -77,13 +91,14 @@ this.props.addOrder(order);
           <Grid.Row>
             
             <Grid.Column width={13}>
+             {this.state.warning === true ? errorOrder : null}
               <Button negative
                 style={{ margin: '15px' }}
                 onClick={() => this.props.history.replace('/')}
 
               >Cancel order </Button>
               <Button primary icon
-                onClick={() => this.props.history.push('/delivery')}
+                onClick={this.proceedhandler.bind(this)}
 
               >
                 Proceed <Icon name="right chevron" />

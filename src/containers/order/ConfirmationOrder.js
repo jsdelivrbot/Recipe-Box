@@ -21,6 +21,14 @@ export default class ConfirmationOrder extends React.Component {
   render() {
      const { name, street, town, postcode, email } = this.props.deliveryInfo;
      
+     const customOrder = this.props.customOrder;
+     let title, directions, specialRequests
+     if (customOrder !== null) {
+         title  = customOrder.title;
+         directions = customOrder.directions;
+         specialRequests = customOrder.specialRequests;
+     }
+    
     // const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
     // const ingredientsDisplay = ingredientsArray.map(el => {
     //   let [item, num] = el;
