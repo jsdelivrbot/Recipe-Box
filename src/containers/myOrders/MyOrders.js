@@ -4,8 +4,25 @@ import Title from '../../components/Title';
 
 export default class MyOrders extends React.Component {
 
-  render() {
+state = {
+ orders: []
+}
 
+componentDidMount() {
+  fetch("https://recipe-box-15453.firebaseio.com/orders.json")
+    .then(data => {
+      return data.json();
+    })
+    .then(orders => {   
+      this.setState({
+        orders
+      });
+    })
+    .catch(response => console.log(response));
+}
+  render() {
+          
+         
     return (
       <div>
         <Grid celled stackable>
