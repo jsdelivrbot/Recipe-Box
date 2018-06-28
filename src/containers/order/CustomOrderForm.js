@@ -15,21 +15,22 @@ export default class CustomOrderForm extends React.Component {
       directions: "",
       specialRequests: "",
       sent: false,
+      warning: false
     };
-    this.handleChangeIngredients = this.handleChangeIngredients.bind(this);
+    this.handleChangeSpecialRequests = this.handleChangeSpecialRequests.bind(this);
     this.handleChangeDirections = this.handleChangeDirections.bind(this);
-    this.handleChangeHeader = this.handleChangeHeader.bind(this);
+    this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeIngredients(e) {
+  handleChangeSpecialRequests(e) {
     this.setState({ specialRequests: e.target.value });
   }
   handleChangeDirections(e) {
     this.setState({ directions: e.target.value });
   }
 
-  handleChangeHeader(e) {
+  handleChangeTitle(e) {
     this.setState({ title: e.target.value });
   }
 
@@ -44,28 +45,31 @@ export default class CustomOrderForm extends React.Component {
     })
   }
 
+  
+
   render() {
-    
+    console.log(this.props)
     return (
      <div style={formStyle}>  
       <Form onSubmit={this.handleSubmit}>
         <Form.Input
           label='Title'
-          value={this.state.header}
-          onChange={this.handleChangeHeader}
+          value={this.state.title}
+          onChange={this.handleChangeTitle}
           placeholder='Title' 
           />
         <Form.TextArea
           style={{ minHeight: 100, minWidth: 100 }}
-          value={this.state.ingredients}
-          onChange={this.handleChangeIngredients}
+          value={this.state.directions}
+          onChange={this.handleChangeDirections}
           label="Directions"
           placeholder="Be as specific or as general as you like"
+          error={this.props.warning}
         />
         <Form.TextArea
           style={{ minHeight: 100 }}
-          value={this.state.directions}
-          onChange={this.handleChangeDirections}
+          value={this.state.specialRequests}
+          onChange={this.handleChangeSpecialRequests}
           label="Special Requests"
           placeholder="Any allergies? Hate cucumbers?"
         />

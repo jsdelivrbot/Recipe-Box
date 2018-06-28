@@ -54,6 +54,7 @@ submitted() {
                 deliveryInfo={this.props.deliveryInfo}
                 updateDelivery={this.props.updateDelivery}
                 submitted={this.submitted.bind(this)}
+                warning={this.state.warning}
               />
 
               {this.state.warning === true ? DeliveryWarningMsg : false}

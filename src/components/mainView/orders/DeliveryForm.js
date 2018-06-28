@@ -81,6 +81,7 @@ export default class DeliveryForm extends React.Component {
           value={this.state.name}
           onChange={this.handleChangeName}
           placeholder="Title"
+          error={this.props.warning}
         />
         <Form.Group inline>
         <Form.Input
@@ -88,18 +89,21 @@ export default class DeliveryForm extends React.Component {
           value={this.state.street}
           onChange={this.handleChangeStreet}
           placeholder="Street"
+          error={this.props.warning}
         />
         <Form.Input
           label="Town"
           value={this.state.town}
           onChange={this.handleChangeTown}
           placeholder="Town"
+          error={this.props.warning}
         />
         <Form.Input
           label="Postcode"
           value={this.state.postcode}
           onChange={this.handleChangePostcode}
           placeholder="Postcode"
+          error={this.props.warning}
         />
         </Form.Group>
         <Form.Input
@@ -107,6 +111,7 @@ export default class DeliveryForm extends React.Component {
           value={this.state.email}
           onChange={this.handleChangeEmail}
           placeholder="Email"
+          error={this.props.warning}
         />
         <Message
           success

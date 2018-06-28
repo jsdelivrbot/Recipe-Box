@@ -28,7 +28,9 @@ this.props.addOrder(order);
    proceedhandler() {
     const ordered = this.state.ordered;
     const directions = this.state.directions;
- 
+    
+   
+
     if (ordered && directions) {
       this.props.history.push('/delivery');
     } else {
@@ -79,11 +81,15 @@ this.props.addOrder(order);
 
               <Header as='h4' >Be as specific as you like!</Header>
              <div className='groupBoxes'>  
-             <CustomOrderForm addRecipe={this.addCustomOrderHandler.bind(this)}/>
+             <CustomOrderForm
+                  warning={this.state.warning}
+              addRecipe={this.addCustomOrderHandler.bind(this)}/>
              <DisplayCustomOrder
               title={title} 
               directions={directions} 
-              specialRequests={specialRequests} />
+              specialRequests={specialRequests}
+          
+               />
              </div> 
             </Grid.Column>
             
