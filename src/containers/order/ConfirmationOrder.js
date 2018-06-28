@@ -17,8 +17,12 @@ export default class ConfirmationOrder extends React.Component {
     this.setState({ orderSent: true })
     this.props.orderRecipe();
   }
+  componentDidMount() {
+    this.setState({orderSent: false})
+  }
 
   render() {
+
      const { name, street, town, postcode, email } = this.props.deliveryInfo;
      
      const customOrder = this.props.customOrder;
@@ -28,7 +32,7 @@ export default class ConfirmationOrder extends React.Component {
          directions = customOrder.directions;
          specialRequests = customOrder.specialRequests;
      }
-    
+  
     // const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
     // const ingredientsDisplay = ingredientsArray.map(el => {
     //   let [item, num] = el;
@@ -37,7 +41,7 @@ export default class ConfirmationOrder extends React.Component {
     //   return <List.Item key={el.id}>{upper} : {num}</List.Item>;
     // });
     // const recipeTitle = this.props.recipeInfo.title;
-    const Loading = <div className='loader'>Laoding.. </div>
+    const Loading = <div className='loader'>Loading.. </div>
     const successMsg = (
       <Message positive>
         <Message.Header> Success!</Message.Header>
@@ -55,7 +59,7 @@ export default class ConfirmationOrder extends React.Component {
      <div>
         <Header>Finalise Order</Header>
       
-          <Button primary Icon onClick={this.orderSent.bind(this)}> Order!</Button>
+          
           <p>Is this information correct?</p>
           {(this.state.orderSent && !this.props.orderAccepted) ? Loading : null}
           {(this.props.orderAccepted && this.props.orderLoaded) ? successMsg : null}
@@ -66,7 +70,7 @@ export default class ConfirmationOrder extends React.Component {
       </List>*/}
 
           <br />
-          <Header as='h3'>Delivery Details</Header>
+         
           {this.props.deliverInfo !== undefined ? this.props.deliveryInfo : null}
           <Button primary Icon onClick={this.orderSent.bind(this)}> Order!</Button>
           

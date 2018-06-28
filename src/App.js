@@ -59,12 +59,12 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    this.reqInterceptor = axios.interceptors.request.use(req => {
-      this.setState({ error: null });
-    });
-    this.resInterceptor = axios.interceptors.response.use(null, error => {
-      this.setState({ error: error });
-    });
+    // this.reqInterceptor = axios.interceptors.request.use(req => {
+    //   this.setState({ error: null });
+    // });
+    // this.resInterceptor = axios.interceptors.response.use(null, error => {
+    //   this.setState({ error: error });
+    // });
 
     fetch("https://recipe-box-15453.firebaseio.com/ingredients.json")
       .then(data => {
@@ -162,6 +162,7 @@ export default class App extends React.Component {
       if (this.state.searchValue.length < 1) return this.resetComponent();
       const source = getResults(searchValue);
       source.then(data => {
+       
         this.setState({
           searchIsLoading: false,
           searchResults: data
@@ -187,12 +188,21 @@ export default class App extends React.Component {
     };
 
     axios
-      .post("orders.json", order)
+      .post('orders.json', order)
       .then(response => {
-        this.setState({
+        console.log(response)
+        if (response !== undefined) {
+          this.setState({
           orderLoaded: true,
           orderAccepted: true
         });
+        } else {
+          this.setState({
+            orderLoaded: true,
+            orderAccepted: false
+          });
+        }
+        
       })
       .catch(error => {
         console.log(error);

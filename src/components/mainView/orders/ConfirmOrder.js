@@ -20,7 +20,7 @@ class NestedModalSecond extends Component {
   }
 
   render() {
-    console.log(this.props)
+   
     const { open } = this.state;  
     const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
     const ingredientsDisplay = ingredientsArray.map(el => {
