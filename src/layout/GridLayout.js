@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid, Image, Divider, Header, Search } from 'semantic-ui-react';
 import Title from '../components/Title';
-import RecipeList from '../components/RecipeList';
+import RecipeList from '../components/popularRecipes/RecipeList';
 import MainView from '../components/mainView/MainView';
-import ResultsSide from '../components/ResultsSide';
+
 import SearchRecipes from '../components/search/Search';
 import Favourites from '../components/favourites/Favourites';
 

@@ -4,10 +4,6 @@ import Title from '../../components/Title';
 import CustomOrderForm from './CustomOrderForm';
 import SearchRecipes from '../../components/search/Search';
 
-const displayOrderStyle = {
-  height: '250px',
-  width: '200px'
-}
 
 const groupBoxes = {
   display: 'flex'
@@ -28,10 +24,13 @@ addCustomOrderHandler(order) {
     directions,
     specialRequests,
     ordered: true
-  })
+  });
+this.props.addOrder(order); 
 }
 
   render() {
+
+
 
     let { title, directions, specialRequests} = this.state;
     title = <p>{title}</p>
@@ -41,8 +40,11 @@ addCustomOrderHandler(order) {
     const DisplayOrder = (<Card raised style={displayOrderStyle}>
     <Header as='h4'>Your order</Header>
     {this.state.title !== '' ? title : null}
+    <Divider />
     {this.state.title !== '' ? directions : null}
+    <Divider />
     {this.state.title !== '' ? specialRequests : null}
+    <Divider />
      </Card>
 
     );

@@ -11,7 +11,8 @@ import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
 import axios from "./components/axios-orders";
 import R from "ramda";
 import DeliveryPage from "./components/mainView/orders/DeliveryPage";
-import ConfirmationOrder from "./containers/order/ConfirmationOrder"
+import ConfirmationOrder from "./containers/order/ConfirmationOrder";
+import MyOrders from "./containers/myOrders/MyOrders";
 
 
 export default class App extends React.Component {
@@ -170,7 +171,6 @@ export default class App extends React.Component {
   };
 
   deliveryInfoHandler(deliveryInfo) {
-    console.log(deliveryInfo)
     this.setState({
       deliveryInfo
     });
@@ -265,7 +265,9 @@ export default class App extends React.Component {
 
     return (
       <div className="App">
-        <Menu />
+        <Route render={props => (
+          <Menu {...props} />
+        ) } />
         <Switch>
           <Route
             path="/"
@@ -314,7 +316,7 @@ export default class App extends React.Component {
             render={props => (
               <CustomOrder {...props}
               addSearch={this.addSearchHandler} 
-              addOrder={this.addCustomerOrderHandler} 
+              addOrder={this.addCustomOrderHandler} 
             searchValue={this.state.searchValue}
             searchResults={this.state.searchResults}
             searchID={this.state.searchID}
@@ -342,8 +344,16 @@ export default class App extends React.Component {
                orderRecipe={this.orderRecipeHandler}
                orderAccepted={this.state.orderAccepted}
                orderLoaded={this.state.orderLoaded}
+               mainRecipe={this.state.mainRecipe}
+               customOrder={this.state.customOrder}
              />
            } />
+          <Route path="/my-orders" exact render={props =>
+            <MyOrders
+              {...props}
+            
+            />
+          } />
 
           <Route render={() => <h1> 404 Error </h1>} />
         </Switch>

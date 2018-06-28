@@ -1,7 +1,6 @@
 import React from 'react';
 import { Icon, Grid, Image, Divider, Header, Search, Card, Button } from 'semantic-ui-react';
 import Title from '../../Title';
-import ConfirmationModal from '../../../containers/order/ConfirmationModal';
 import DeliveryForm from './DeliveryForm';
 import StepsFirst from './steps/StepsFirst';
 export default class DeliveryPage extends React.Component {
