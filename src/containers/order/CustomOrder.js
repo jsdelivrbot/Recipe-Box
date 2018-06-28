@@ -3,7 +3,7 @@ import { Icon, Grid, Image, Divider, Header, Card, Button } from 'semantic-ui-re
 import Title from '../../components/Title';
 import CustomOrderForm from './CustomOrderForm';
 import SearchRecipes from '../../components/search/Search';
-
+import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
 
 const groupBoxes = {
   display: 'flex'
@@ -33,22 +33,9 @@ this.props.addOrder(order);
 
 
     let { title, directions, specialRequests} = this.state;
-    title = <p>{title}</p>
-    directions = <p>{directions}</p>
-    specialRequests = <p>{specialRequests}</p>
+    
 
-    const DisplayOrder = (<Card raised style={displayOrderStyle}>
-    <Header as='h4'>Your order</Header>
-    {this.state.title !== '' ? title : null}
-    <Divider />
-    {this.state.title !== '' ? directions : null}
-    <Divider />
-    {this.state.title !== '' ? specialRequests : null}
-    <Divider />
-     </Card>
-
-    );
- 
+  
     return (
       <div>
         <Grid celled stackable>
@@ -81,7 +68,7 @@ this.props.addOrder(order);
               <Header as='h4' >Be as specific as you like!</Header>
              <div style={groupBoxes}>  
              <CustomOrderForm addRecipe={this.addCustomOrderHandler.bind(this)}/>
-              {DisplayOrder}
+             <DisplayCustomOrder title={title} directions={directions} specialRequests={specialRequests} />
              </div> 
             </Grid.Column>
             

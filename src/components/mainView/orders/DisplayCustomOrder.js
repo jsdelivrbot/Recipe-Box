@@ -11,11 +11,11 @@ const DisplayCustomOrder = props => (
   
 <Card raised style={displayOrderStyle}>
   <Header as='h4'>Your order</Header>
-  {this.state.title !== '' ? props.title : null}
+  {props.title !== '' ? props.title : null}
   <Divider />
-  {this.state.title !== '' ? props.directions : null}
+  {props.title !== '' ? props.directions : null}
   <Divider />
-  {this.state.title !== '' ? props.specialRequests : null}
+  {props.title !== '' ? props.specialRequests : null}
   <Divider />
 </Card>
 
