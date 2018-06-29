@@ -162,10 +162,11 @@ export default class App extends React.Component {
       if (this.state.searchValue.length < 1) return this.resetComponent();
       const source = getResults(searchValue);
       source.then(data => {
-       
+      
+       const reducedList = data.slice(0, 10);
         this.setState({
           searchIsLoading: false,
-          searchResults: data
+          searchResults: reducedList
         });
       });
     }, 300);

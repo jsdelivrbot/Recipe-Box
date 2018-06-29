@@ -43,8 +43,8 @@ ReactDOM.render(<Index />, rootElement);
 
 Checkout 
 
-1. Fix mainView routing problem
-2. Transfer order form to own container and state
-3. Delivery form can still be a modal which can be used in two places
+1. Fix mainView routing problem - done
+2. Transfer order form to own container and state -Done
+3. Create delivery form -done
 
 */
