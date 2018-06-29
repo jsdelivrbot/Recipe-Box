@@ -14,26 +14,32 @@ componentDidMount() {
       return data.json();
     })
     .then(orders => { 
-      const ordersArray = [];
-      ordersArray.push(orders)  
+     
+         
       this.setState({
-        orders: ordersArray
+        orders
       });
     })
     .catch(response => console.log(response));
 }
   render() {
-    const orders= this.state.orders  
-    console.log(orders)     
-    const DisplayOrders = this.state.orders.map(order => {
-      const instructionsArray = Object.entries(order)
-         return (<DisplayMyOrder
-          title={instructionsArray[0][1].title} 
-           directions={instructionsArray[0][1].directions}
-           specialRequests={instructionsArray[0][1].specialRequests} 
-           price={instructionsArray[0][1].price}/>
-    )});
-         
+    const orders= this.state.orders
+
+    const ordersArray = Object.entries(orders)
+    const DisplayOrders = ordersArray.map(order => {
+   
+      const instructionsArray = Object.entries(order);
+      console.log(instructionsArray)
+      return (<DisplayMyOrder
+        title={instructionsArray[1][1].instructions.title}
+        directions={instructionsArray[1][1].instructions.directions}
+        specialRequests={instructionsArray[1][1].instructions.specialRequests}
+        price={instructionsArray[1][1].price } />
+      )
+      })
+      
+       
+     
     return (
       <div>
         <Grid celled stackable>
@@ -50,7 +56,7 @@ componentDidMount() {
           <Grid.Row>
 
             <Grid.Column width={12}> 
-            {DisplayOrders}           
+              <div className='groupBoxes'>  {DisplayOrders}      </div>     
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
