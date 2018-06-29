@@ -110,7 +110,6 @@ export default class App extends React.Component {
         } else {
           favArray = favourites;
         }
-
         this.setState({ favourites: favArray });
       })
       .catch(response => console.log(response));
@@ -123,18 +122,21 @@ export default class App extends React.Component {
 
   searchOnClickHandler() {
     setTimeout(() => {
+      
       const recipeName = this.state.searchValue;
       const recipes = [...this.state.searchResults];
       const recipeObj = recipes.find(el => el.title === recipeName);
-
+    
       if (recipeObj != undefined) {
         const id = recipeObj.recipe_id;
         const recipe = getRecipe(id);
-
-        recipe.then(recipe => {
-          this.props.addSearch(recipe);
-        });
-      }
+    
+        recipe.then(data=> {
+        
+         const recipe = data.data.recipe;
+          this.setState({ mainRecipe: recipe })
+      })
+      } 
     }, 300);
   }
   componentWillMount() {
@@ -148,11 +150,21 @@ export default class App extends React.Component {
       searchValue: ""
     });
 
-  handleResultSelect = (e, { result }) =>
-    this.setState({ searchValue: result.title });
+  addSearchHandler(searchData) {
+
+    const mainRecipe = searchData.data.recipe;
+    this.setState({ mainRecipe });
+  }
+
+
+  handleResultSelect = (e, { result }) => {
+     this.setState({ searchValue: result.title });
+  }
+   
 
   handleSearchChange = e => {
     const searchValue = e.target.value;
+  
     this.setState({
       searchIsLoading: true,
       searchValue
@@ -164,6 +176,7 @@ export default class App extends React.Component {
       source.then(data => {
       
        const reducedList = data.slice(0, 10);
+      
         this.setState({
           searchIsLoading: false,
           searchResults: reducedList
@@ -263,11 +276,7 @@ export default class App extends React.Component {
     });
   }
 
-  addSearchHandler(searchData) {
-    const mainRecipe = searchData.data.recipe;
-    this.setState({ mainRecipe });
-  }
-
+ 
   render() {
     const state = { ...this.state };
     const mainRecipe = { ...this.state.mainRecipe };
@@ -296,7 +305,7 @@ export default class App extends React.Component {
                 searchResults={this.state.searchResults}
                 searchID={this.state.searchID}
                 searchIsLoading={this.state.searchIsLoading}
-                searchHandleResultSelect={this.state.handleResultSelect}
+                searchHandleResultSelect={this.handleResultSelect}
                 searchOnClickHandler={this.searchOnClickHandler}
                 handleSearchChange={this.handleSearchChange}
 
@@ -314,7 +323,7 @@ export default class App extends React.Component {
                searchResults={this.state.searchResults}
                searchID={this.state.searchID}
                searchIsLoading={this.state.searchIsLoading}
-               searchHandleResultSelect={this.state.handleResultSelect}
+               searchHandleResultSelect={this.handleResultSelect}
                searchOnClickHandler={this.searchOnClickHandler}
                handleSearchChange={this.handleSearchChange} />
             )}
