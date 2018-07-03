@@ -23,7 +23,6 @@ class App extends React.Component {
     super(props);
     this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
     this.editRecipeHandler = this.editRecipeHandler.bind(this);
-    this.addFavHandler = this.addFavHandler.bind(this);
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
     this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this);
     this.addSearchHandler = this.addSearchHandler.bind(this);
@@ -254,22 +253,7 @@ class App extends React.Component {
     });
   }
 
-  addFavHandler(e, id) {
-    const popularRecipes = [...this.state.popularRecipes];
-    let favourites = [...this.state.favourites];
-    const recipe = popularRecipes.find(el => el.id === id);
-    const alreadyThere = favourites.indexOf(recipe);
-
-    if (alreadyThere === -1) {
-      favourites.push(recipe);
-    } else {
-      const index = favourites.findIndex(el => el.id === id);
-      favourites.splice(index, 1);
-    }
-    this.setState({
-      favourites
-    });
-  }
+  
 
  
   render() {

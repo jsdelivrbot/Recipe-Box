@@ -11,13 +11,13 @@ const store = createStore(reducer);
 class Index extends React.Component {
   render() {
     return (
-      <BrowserRouter>
-        <Provider store={store}>
+      <Provider store={store}>
+        <BrowserRouter>
           <div>
             <App />
           </div>
-        </Provider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
