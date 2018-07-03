@@ -6,6 +6,8 @@ import CustomOrderForm from './CustomOrderForm';
 import SearchRecipes from '../../components/search/Search';
 import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
 
+import * as actionTypes from '../../store/actions';
+
  class CustomOrder extends React.Component {
     state = {
        title: '',
@@ -16,7 +18,9 @@ import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOr
     }
 
 addCustomOrderHandler(order) {
-  const {title, directions, specialRequests} = order;
+  const { title, directions, specialRequests } = order;
+
+  // Set local container state to order can appear in UI
   this.setState({
     title,
     directions,
@@ -24,33 +28,31 @@ addCustomOrderHandler(order) {
     ordered: true,
     warning: false
   });
-this.props.addOrder(order); 
+
+ // Send order up to redux  
+this.props.onStoreCustomOrder(order); 
 }
    proceedhandler() {
     const ordered = this.state.ordered;
     const directions = this.state.directions;
-    
-   
-
+    // Cooking directions needed for next stage
     if (ordered && directions) {
       this.props.history.push('/delivery');
     } else {
+      // Else show the user a warning message
       this.setState({warning: true})
     }
    }
 
    componentDidMount() {
+     // Reset any warning messages
      this.setState({warning: false})
    }
 
   render() {
-
     const errorOrder = <Message negative> Please add what you want our chefs to create for you</Message>
-
     let { title, directions, specialRequests} = this.state;
-    
-
-  
+     
     return (
       <div>
         <Grid celled stackable>
@@ -128,7 +130,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
  return {
-   onStoreCustomOrder: () => dispatch({})
+   onStoreCustomOrder: (order) => dispatch({type: actionTypes.STORE_CUSTOM_ORDER, order})
  };
 };
 

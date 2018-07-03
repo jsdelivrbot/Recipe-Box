@@ -2,7 +2,7 @@ import React from "react";
 import { List, Image } from "semantic-ui-react";
 
 const FavList = props => {
-  console.log(props.favs)
+
   const formatted = props.favs.map(el => {
    return ( <List.Item>
      <Image avatar src={el.img} />

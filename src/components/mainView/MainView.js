@@ -4,7 +4,6 @@ import EditOrder from '../editRecipe/EditOrder';
 import directionsCleaner from './cleaners/directionsCleaner';
 import ingredientsCleaner from './cleaners/ingredientsCleaner';
 
-
 import {
   Container,
   Segment,

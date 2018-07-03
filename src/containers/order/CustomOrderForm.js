@@ -48,7 +48,7 @@ export default class CustomOrderForm extends React.Component {
   
 
   render() {
-    console.log(this.props)
+  
     return (
      <div style={formStyle}>  
       <Form onSubmit={this.handleSubmit}>

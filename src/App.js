@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import "./styles.css";
 import getResults from "./components/search/getResults";
 import getRecipe from "./components/search/getRecipe";
@@ -14,15 +15,16 @@ import DeliveryPage from "./components/mainView/orders/DeliveryPage";
 import ConfirmationOrder from "./containers/order/ConfirmationOrder";
 import MyOrders from "./containers/myOrders/MyOrders";
 
+import * as actionTypes from './store/actions';
 
-export default class App extends React.Component {
+
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
     this.editRecipeHandler = this.editRecipeHandler.bind(this);
     this.addFavHandler = this.addFavHandler.bind(this);
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
-    this.addCustomOrderHandler = this.addCustomOrderHandler.bind(this);
     this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this);
     this.addSearchHandler = this.addSearchHandler.bind(this);
     this.handleResultSelect = this.handleResultSelect.bind(this);
@@ -221,9 +223,7 @@ export default class App extends React.Component {
       });
   }
 
-  addCustomOrderHandler(customOrder) {
-     this.setState({ customOrder });
-  }
+ 
 
   editRecipeHandler(editedRecipe) {
     const { header, ingredients, directions } = editedRecipe;
@@ -291,7 +291,7 @@ export default class App extends React.Component {
                 props={state}
                 mainRecipe={mainRecipe}
                 addRecipe={data => this.addRecipeHandler(data)}
-                addFav={this.addFavHandler}
+                addFav={(id) => this.props.onAddFavourite(id) }
                 addSearch={this.addSearchHandler}
                 deleteRecipe={this.deleteRecipeHandler}
                 editRecipe={this.editRecipeHandler}
@@ -330,7 +330,7 @@ export default class App extends React.Component {
               <CustomOrder {...props}
              
             addOrder={this.addCustomOrderHandler} 
-            
+
             addSearch={this.addSearchHandler} 
             searchValue={this.state.searchValue}
             searchResults={this.state.searchResults}
@@ -377,3 +377,11 @@ export default class App extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+   return {
+     onAddFavourite: (id) => dispatch({ type: actionTypes.ADD_REMOVE_FAVOURITE, id })
+   }
+};
+
+export default connect(mapDispatchToProps)(App)
