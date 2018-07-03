@@ -35,12 +35,7 @@ export default class App extends React.Component {
       title: "Chicken Curry",
       image_url:
         "https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*",
-      ingredients: {
-        chicken: 1,
-        leek: 2,
-        onions: 7,
-        peppers: 4
-      },
+      ingredients: {},
       directions: "",
       description: ""
     },
@@ -333,8 +328,10 @@ export default class App extends React.Component {
             exact
             render={props => (
               <CustomOrder {...props}
-              addSearch={this.addSearchHandler} 
-              addOrder={this.addCustomOrderHandler} 
+             
+            addOrder={this.addCustomOrderHandler} 
+            
+            addSearch={this.addSearchHandler} 
             searchValue={this.state.searchValue}
             searchResults={this.state.searchResults}
             searchID={this.state.searchID}

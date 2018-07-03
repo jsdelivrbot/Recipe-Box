@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { Icon, Grid, Image, Divider, Header, Card, Button, Message } from 'semantic-ui-react';
 import Title from '../../components/Title';
 import CustomOrderForm from './CustomOrderForm';
 import SearchRecipes from '../../components/search/Search';
 import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
 
-export default class CustomOrder extends React.Component {
+ class CustomOrder extends React.Component {
     state = {
        title: '',
        directions: '',
@@ -118,3 +119,17 @@ this.props.addOrder(order);
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+     
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+ return {
+   onStoreCustomOrder: () => dispatch({})
+ };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomOrder)

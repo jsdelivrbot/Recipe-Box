@@ -1,15 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./store/reducer";
 import App from "./App";
+
+const store = createStore(reducer);
 
 class Index extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <App />
-        </div>
+        <Provider store={store}>
+          <div>
+            <App />
+          </div>
+        </Provider>
       </BrowserRouter>
     );
   }
