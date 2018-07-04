@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { Icon, Grid, Image, Divider, Header, Card, Button, Message } from 'semantic-ui-react';
 import Title from '../../../components/Title';
@@ -129,4 +130,6 @@ const mapDispatchToProps = dispatch => {
  };
 };
 
-export default connect(null, mapDispatchToProps)(CustomOrder)
+export default  withRouter(
+  connect(null, mapDispatchToProps)(CustomOrder)
+);

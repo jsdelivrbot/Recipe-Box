@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import R from "ramda";
@@ -361,4 +362,6 @@ const mapDispatchToProps = dispatch => {
    }
 };
 
-export default connect(mapDispatchToProps)(App)
+export default withRouter(
+  connect(mapDispatchToProps)(App)
+);
