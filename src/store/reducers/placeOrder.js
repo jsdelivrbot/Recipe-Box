@@ -1,11 +1,11 @@
 import * as actionTypes from '../actions/index';
 
 const initialState = {
-  customOrder: null,
-  chosenOrder: null
+  customOrder: {},
+  chosenOrder: {}
 };
 
-const reducer = (state = initialState, action) => {
+const placeOrderReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.STORE_CUSTOM_ORDER:
       return {
@@ -17,4 +17,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer
+export default placeOrderReducer;

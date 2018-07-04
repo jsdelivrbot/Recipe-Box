@@ -7,7 +7,7 @@ import CustomOrderForm from './CustomOrderForm';
 import SearchRecipes from '../../../components/search/Search';
 import DisplayCustomOrder from '../../../components/mainView/orders/DisplayCustomOrder';
 
-import * as actionTypes from '../../../store/actions/index';
+import * as actionCreators from '../../../store/actions/index';
 
  class CustomOrder extends React.Component {
     state = {
@@ -126,7 +126,7 @@ this.props.onStoreCustomOrder(order);
 
 const mapDispatchToProps = dispatch => {
  return {
-   onStoreCustomOrder: (order) => dispatch({type: actionTypes.STORE_CUSTOM_ORDER, order})
+   onStoreCustomOrder: (order) => dispatch(actionCreators.addCustomOrder(order))
  };
 };
 

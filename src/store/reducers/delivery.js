@@ -1,11 +1,12 @@
-import * as actionTypes from '../actions/index';
+import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  deliveryInfo: []
+  deliveryInfo: {}
 };
 
 const deliveryReducer = (state = initialState, action) => {
-   switch (action.type) {
+
+  switch (action.type) {
        case actionTypes.STORE_DELIVERY:
           return {
             ...state,

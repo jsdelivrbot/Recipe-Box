@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-
+import { withRouter } from 'react-router-dom';
 import { Message,  Header, List, Button } from 'semantic-ui-react';
 import Title from '../../../components/Title';
 import StepsSecond from '../../../components/mainView/orders/steps/StepsSecond';
@@ -110,11 +110,15 @@ class ConfirmationOrder extends React.Component {
   }
 }
 const mapStateToProps = state => {
+  console.log('confm state__')
+  console.log(state)
   return {
-    customOrder: state.customOrder,
-    deliveryInfo: state.deliveryInfo
+    customOrder: state.placeOrder.customOrder,
+    deliveryInfo: state.delivery.deliveryInfo
   }
 };
 
-export default connect(mapStateToProps)(ConfirmationOrder)
+export default withRouter(
+  connect(mapStateToProps)(ConfirmationOrder)
+);
   

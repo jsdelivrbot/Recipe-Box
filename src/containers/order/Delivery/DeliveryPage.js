@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux"
-
+import { withRouter } from 'react-router-dom';
 import { Icon, Grid, Image, Divider, Header, Search, Card, Button, Message } from 'semantic-ui-react';
 import Title from '../../../components/Title';
 import DeliveryForm from './DeliveryForm';
 import StepsFirst from '../../../components/mainView/orders/steps/StepsFirst';
-import * as actionTypes from '../../../store/actions/index';
+
+import * as actionCreators from '../../../store/actions/index';
 
 
 class DeliveryPage extends React.Component {
@@ -36,7 +37,7 @@ submitted() {
   render() {
     
     const DeliveryWarningMsg = <Message negative>Please input your delivery details </Message>
-   
+    console.log(this.props)
 
     return (
       <div>
@@ -98,14 +99,16 @@ submitted() {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddDelivery: (info) => dispatch({ type: actionTypes.addDelivery, info })
+    onAddDelivery: (info) => dispatch(actionCreators.addDelivery(info))
   }
 };
 
 const mapStateToProps = state => {
   return {
-    deliveryInfo: state.deliveryInfo
+    deliveryInfo: state.delivery.deliveryInfo
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeliveryPage)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DeliveryPage)
+);
