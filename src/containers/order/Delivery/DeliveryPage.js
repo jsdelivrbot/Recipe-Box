@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from "react-redux"
+
 import { Icon, Grid, Image, Divider, Header, Search, Card, Button, Message } from 'semantic-ui-react';
 import Title from '../../../components/Title';
 import DeliveryForm from './DeliveryForm';
 import StepsFirst from '../../../components/mainView/orders/steps/StepsFirst';
 import * as actionTypes from '../../../store/actions/index';
+
 
 class DeliveryPage extends React.Component {
 
@@ -14,18 +17,20 @@ state = {
 proceedHandler() {
    const { name, street, email } = this.props.deliveryInfo;
 
+
+  // If the deliveryInformation has been submmited
    if (name && street && email) {
      this.props.history.replace('/confirmation')
    } else {
-    this.setState({warning: true});
+    this.setState({ warning: true });
    } 
 }
 componentDidMount() {
-  this.setState({warning: false});
+  this.setState({ warning: false });
 }
 
 submitted() {
-  this.setState({warning: false});
+  this.setState({ warning: false });
 }
 
   render() {
@@ -93,9 +98,14 @@ submitted() {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddFavourite: (id) => dispatch({ type: actionTypes.addRemoveFavourite, id }),
     onAddDelivery: (info) => dispatch({ type: actionTypes.addDelivery, info })
   }
 };
 
-export default DeliveryPage
+const mapStateToProps = state => {
+  return {
+    deliveryInfo: state.deliveryInfo
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeliveryPage)

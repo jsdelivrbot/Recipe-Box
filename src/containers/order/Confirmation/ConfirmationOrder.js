@@ -1,12 +1,13 @@
 import React from 'react';
-import { Message,  Header, List, Button } from 'semantic-ui-react';
-import Title from '../../components/Title';
-import StepsSecond from './steps/StepSecond';
-import Loader from '../../components/mainView/Loader';
-import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
-import DisplayDelivery from '../../components/mainView/orders/DisplayDelivery';
+import { connect } from "react-redux";
 
-import { connect } from "react-redux"
+import { Message,  Header, List, Button } from 'semantic-ui-react';
+import Title from '../../../components/Title';
+import StepsSecond from '../../../components/mainView/orders/steps/StepsSecond';
+import DisplayCustomOrder from '../../../components/mainView/orders/DisplayCustomOrder';
+import DisplayDelivery from '../../../components/mainView/orders/DisplayDelivery';
+
+
 
 class ConfirmationOrder extends React.Component {
   
@@ -110,7 +111,8 @@ class ConfirmationOrder extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    customOrder: state.customOrder
+    customOrder: state.customOrder,
+    deliveryInfo: state.deliveryInfo
   }
 };
 

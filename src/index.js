@@ -1,12 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
+
 import reducer from "./store/reducers/reducer";
+import favourite from "./store/reducers/favourite";
+import delivery from "./store/reducers/delivery";
+import placeOrder from "./store/reducers/placeOrder";
+
 import App from "./App";
 
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  reducer,
+  delivery,
+  favourite,
+  placeOrder
+})
+
+const store = createStore(rootReducer);
+
+
 
 class Index extends React.Component {
   render() {
