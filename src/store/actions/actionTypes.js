@@ -1,7 +1,3 @@
-export const addRemoveFavourite = (id) => {
-  return {
-    type: 'ADD_REMOVE_FAVOURITE',
-    id
-  }
-} 
-
+export const STORE_CUSTOM_ORDER = 'STORE_CUSTOM_ORDER';
+export const ADD_REMOVE_FAVOURITE = 'ADD_REMOVE_FAVOURITE';
+export const STORE_DELIVERY = 'STORE_DELIVERY';

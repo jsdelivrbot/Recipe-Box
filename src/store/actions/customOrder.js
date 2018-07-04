@@ -1,1 +1,8 @@
-export const STORE_CUSTOM_ORDER = 'STORE_CUSTOM_ORDER';
+import * as actionTypes from './actionTypes'
+
+export const addCustomOrder = order => {
+  return {
+    type: actionTypes.STORE_CUSTOM_ORDER,
+    order
+  }
+};

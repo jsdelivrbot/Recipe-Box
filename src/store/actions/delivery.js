@@ -1,6 +1,8 @@
-export const addDelivery = info => {
+import * as actionTypes from './actionTypes';
+
+export const addDelivery = deliveryInfo => {
   return {
-    type: 'STORE_DELIVERY',
-    info
+    type: actionTypes.STORE_DELIVERY,
+    deliveryInfo
   }
 };

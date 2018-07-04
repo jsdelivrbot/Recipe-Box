@@ -309,8 +309,6 @@ class App extends React.Component {
             render={props => (
               <CustomOrder {...props}
              
-            addOrder={this.addCustomOrderHandler} 
-
             addSearch={this.addSearchHandler} 
             searchValue={this.state.searchValue}
             searchResults={this.state.searchResults}
@@ -339,8 +337,8 @@ class App extends React.Component {
                orderRecipe={this.orderRecipeHandler}
                orderAccepted={this.state.orderAccepted}
                orderLoaded={this.state.orderLoaded}
-               mainRecipe={this.state.mainRecipe}             
-               deliveryInfo={this.state.deliveryInfo}
+                    
+               
              />
            } />
           <Route path="/my-orders" exact render={props =>

@@ -59,7 +59,7 @@ submitted() {
 
               <DeliveryForm
                 deliveryInfo={this.props.deliveryInfo}
-                updateDelivery={this.props.updateDelivery}
+                updateDelivery={this.props.onAddDelivery}
                 submitted={this.submitted.bind(this)}
                 warning={this.state.warning}
               />

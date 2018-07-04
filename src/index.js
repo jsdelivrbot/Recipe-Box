@@ -20,8 +20,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer);
 
-
-
 class Index extends React.Component {
   render() {
     return (

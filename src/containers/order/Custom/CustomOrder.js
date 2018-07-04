@@ -122,11 +122,6 @@ this.props.onStoreCustomOrder(order);
   }
 }
 
-const mapStateToProps = state => {
-  return {
-     
-  };
-};
 
 const mapDispatchToProps = dispatch => {
  return {
@@ -134,4 +129,4 @@ const mapDispatchToProps = dispatch => {
  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomOrder)
+export default connect(null, mapDispatchToProps)(CustomOrder)
