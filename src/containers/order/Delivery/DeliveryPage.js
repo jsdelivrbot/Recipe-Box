@@ -1,9 +1,11 @@
 import React from 'react';
 import { Icon, Grid, Image, Divider, Header, Search, Card, Button, Message } from 'semantic-ui-react';
-import Title from '../../Title';
+import Title from '../../../components/Title';
 import DeliveryForm from './DeliveryForm';
-import StepsFirst from './steps/StepsFirst';
-export default class DeliveryPage extends React.Component {
+import StepsFirst from '../../../components/mainView/orders/steps/StepsFirst';
+import * as actionTypes from '../../../store/actions/index';
+
+class DeliveryPage extends React.Component {
 
 state = {
   warning: false
@@ -88,3 +90,12 @@ submitted() {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddFavourite: (id) => dispatch({ type: actionTypes.addRemoveFavourite, id }),
+    onAddDelivery: (info) => dispatch({ type: actionTypes.addDelivery, info })
+  }
+};
+
+export default DeliveryPage

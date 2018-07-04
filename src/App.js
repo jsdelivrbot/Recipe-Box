@@ -1,21 +1,23 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import R from "ramda";
+import axios from "./components/axios-orders";
 import "./styles.css";
+
 import getResults from "./components/search/getResults";
 import getRecipe from "./components/search/getRecipe";
 import Recipe from "./containers/recipeBox/Recipe";
 import ReviewInitial from "./containers/order/ReviewInitial";
-import CustomOrder from "./containers/order/CustomOrder";
+import CustomOrder from "./containers/order/Custom/CustomOrder";
 import Menu from "./components/Menu";
 import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
-import axios from "./components/axios-orders";
-import R from "ramda";
-import DeliveryPage from "./components/mainView/orders/DeliveryPage";
-import ConfirmationOrder from "./containers/order/ConfirmationOrder";
+
+import DeliveryPage from "./containers/order/Delivery/DeliveryPage";
+import ConfirmationOrder from "./containers/order/Confirmation/ConfirmationOrder";
 import MyOrders from "./containers/myOrders/MyOrders";
 
-import * as actionTypes from './store/actions';
+import * as actionTypes from './store/actions/index';
 
 
 class App extends React.Component {
@@ -356,7 +358,8 @@ class App extends React.Component {
 
 const mapDispatchToProps = dispatch => {
    return {
-     onAddFavourite: (id) => dispatch({ type: actionTypes.ADD_REMOVE_FAVOURITE, id })
+     onAddFavourite: (id) => dispatch({ type: actionTypes.addRemoveFavourite, id }),
+     onAddDelivery: (info) => dispatch({ type: actionTypes.addDelivery, info  } )
    }
 };
 

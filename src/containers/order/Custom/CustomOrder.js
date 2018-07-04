@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Icon, Grid, Image, Divider, Header, Card, Button, Message } from 'semantic-ui-react';
-import Title from '../../components/Title';
+import Title from '../../../components/Title';
 import CustomOrderForm from './CustomOrderForm';
-import SearchRecipes from '../../components/search/Search';
-import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
+import SearchRecipes from '../../../components/search/Search';
+import DisplayCustomOrder from '../../../components/mainView/orders/DisplayCustomOrder';
 
-import * as actionTypes from '../../store/actions';
+import * as actionTypes from '../../../store/actions/index';
 
  class CustomOrder extends React.Component {
     state = {
