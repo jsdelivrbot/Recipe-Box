@@ -6,8 +6,9 @@ import Loader from '../../components/mainView/Loader';
 import DisplayCustomOrder from '../../components/mainView/orders/DisplayCustomOrder';
 import DisplayDelivery from '../../components/mainView/orders/DisplayDelivery';
 
+import { connect } from "react-redux"
 
-export default class ConfirmationOrder extends React.Component {
+class ConfirmationOrder extends React.Component {
   
    state = {
      orderSent: false
@@ -107,6 +108,11 @@ export default class ConfirmationOrder extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    customOrder: state.customOrder
+  }
+};
 
-
+export default connect(mapStateToProps)(ConfirmationOrder)
   

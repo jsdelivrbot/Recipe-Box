@@ -40,9 +40,7 @@ class App extends React.Component {
       directions: "",
       description: ""
     },
-    customOrder: null,
     popularRecipes: [],
-    favourites: [],
     editMode: false,
     orderAccepted: false,
     orderLoaded: false,
@@ -222,8 +220,6 @@ class App extends React.Component {
       });
   }
 
- 
-
   editRecipeHandler(editedRecipe) {
     const { header, ingredients, directions } = editedRecipe;
     const ingredientsString = JSON.stringify(ingredients, undefined, 2);
@@ -253,9 +249,7 @@ class App extends React.Component {
     });
   }
 
-  
 
- 
   render() {
     const state = { ...this.state };
     const mainRecipe = { ...this.state.mainRecipe };
@@ -343,8 +337,7 @@ class App extends React.Component {
                orderRecipe={this.orderRecipeHandler}
                orderAccepted={this.state.orderAccepted}
                orderLoaded={this.state.orderLoaded}
-               mainRecipe={this.state.mainRecipe}
-               customOrder={this.state.customOrder}
+               mainRecipe={this.state.mainRecipe}             
                deliveryInfo={this.state.deliveryInfo}
              />
            } />
@@ -354,7 +347,6 @@ class App extends React.Component {
             
             />
           } />
-
           <Route render={() => <h1> 404 Error </h1>} />
         </Switch>
       </div>
