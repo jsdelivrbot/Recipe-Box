@@ -5,4 +5,12 @@ export const editMain = (editedInfo) => {
     type: actionTypes.EDIT_MAIN,
     editedInfo
   }
-} 
+};
+
+export const replaceMain = (replacedMain) => {
+  return {
+    type: actionTypes.REPLACE_MAIN,
+    replacedMain
+  }
+};
+

@@ -7,8 +7,8 @@ import thunk from 'redux-thunk';
 
 import reducer from "./store/reducers/reducer";
 import favourite from "./store/reducers/favourite";
-import delivery from "./store/reducers/delivery";
-import placeOrder from "./store/reducers/placeOrder";
+import delivery from "./store/reducers/order/delivery";
+import placeOrder from "./store/reducers/order/placeOrder";
 import editMain from "./store/reducers/mainRecipe/edit";
 import replaceMain from "./store/reducers/mainRecipe/replace";
 

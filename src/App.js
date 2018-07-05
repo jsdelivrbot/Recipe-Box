@@ -60,18 +60,7 @@ class App extends React.Component {
     //   this.setState({ error: error });
     // });
 
-    fetch("https://recipe-box-15453.firebaseio.com/ingredients.json")
-      .then(data => {
-        return data.json();
-      })
-      .then(ingredients => {
-        const mainRecipe = { ...this.state.mainRecipe };
-        mainRecipe.ingredients = ingredients;
-        this.setState({
-          mainRecipe
-        });
-      })
-      .catch(response => console.log(response));
+    
 
     fetch("https://recipe-box-15453.firebaseio.com/directions/main.json")
       .then(data => {
