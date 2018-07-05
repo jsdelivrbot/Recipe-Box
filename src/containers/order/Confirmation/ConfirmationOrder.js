@@ -110,8 +110,7 @@ class ConfirmationOrder extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log('confm state__')
-  console.log(state)
+
   return {
     customOrder: state.placeOrder.customOrder,
     deliveryInfo: state.delivery.deliveryInfo

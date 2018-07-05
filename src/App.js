@@ -18,8 +18,7 @@ import DeliveryPage from "./containers/order/Delivery/DeliveryPage";
 import ConfirmationOrder from "./containers/order/Confirmation/ConfirmationOrder";
 import MyOrders from "./containers/myOrders/MyOrders";
 
-import * as actionTypes from './store/actions/index';
-
+import * as actionCreators from './store/actions/index';
 
 class App extends React.Component {
   constructor(props) {
@@ -93,7 +92,7 @@ class App extends React.Component {
       .then(data => {
         return data.json();
       })
-      .then(popularRecipes => this.setState({ popularRecipes }))
+      .then(popularRecipes => this.onFetchPopular(popularRecipes))
       .catch(response => console.log(response));
 
     fetch("https://recipe-box-15453.firebaseio.com/favourites.json")
@@ -356,12 +355,13 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
+  
    return {
-     onAddFavourite: (id) => dispatch({ type: actionTypes.addRemoveFavourite, id }),
-     onAddDelivery: (info) => dispatch({ type: actionTypes.addDelivery, info  } )
+     onAddFavourite: (id) => dispatch(actionCreators.addRemoveFavourite(id)),
+     onFetchPopular: (data) => dispatch(actionCreators.fetchPopular(data))
    }
 };
 
 export default withRouter(
-  connect(mapDispatchToProps)(App)
+  connect(null, mapDispatchToProps)(App)
 );

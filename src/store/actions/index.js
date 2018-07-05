@@ -9,3 +9,7 @@ export {
 export {
   addRemoveFavourite,
 } from './favourite';
+
+export {
+  fetchPopular
+} from './popular';

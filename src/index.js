@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from 'redux-thunk';
 
 import reducer from "./store/reducers/reducer";
 import favourite from "./store/reducers/favourite";
@@ -18,7 +19,10 @@ const rootReducer = combineReducers({
   placeOrder
 })
 
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+  );
 
 class Index extends React.Component {
   render() {

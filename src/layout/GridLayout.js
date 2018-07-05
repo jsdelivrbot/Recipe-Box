@@ -7,7 +7,6 @@ import MainView from '../components/mainView/MainView';
 import SearchRecipes from '../components/search/Search';
 import Favourites from '../components/favourites/Favourites';
 
-
 const GridLayout = props => {
 
   return (
@@ -47,15 +46,11 @@ const GridLayout = props => {
 
           </Grid.Column>
           <Grid.Column width={3}>
-            <Favourites
-              favourites={props.favourites}
-            />
+            <Favourites />
           </Grid.Column>
         </Grid.Row>
-
         <Grid.Row>
           <Grid.Column only='computer' width={3}>
-          
           </Grid.Column>
           <Grid.Column width={11}>
             <Divider />
@@ -81,5 +76,4 @@ const GridLayout = props => {
     </div>
   )
 }
-
 export default GridLayout

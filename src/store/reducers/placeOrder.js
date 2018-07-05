@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/index';
+import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   customOrder: {},
@@ -11,9 +11,10 @@ const placeOrderReducer = (state = initialState, action) => {
       return {
         ...state,
         customOrder: action.order
-      }
-    
-    default: return state;
+      };
+
+    default:
+      return state;
   }
 };
 

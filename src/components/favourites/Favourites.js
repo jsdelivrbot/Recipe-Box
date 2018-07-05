@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Image, Header, Popup, Modal } from "semantic-ui-react";
 import FavList from "./FavouritesList";
 
@@ -37,4 +38,11 @@ const Favourites = props => (
   </div>
 );
 
-export default Favourites;
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    favourites: state.favourites
+  }
+}
+
+export default connect(mapStateToProps)(Favourites);
