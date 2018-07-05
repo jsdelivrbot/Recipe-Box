@@ -48,7 +48,7 @@ class App extends React.Component {
     // });
     // this.resInterceptor = axios.interceptors.response.use(null, error => {
     //   this.setState({ error: error });
-    // });
+    // }); 
    this.props.onInitIngredients();
    this.props.onInitDirections();
    this.props.onInitPopular();
@@ -191,10 +191,8 @@ class App extends React.Component {
 
 
   render() {
-    const state = { ...this.state };
-    const mainRecipe = { ...this.props.mainRecipe };
-  console.log(this.props)
-  console.log('app props')
+   
+
     return (
       <div className="App">
         <Route render={props => (
@@ -207,7 +205,7 @@ class App extends React.Component {
             render={props => (
               <Recipe
                 {...props}
-             
+                popularRecipes={this.props.popularRecipes}
                 mainRecipe={this.props.mainRecipe}
                 addRecipe={data => this.addRecipeHandler(data)}
                 addFav={(id) => this.props.onAddFavourite(id) }
@@ -293,9 +291,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-
+console.log('state')
+console.log(state)
   return {
-     mainRecipe: state.mainRecipe.mainRecipe
+     mainRecipe: state.mainRecipe.mainRecipe,
+     popularRecipes: state.popular.popularRecipes,
   };
 };
 
@@ -305,9 +305,7 @@ const mapDispatchToProps = dispatch => {
      onFetchPopular: (data) => dispatch(actionCreators.fetchPopular(data)),
      onEditMain: (data) => dispatch(actionCreators.editMain(data)),
      onReplaceMain: (newMain) => dispatch(actionCreators.replaceMain(newMain)),
-     onInitIngredients: () => {
-       console.log('hey') 
-       dispatch(actionCreators.initIngredients())} ,
+     onInitIngredients: () => dispatch(actionCreators.initIngredients()),
      onInitPopular: () => dispatch(actionCreators.initPopular()),
      onInitDirections: () => dispatch(actionCreators.initDirections()),
    };

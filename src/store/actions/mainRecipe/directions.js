@@ -1,7 +1,6 @@
 import * as actionTypes from "../actionTypes";
 
 export const initDirections = () => {
-  console.log('Initial dispathc')
 
   return dispatch => {
     fetch("https://recipe-box-15453.firebaseio.com/directions/main.json")

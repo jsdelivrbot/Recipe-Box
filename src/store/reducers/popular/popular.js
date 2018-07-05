@@ -10,7 +10,7 @@ const popularReducer = (state = initialState, action) => {
     case actionTypes.SET_POPULAR:
       return {
         ...state,
-        popualrRecipes: action.data,
+        popularRecipes: action.data,
         error: false
       };
     case actionTypes.SET_POPULAR_FAILED:

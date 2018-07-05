@@ -56,5 +56,5 @@ ReactDOM.render(<Index />, rootElement);
 4. Implement form validation eg email field
 5. Improve general styling
 6. Delte recipe box container
-
+7. Add favourits post and fetch
 */
