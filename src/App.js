@@ -24,9 +24,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
-    this.editRecipeHandler = this.editRecipeHandler.bind(this);
+   
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
-    this.deliveryInfoHandler = this.deliveryInfoHandler.bind(this);
     this.addSearchHandler = this.addSearchHandler.bind(this);
     this.handleResultSelect = this.handleResultSelect.bind(this);
     this.searchOnClickHandler = this.searchOnClickHandler.bind(this);
@@ -181,11 +180,7 @@ class App extends React.Component {
     }, 300);
   };
 
-  deliveryInfoHandler(deliveryInfo) {
-    this.setState({
-      deliveryInfo
-    });
-  }
+
 
   orderRecipeHandler() {
     const instructions = this.state.customOrder;
@@ -222,19 +217,7 @@ class App extends React.Component {
       });
   }
 
-  editRecipeHandler(editedRecipe) {
-    const { header, ingredients, directions } = editedRecipe;
-    const ingredientsString = JSON.stringify(ingredients, undefined, 2);
-
-    this.setState({
-      mainRecipe: {
-        header,
-        ingredients,
-        directions
-      }
-    });
-  }
-
+ 
   deleteRecipeHandler() {
     const popularRecipes = [...this.state.popularRecipes];
     const sortById = R.sortBy(R.compose(R.prop("id")));
@@ -358,7 +341,8 @@ const mapDispatchToProps = dispatch => {
   
    return {
      onAddFavourite: (id) => dispatch(actionCreators.addRemoveFavourite(id)),
-     onFetchPopular: (data) => dispatch(actionCreators.fetchPopular(data))
+     onFetchPopular: (data) => dispatch(actionCreators.fetchPopular(data)),
+     onEditMain: (data) => dispatch(actionCreators.editMain(data))
    }
 };
 

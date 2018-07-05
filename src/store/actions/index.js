@@ -13,3 +13,7 @@ export {
 export {
   fetchPopular
 } from './popular';
+
+export {
+  editMain
+} from './mainRecipe/editMain';
