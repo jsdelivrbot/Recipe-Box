@@ -32,12 +32,9 @@ class App extends React.Component {
   }
 
   state = {
-    
-    popularRecipes: [],
     editMode: false,
     orderAccepted: false,
     orderLoaded: false,
-    deliveryInfo: {},
     searchResults: [],
     searchValue: "",
     searchIsLoading: false,
@@ -52,25 +49,9 @@ class App extends React.Component {
     // this.resInterceptor = axios.interceptors.response.use(null, error => {
     //   this.setState({ error: error });
     // });
-  
    this.props.onInitIngredients();
+   this.props.onInitDirections();
    this.props.onInitPopular();
-
-    fetch("https://recipe-box-15453.firebaseio.com/directions/main.json")
-      .then(data => {
-        return data.json();
-      })
-      .then(directions => {
-        console.log('directiosnf etch')
-        const mainRecipe = { ...this.state.mainRecipe };
-        mainRecipe.directions = directions;
-        this.setState({
-          mainRecipe
-        });
-      })
-      .catch(response => console.log(response));
-
- 
 
     fetch("https://recipe-box-15453.firebaseio.com/favourites.json")
       .then(data => {
@@ -324,8 +305,11 @@ const mapDispatchToProps = dispatch => {
      onFetchPopular: (data) => dispatch(actionCreators.fetchPopular(data)),
      onEditMain: (data) => dispatch(actionCreators.editMain(data)),
      onReplaceMain: (newMain) => dispatch(actionCreators.replaceMain(newMain)),
-     onInitIngredients: () => dispatch(actionCreators.initIngredients()),
-     onInitPopular: () => dispatch(actionCreators.fetchPopular())
+     onInitIngredients: () => {
+       console.log('hey') 
+       dispatch(actionCreators.initIngredients())} ,
+     onInitPopular: () => dispatch(actionCreators.initPopular()),
+     onInitDirections: () => dispatch(actionCreators.initDirections()),
    };
 };
 

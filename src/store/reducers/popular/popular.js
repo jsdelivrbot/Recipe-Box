@@ -1,16 +1,23 @@
 import * as actionTypes from '../../actions/actionTypes';
 
 const initialState = {
-  popularRecipes: []
+  popularRecipes: [],
+  error: false
 }
 
 const popularReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_POPULAR:
+    case actionTypes.SET_POPULAR:
       return {
         ...state,
-        popualrRecipes: action.data
-      }
+        popualrRecipes: action.data,
+        error: false
+      };
+    case actionTypes.SET_POPULAR_FAILED:
+      return {
+        ...state,
+        error: true
+      };
 
     default: return state;
   }

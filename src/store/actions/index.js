@@ -11,7 +11,7 @@ export {
 } from './favourite';
 
 export {
-  fetchPopular
+  initPopular
 } from './popular';
 
 export {
@@ -22,3 +22,7 @@ export {
 export {
   initIngredients
 } from './mainRecipe/ingredients';
+
+export {
+  initDirections
+} from './mainRecipe/directions';

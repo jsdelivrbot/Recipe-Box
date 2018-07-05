@@ -1,21 +1,24 @@
 import * as actionTypes from './actionTypes';
 
-export const fetchPopular = data => {
+export const initPopular = data => {
   return dispatch => {
     fetch("https://recipe-box-15453.firebaseio.com/popular.json")
       .then(data => {
         return data.json();
       })
-      .then(popularRecipes => dispatch(storePopular(popularRecipes)))
-      .catch(response => console.log(response));
+      .then(popularRecipes => dispatch(setPopular(popularRecipes)))
+      .catch(response => dispatch(setPopularFailed()));
+  };
+};
 
-    dispatch(storePopular(data))
-  }
-}
-
-const storePopular = data => {
+const setPopular = data => {
   return {
-    type: actionTypes.FETCH_POPULAR,
+    type: actionTypes.SET_POPULAR,
     data
   }
 }
+const setPopularFailed = () => {
+  return {
+    type: actionTypes.SET_POPULAR_FAILED,
+  };
+};

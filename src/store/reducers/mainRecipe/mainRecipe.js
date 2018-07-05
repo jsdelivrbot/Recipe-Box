@@ -15,16 +15,36 @@ const initialState = {
 const mainRecipeReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_INGREDIENTS:
-     console.log('SETTING INGS')
+    {
+     const mainRecipe = {...state.mainRecipe};
       return {
         ...state,
         mainRecipe: {
+          ...mainRecipe,
           ingredients: action.ingredients
         }, 
         error: false
       };
-
+    }
     case actionTypes.SET_INGREDIENTS_FAILED:
+      return {
+        ...state,
+        error: true
+      };
+
+    case actionTypes.SET_DIRECTIONS:   
+    {
+      const mainRecipe = {...state.mainRecipe};
+      return {
+        ...state,
+        mainRecipe: {
+           ...mainRecipe,
+          directions: action.directions
+        },
+        error: false
+      };
+    }
+    case actionTypes.SET_DIRECTIONS_FAILED:
       return {
         ...state,
         error: true
@@ -51,7 +71,6 @@ const mainRecipeReducer = (state = initialState, action) => {
         }
       }
     }
-
     default:
       return state;
   }
