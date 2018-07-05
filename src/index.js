@@ -9,6 +9,9 @@ import reducer from "./store/reducers/reducer";
 import favourite from "./store/reducers/favourite";
 import delivery from "./store/reducers/delivery";
 import placeOrder from "./store/reducers/placeOrder";
+import editMain from "./store/reducers/mainRecipe/edit";
+import replaceMain from "./store/reducers/mainRecipe/replace";
+
 
 import App from "./App";
 
@@ -16,7 +19,9 @@ const rootReducer = combineReducers({
   reducer,
   delivery,
   favourite,
-  placeOrder
+  placeOrder,
+  editMain,
+  replaceMain
 })
 
 const store = createStore(

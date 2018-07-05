@@ -24,7 +24,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
-   
     this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
     this.addSearchHandler = this.addSearchHandler.bind(this);
     this.handleResultSelect = this.handleResultSelect.bind(this);
@@ -220,18 +219,14 @@ class App extends React.Component {
  
   deleteRecipeHandler() {
     const popularRecipes = [...this.state.popularRecipes];
+    
+   // Use Ramda to sort popular recipes by id
     const sortById = R.sortBy(R.compose(R.prop("id")));
     const sorted = sortById(popularRecipes);
     const recipeToReplace = sorted[sorted.length - 1];
 
-    const { header, directions, ingredients } = recipeToReplace;
-    this.setState({
-      mainRecipe: {
-        title: header,
-        directions,
-        ingredients
-      }
-    });
+    // Update redux with the new main recipe
+    this.onReplaceMain(recipeToReplace)
   }
 
 
@@ -342,7 +337,8 @@ const mapDispatchToProps = dispatch => {
    return {
      onAddFavourite: (id) => dispatch(actionCreators.addRemoveFavourite(id)),
      onFetchPopular: (data) => dispatch(actionCreators.fetchPopular(data)),
-     onEditMain: (data) => dispatch(actionCreators.editMain(data))
+     onEditMain: (data) => dispatch(actionCreators.editMain(data)),
+     onReplaceMain: (newMain) => dispatch(actionCreators.replaceMain(newMain))
    }
 };
 
