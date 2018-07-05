@@ -5,8 +5,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
 
-import reducer from "./store/reducers/reducer";
-import favourite from "./store/reducers/favourite";
+import setFavourites from "./store/reducers/favourites/setFavourites";
+import addRemoveFavourite from "./store/reducers/favourites/addRemoveFavourite";
 import delivery from "./store/reducers/order/delivery";
 import placeOrder from "./store/reducers/order/placeOrder";
 import mainRecipe from "./store/reducers/mainRecipe/mainRecipe";
@@ -15,9 +15,9 @@ import popular from "./store/reducers/popular/popular";
 import App from "./App";
 
 const rootReducer = combineReducers({
-  reducer,
   delivery,
-  favourite,
+  addRemoveFavourite,
+  setFavourites,
   placeOrder,
   popular,
   mainRecipe

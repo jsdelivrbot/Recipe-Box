@@ -1,11 +1,11 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from '../../actions/actionTypes';
 
 const initialState = {
   favourtes: [],
   popularRecipes: []
 }
 
-const favouriteReducer = (state = initialState, action) => {
+const addRemoveFavouriteReducer = (state = initialState, action) => {
   
   switch (action.type) {
     case actionTypes.ADD_REMOVE_FAVOURITE:
@@ -28,4 +28,4 @@ const favouriteReducer = (state = initialState, action) => {
   } 
 };
 
-export default favouriteReducer
+export default addRemoveFavouriteReducer

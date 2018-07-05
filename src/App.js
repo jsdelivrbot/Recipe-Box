@@ -53,22 +53,8 @@ class App extends React.Component {
    this.props.onInitDirections();
    this.props.onInitPopular();
 
-    fetch("https://recipe-box-15453.firebaseio.com/favourites.json")
-      .then(data => {
-        return data.json();
-      })
-      .then(favourites => {
-        let favArray;
-        if (favourites == null) {
-          favArray = [];
-        } else {
-          favArray = favourites;
-        }
-        this.setState({ favourites: favArray });
-      })
-      .catch(response => console.log(response));
+   
   }
-
   componentWillUnmount() {
     axios.interceptors.request.eject(this.reqInterceptor);
     axios.interceptors.response.eject(this.resInterceptor);
