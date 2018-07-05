@@ -1,12 +1,15 @@
 import * as actionTypes from "../actionTypes";
 
 export const initIngredients = () => {
+  console.log('Initial dispathc')
+
   return dispatch => {
     fetch("https://recipe-box-15453.firebaseio.com/ingredients.json")
       .then(data => {
         return data.json();
       })
-      .then(ingredients => {       
+      .then(ingredients => {  
+        console.log(ingredients)     
         dispatch(setIngredients(ingredients));
       })
       .catch(error => dispatch(setIngredientsFailed()))

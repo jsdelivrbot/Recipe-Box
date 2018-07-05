@@ -12,9 +12,9 @@ class RecipeBox extends React.Component {
 
         <ErrorHandler error={this.props.error} />
         <GridLayout
-          mainRecipe={this.props.props.mainRecipe}
-          popularRecipes={this.props.props.popularRecipes}
-          favourites={this.props.props.favourites}
+          mainRecipe={this.props.mainRecipe}
+          popularRecipes={this.props.popularRecipes}
+          favourites={this.props.favourites}
           addRecipe={this.props.addRecipe}
           deleteOnClick={this.props.deleteRecipe}
           editOnClick={this.props.editRecipe}

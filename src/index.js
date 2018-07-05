@@ -9,9 +9,8 @@ import reducer from "./store/reducers/reducer";
 import favourite from "./store/reducers/favourite";
 import delivery from "./store/reducers/order/delivery";
 import placeOrder from "./store/reducers/order/placeOrder";
-import editMain from "./store/reducers/mainRecipe/edit";
-import replaceMain from "./store/reducers/mainRecipe/replace";
-
+import mainRecipe from "./store/reducers/mainRecipe/mainRecipe";
+import popular from "./store/reducers/popular/popular";
 
 import App from "./App";
 
@@ -20,8 +19,8 @@ const rootReducer = combineReducers({
   delivery,
   favourite,
   placeOrder,
-  editMain,
-  replaceMain
+  popular,
+  mainRecipe
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -56,6 +55,6 @@ ReactDOM.render(<Index />, rootElement);
 3. Get and store favourites on firebase
 4. Implement form validation eg email field
 5. Improve general styling
-
+6. Delte recipe box container
 
 */

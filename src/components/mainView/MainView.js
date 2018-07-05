@@ -33,7 +33,7 @@ const iconStyle = {
   padding: "5px 15px"
 };
 
-const MainView = props => (
+const MainView = props =>  (
   <div style={mainViewStyle}>
     <Container>
       <Segment raised>
@@ -83,19 +83,13 @@ const MainView = props => (
           src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/v_LL-001-plus.png"
         />
       </Button>
-       
-     
-         
-          
-             
+               
       <Button
        inverted color="orange"
        onClick={() => props.history.push('/order')}
         >
         Order this recipe now!
       </Button>
-      
-  
     </Container>
   </div>
 );

@@ -1,0 +1,60 @@
+import * as actionTypes from "../../actions/actionTypes";
+
+const initialState = {
+  mainRecipe: {
+    title: "Chicken Curry",
+    image_url:
+    "https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*",
+    ingredients: {},
+    directions: "",
+    description: ""
+  },
+  error: false
+};
+
+const mainRecipeReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.SET_INGREDIENTS:
+     console.log('SETTING INGS')
+      return {
+        ...state,
+        mainRecipe: {
+          ingredients: action.ingredients
+        }, 
+        error: false
+      };
+
+    case actionTypes.SET_INGREDIENTS_FAILED:
+      return {
+        ...state,
+        error: true
+      };
+
+    case actionTypes.EDIT_MAIN:
+    {  let { header, ingredients, directions } = action.editedInfo;
+      return {
+        mainRecipe: {
+          header,
+          ingredients,
+          directions
+        }
+      }
+    }
+    case actionTypes.REPLACE_MAIN:
+    {
+      const { header, directions, ingredients } = action.newMain;
+      return {
+        mainRecipe: {
+          header,
+          directions,
+          ingredients
+        }
+      }
+    }
+
+    default:
+      return state;
+  }
+};
+
+export default mainRecipeReducer;

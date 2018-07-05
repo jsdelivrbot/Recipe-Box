@@ -32,14 +32,7 @@ class App extends React.Component {
   }
 
   state = {
-    mainRecipe: {
-      title: "Chicken Curry",
-      image_url:
-        "https://hips.hearstapps.com/del.h-cdn.co/assets/17/31/2048x1365/gallery-1501791674-delish-chicken-curry-horizontal.jpg?resize=980:*",
-      ingredients: {},
-      directions: "",
-      description: ""
-    },
+    
     popularRecipes: [],
     editMode: false,
     orderAccepted: false,
@@ -59,14 +52,16 @@ class App extends React.Component {
     // this.resInterceptor = axios.interceptors.response.use(null, error => {
     //   this.setState({ error: error });
     // });
-
-    
+  
+   this.props.onInitIngredients();
+   this.props.onInitPopular();
 
     fetch("https://recipe-box-15453.firebaseio.com/directions/main.json")
       .then(data => {
         return data.json();
       })
       .then(directions => {
+        console.log('directiosnf etch')
         const mainRecipe = { ...this.state.mainRecipe };
         mainRecipe.directions = directions;
         this.setState({
@@ -75,12 +70,7 @@ class App extends React.Component {
       })
       .catch(response => console.log(response));
 
-    fetch("https://recipe-box-15453.firebaseio.com/popular.json")
-      .then(data => {
-        return data.json();
-      })
-      .then(popularRecipes => this.onFetchPopular(popularRecipes))
-      .catch(response => console.log(response));
+ 
 
     fetch("https://recipe-box-15453.firebaseio.com/favourites.json")
       .then(data => {
@@ -221,8 +211,9 @@ class App extends React.Component {
 
   render() {
     const state = { ...this.state };
-    const mainRecipe = { ...this.state.mainRecipe };
-
+    const mainRecipe = { ...this.props.mainRecipe };
+  console.log(this.props)
+  console.log('app props')
     return (
       <div className="App">
         <Route render={props => (
@@ -235,8 +226,8 @@ class App extends React.Component {
             render={props => (
               <Recipe
                 {...props}
-                props={state}
-                mainRecipe={mainRecipe}
+             
+                mainRecipe={this.props.mainRecipe}
                 addRecipe={data => this.addRecipeHandler(data)}
                 addFav={(id) => this.props.onAddFavourite(id) }
                 addSearch={this.addSearchHandler}
@@ -260,7 +251,7 @@ class App extends React.Component {
             exact
             render={props => (
               <ReviewInitial {...props}
-               mainRecipe={mainRecipe}
+               mainRecipe={this.props.mainRecipe}
                searchValue={this.state.searchValue}
                searchResults={this.state.searchResults}
                searchID={this.state.searchID}
@@ -304,8 +295,7 @@ class App extends React.Component {
                orderRecipe={this.orderRecipeHandler}
                orderAccepted={this.state.orderAccepted}
                orderLoaded={this.state.orderLoaded}
-                    
-               
+                   
              />
            } />
           <Route path="/my-orders" exact render={props =>
@@ -321,16 +311,24 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+
+  return {
+     mainRecipe: state.mainRecipe.mainRecipe
+  };
+};
+
 const mapDispatchToProps = dispatch => {
-  
    return {
      onAddFavourite: (id) => dispatch(actionCreators.addRemoveFavourite(id)),
      onFetchPopular: (data) => dispatch(actionCreators.fetchPopular(data)),
      onEditMain: (data) => dispatch(actionCreators.editMain(data)),
-     onReplaceMain: (newMain) => dispatch(actionCreators.replaceMain(newMain))
-   }
+     onReplaceMain: (newMain) => dispatch(actionCreators.replaceMain(newMain)),
+     onInitIngredients: () => dispatch(actionCreators.initIngredients()),
+     onInitPopular: () => dispatch(actionCreators.fetchPopular())
+   };
 };
 
 export default withRouter(
-  connect(null, mapDispatchToProps)(App)
+  connect(mapStateToProps, mapDispatchToProps)(App)
 );

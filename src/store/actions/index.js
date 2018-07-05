@@ -15,5 +15,10 @@ export {
 } from './popular';
 
 export {
-  editMain
-} from './mainRecipe/editMain';
+  editMain,
+  replaceMain
+} from './mainRecipe/main';
+
+export {
+  initIngredients
+} from './mainRecipe/ingredients';
