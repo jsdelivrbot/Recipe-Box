@@ -10,7 +10,7 @@ const topWeekReducer = (state = initialState, action) => {
     case actionTypes.SET_TOP_WEEK:
       return {
         ...state,
-        TopWeek: action.data,
+        topWeek: action.data,
         error: false
       };
     case actionTypes.SET_TOP_WEEK_FAILED:
