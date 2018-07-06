@@ -24,7 +24,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.deleteRecipeHandler = this.deleteRecipeHandler.bind(this);
-    this.orderRecipeHandler = this.orderRecipeHandler.bind(this);
     this.addSearchHandler = this.addSearchHandler.bind(this);
     this.handleResultSelect = this.handleResultSelect.bind(this);
     this.searchOnClickHandler = this.searchOnClickHandler.bind(this);
@@ -127,40 +126,7 @@ class App extends React.Component {
 
 
 
-  orderRecipeHandler() {
-    const instructions = this.state.customOrder;
-    const deliveryInfo = this.state.deliveryInfo;
-    const price = "$20";
-    const order = {
-      instructions,
-      price,
-      deliveryInfo
-    };
 
-    axios
-      .post('orders.json', order)
-      .then(response => {
-        console.log(response)
-        if (response !== undefined) {
-          this.setState({
-          orderLoaded: true,
-          orderAccepted: true
-        });
-        } else {
-          this.setState({
-            orderLoaded: true,
-            orderAccepted: false
-          });
-        }        
-      })
-      .catch(error => {
-        console.log(error);
-        this.setState({
-          orderLoaded: true,
-          orderAccepted: false
-        });
-      });
-  }
 
  
   deleteRecipeHandler() {

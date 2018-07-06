@@ -31,6 +31,3 @@ export {
   purchaseOrderStart
 } from './order/purchaseOrder';
 
-export {
-  postFavouriteStart
-} from './postFavourite';
