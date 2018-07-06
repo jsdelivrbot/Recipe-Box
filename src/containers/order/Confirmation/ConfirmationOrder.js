@@ -18,7 +18,10 @@ class ConfirmationOrder extends React.Component {
 
   orderSent() {
     this.setState({ orderSent: true })
-    this.props.orderRecipe();
+    const deliveryInfo = this.props.deliveryInfo;
+    const orderInfo = this.props.customOrder;
+
+    this.props.onOrderRecipe(orderInfo, deliveryInfo);
   }
   componentDidMount() {
     this.setState({orderSent: false})
@@ -119,7 +122,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderRecipe: () => dispatch(actionCreators.purchaseOrderStart())
+    onOrderRecipe: (order, deliveryInfo) => dispatch(actionCreators.purchaseOrderStart(order, deliveryInfo))
   };
 };
 

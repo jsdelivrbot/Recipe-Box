@@ -5,5 +5,17 @@ export const addRemoveFavourite = (id) => {
     type: actionTypes.ADD_REMOVE_FAVOURITE,
     id
   }
-}; 
+};
+
+export const addFavouriteLocal = id => {
+  return {
+
+  }
+}
+
+export const RemoveFavouriteLocal = id => {
+  return {
+
+  }
+}  
 

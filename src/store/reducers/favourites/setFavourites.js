@@ -1,7 +1,7 @@
 import * as actionTypes from '../../actions/actionTypes';
 
 const initialState = {
-  favouriteRecipes: [],
+  favourites: [],
   error: false
 }
 
@@ -10,7 +10,7 @@ const setFavouritesReducer = (state = initialState, action) => {
     case actionTypes.SET_FAVOURITES:
       return {
         ...state,
-        favouriteRecipes: action.favArray,
+        favourites: action.favArray,
         error: false
       };
     case actionTypes.SET_FAVOURITES_FAILED:
