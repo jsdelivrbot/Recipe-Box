@@ -256,8 +256,7 @@ class App extends React.Component {
           />
           <Route path="/confirmation" exact render={props =>
              <ConfirmationOrder
-               {...props}
-               orderRecipe={this.orderRecipeHandler}
+               {...props}              
                orderAccepted={this.state.orderAccepted}
                orderLoaded={this.state.orderLoaded}
                    

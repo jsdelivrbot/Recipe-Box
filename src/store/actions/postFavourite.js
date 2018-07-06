@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import axios from "../../../components/axios-orders";
+import axios from "../../components/axios-orders";
 
 export const postFavouriteSuccess = (favourite, id) => {
   

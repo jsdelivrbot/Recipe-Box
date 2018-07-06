@@ -7,6 +7,7 @@ import StepsSecond from '../../../components/mainView/orders/steps/StepsSecond';
 import DisplayCustomOrder from '../../../components/mainView/orders/DisplayCustomOrder';
 import DisplayDelivery from '../../../components/mainView/orders/DisplayDelivery';
 
+import * as actionCreators from '../../../store/actions/index';
 
 
 class ConfirmationOrder extends React.Component {
@@ -110,14 +111,19 @@ class ConfirmationOrder extends React.Component {
   }
 }
 const mapStateToProps = state => {
-
   return {
     customOrder: state.placeOrder.customOrder,
     deliveryInfo: state.delivery.deliveryInfo
-  }
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onOrderRecipe: () => dispatch(actionCreators.purchaseOrderStart())
+  };
 };
 
 export default withRouter(
-  connect(mapStateToProps)(ConfirmationOrder)
+  connect(mapStateToProps, mapDispatchToProps)(ConfirmationOrder)
 );
   
