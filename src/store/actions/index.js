@@ -28,6 +28,10 @@ export {
 } from './mainRecipe/directions';
 
 export {
+  initWeekTop
+} from './weekTop';
+ 
+export {
   purchaseOrderStart
 } from './order/purchaseOrder';
 

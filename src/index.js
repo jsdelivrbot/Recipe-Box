@@ -11,6 +11,8 @@ import delivery from "./store/reducers/order/delivery";
 import placeOrder from "./store/reducers/order/placeOrder";
 import mainRecipe from "./store/reducers/mainRecipe/mainRecipe";
 import popular from "./store/reducers/popular/popular";
+import weekTop from "./store/reducers/weekTop";
+
 
 import App from "./App";
 
@@ -20,6 +22,7 @@ const rootReducer = combineReducers({
   setFavourites,
   placeOrder,
   popular,
+  weekTop,
   mainRecipe
 })
 

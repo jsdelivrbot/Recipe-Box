@@ -6,9 +6,16 @@ import MainView from '../components/mainView/MainView';
 
 import SearchRecipes from '../components/search/Search';
 import Favourites from '../components/favourites/Favourites';
+import WeekTop from '../components/weekTop/WeekTop';
+
+
+
+
+
+
+
 
 const GridLayout = props => {
-
   return (
     <div>
       <Grid celled stackable>
@@ -39,6 +46,7 @@ const GridLayout = props => {
 
           <Grid.Column width={10}>
             <Header as='h2'>Popular recipes this week</Header>
+            <WeekTop weekTop={props.popularRecipes}/>
             <RecipeList
               popularRecipes={props.popularRecipes}
               addFav={props.addFav}
