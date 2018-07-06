@@ -28,8 +28,8 @@ export {
 } from './mainRecipe/directions';
 
 export {
-  initWeekTop
-} from './weekTop';
+  initTopWeek
+} from './topWeek';
  
 export {
   purchaseOrderStart

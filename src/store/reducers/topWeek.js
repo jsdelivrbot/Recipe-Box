@@ -1,19 +1,19 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  weekTop: [],
+  topWeek: [],
   error: false
 }
 
-const weekTopReducer = (state = initialState, action) => {
+const topWeekReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_WEEK_TOP:
+    case actionTypes.SET_TOP_WEEK:
       return {
         ...state,
-        weekTop: action.data,
+        TopWeek: action.data,
         error: false
       };
-    case actionTypes.SET_WEEK_TOP_FAILED:
+    case actionTypes.SET_TOP_WEEK_FAILED:
       return {
         ...state,
         error: true
@@ -23,4 +23,4 @@ const weekTopReducer = (state = initialState, action) => {
   }
 };
 
-export default weekTopReducer
+export default topWeekReducer

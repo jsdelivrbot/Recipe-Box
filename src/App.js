@@ -51,7 +51,7 @@ class App extends React.Component {
    this.props.onInitIngredients();
    this.props.onInitDirections();
    this.props.onInitPopular();
-   this.props.onInitWeekTop();
+   this.props.onInitTopWeek();
    
   }
   componentWillUnmount() {
@@ -164,6 +164,8 @@ class App extends React.Component {
                 addSearch={this.addSearchHandler}
                 deleteRecipe={this.deleteRecipeHandler}
                 editRecipe={this.editRecipeHandler}
+               
+                topWeek={this.props.topWeek}
 
                 searchValue={this.state.searchValue}
                 searchResults={this.state.searchResults}
@@ -242,11 +244,10 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-console.log('state')
-console.log(state)
   return {
      mainRecipe: state.mainRecipe.mainRecipe,
      popularRecipes: state.popular.popularRecipes,
+     topWeek: state.topWeek.topWeek
   };
 };
 
@@ -259,7 +260,7 @@ const mapDispatchToProps = dispatch => {
      onInitIngredients: () => dispatch(actionCreators.initIngredients()),
      onInitPopular: () => dispatch(actionCreators.initPopular()),
      onInitDirections: () => dispatch(actionCreators.initDirections()),
-     onInitWeekTop: () => dispatch(actionCreators.initWeekTop())
+     onInitTopWeek: () => dispatch(actionCreators.initTopWeek())
    };
 };
 

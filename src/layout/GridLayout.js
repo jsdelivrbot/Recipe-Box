@@ -46,7 +46,7 @@ const GridLayout = props => {
 
           <Grid.Column width={10}>
             <Header as='h2'>Popular recipes this week</Header>
-            <WeekTop weekTop={props.popularRecipes}/>
+            <WeekTop weekTop={props.topWeek}/>
             <RecipeList
               popularRecipes={props.popularRecipes}
               addFav={props.addFav}
