@@ -1,5 +1,6 @@
 import React from 'react';
-import { Divider, Header, Card, Image, Icon} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import {Card, Image, Icon} from 'semantic-ui-react';
 
 const borderStyle = {
     padding: "15px",
@@ -15,19 +16,25 @@ const cardStyle = {
 }
 
 const WeekTop = props => {
-  console.log(props)
+  
   const displayCards = props.weekTop.map(el => {
-    return <Card size='tiny' style={cardStyle}
+    return (
+     
+      <Card size='tiny' style={cardStyle}
     key={el.id}
-    onClick={props.handleWeekTopClick}
+    onClick={() => props.handleWeekTopClick(el.id)}
     >  
-        <Image  size='small'src={el.img} />
+        <Link to={'/top' + el.id} ><div><Image size='small' src={el.img} /> </div></Link>
         <Card.Content>
+           <div>
+          <Link to={'/top' + el.id} >
           <Card.Header>{el.header}</Card.Header>
           <Card.Meta>
             <span className='date'>From {el.date}</span>
           </Card.Meta>
           <Card.Description>{el.description}</Card.Description>
+        </Link>
+        </div>
         </Card.Content>
         <Card.Content extra>
           <a>
@@ -36,7 +43,11 @@ const WeekTop = props => {
       </a>
         </Card.Content>
       </Card>
+ 
+     )
   });
+   
+      
 
   return (
     <div style={borderStyle}>
