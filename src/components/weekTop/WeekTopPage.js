@@ -4,9 +4,26 @@ import Title from '../Title';
 
 
 class WeekTopPage extends React.Component  {
+ 
+  state = {
+   cardData: {}
+  }  
+
+ componentDidMount() {
+   const id = this.props.match.params.id;
+    if (id) {
+      fetch(`https://recipe-box-15453.firebaseio.com/topWeek/${id}.json` )
+        .then(data => {
+          return data.json();
+        }).then(cardData => this.setState({cardData}))
+        .catch(error => console.log(error))
+    }
+ }
+
 
  render () {
-
+   console.log(this.props)
+   console.log(this.state)
     return (
       <div>
         <Grid celled stackable>
@@ -28,18 +45,18 @@ class WeekTopPage extends React.Component  {
             </Grid.Column>
 
             <Grid.Column width={10}>
-              <Card size='large' key={this.props.id}>
-                <Image size='large' src={this.props.img} />
+              <Card size='large' key={this.state.cardData.id}>
+                <Image size='large' src={this.state.cardData.img} />
                 <Card.Content>
-                  <Card.Header>{this.props.header}</Card.Header>
+                  <Card.Header>{this.state.cardData.header}</Card.Header>
                   <Card.Meta>
-                    <span className='date'>From {this.props.date}</span>
+                    <span className='date'>From {this.state.cardData.date}</span>
                   </Card.Meta>
-                  <Card.Description>{this.props.description}</Card.Description>
-                  <Card.Description>{this.props.longerDescription}</Card.Description>
+                  <Card.Description>{this.state.cardData.description}</Card.Description>
+                  <Card.Description>{this.state.cardData.longerDescription}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                  <a> <Icon name='like' />{this.props.likes}
+                  <a> <Icon name='like' />{this.state.cardData.likes}
                   </a>
                 </Card.Content>
               </Card>
