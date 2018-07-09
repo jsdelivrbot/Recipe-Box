@@ -9,11 +9,15 @@ const borderStyle = {
     display: "flex"
 };
 
+const cardStyle = {
+  margin: '4px',
+  cursor: 'pointer'
+}
 
 const WeekTop = props => {
- console.log(props)
+ 
   const displayCards = props.weekTop.map(el => {
-    return <Card size='tiny'
+    return <Card size='tiny' style={cardStyle}
     key={el.id}>  
         <Image  size='small'src={el.img} />
         <Card.Content>

@@ -9,12 +9,6 @@ import Favourites from '../components/favourites/Favourites';
 import WeekTop from '../components/weekTop/WeekTop';
 
 
-
-
-
-
-
-
 const GridLayout = props => {
   return (
     <div>
