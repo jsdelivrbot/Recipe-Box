@@ -15,10 +15,12 @@ const cardStyle = {
 }
 
 const WeekTop = props => {
- 
+  console.log(props)
   const displayCards = props.weekTop.map(el => {
     return <Card size='tiny' style={cardStyle}
-    key={el.id}>  
+    key={el.id}
+    onClick={props.handleWeekTopClick}
+    >  
         <Image  size='small'src={el.img} />
         <Card.Content>
           <Card.Header>{el.header}</Card.Header>

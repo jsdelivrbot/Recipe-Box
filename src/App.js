@@ -28,6 +28,7 @@ class App extends React.Component {
     this.handleResultSelect = this.handleResultSelect.bind(this);
     this.searchOnClickHandler = this.searchOnClickHandler.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.handleWeekTopClick = this.handleWeekTopClick.bind(this)
   }
 
   state = {
@@ -124,11 +125,6 @@ class App extends React.Component {
     }, 300);
   };
 
-
-
-
-
- 
   deleteRecipeHandler() {
     const popularRecipes = [...this.state.popularRecipes];
     
@@ -140,7 +136,10 @@ class App extends React.Component {
     // Update redux with the new main recipe
     this.onReplaceMain(recipeToReplace)
   }
-
+ 
+  handleWeekTopClick() {
+    console.log('jer')
+  }
 
   render() {
    
@@ -166,6 +165,7 @@ class App extends React.Component {
                 editRecipe={this.editRecipeHandler}
                
                 topWeek={this.props.topWeek}
+                handleWeekTopClick={this.handleWeekTopClick}   
 
                 searchValue={this.state.searchValue}
                 searchResults={this.state.searchResults}

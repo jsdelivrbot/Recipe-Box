@@ -20,6 +20,7 @@ class RecipeBox extends React.Component {
           editOnClick={this.props.editRecipe}
           addFav={this.props.addFav}
 
+          handleWeekTopClick={this.props.handleWeekTopClick}
           topWeek={this.props.topWeek}
 
           orderRecipe={this.orderRecipeHandler}
