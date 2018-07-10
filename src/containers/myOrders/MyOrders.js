@@ -7,11 +7,13 @@ import DisplayMyOrder from "../../components/myOrders/DisplayMyOrderCard";
 
 class MyOrders extends React.Component {
   render() {
-    const orders = this.state.orders;
-
+    const orders = this.props.orders;
+  
     const ordersArray = Object.entries(orders);
+ 
     const DisplayOrders = ordersArray.map(order => {
       const instructionsArray = Object.entries(order);
+
       return (
         <DisplayMyOrder
           title={instructionsArray[1][1].instructions.title}
