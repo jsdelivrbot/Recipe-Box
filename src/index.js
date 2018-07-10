@@ -51,9 +51,7 @@ ReactDOM.render(<Index />, rootElement);
 
 /*
 
-1. Instead of showing main recipe- use routing to show and use body to 
-    display extra info etc - Use routing parameters
-    e.g a group of 10 recipes with thumbnail images
+1. Move fetch topWeek to redux
 2. Move things which should go into redux - into redux
 3. Get and store favourites on firebase
 4. Implement form validation eg email field
