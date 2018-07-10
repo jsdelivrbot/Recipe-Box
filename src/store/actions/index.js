@@ -35,3 +35,7 @@ export {
   purchaseOrderStart
 } from './order/purchaseOrder';
 
+export {
+  initMyOrders
+} from './myOrders/myOrders';
+

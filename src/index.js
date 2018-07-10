@@ -12,7 +12,7 @@ import placeOrder from "./store/reducers/order/placeOrder";
 import mainRecipe from "./store/reducers/mainRecipe/mainRecipe";
 import popular from "./store/reducers/popular/popular";
 import topWeek from "./store/reducers/topWeek";
-
+import myOrders from "./store/reducers/myOrders/myOrders"
 
 import App from "./App";
 
@@ -23,7 +23,8 @@ const rootReducer = combineReducers({
   placeOrder,
   popular,
   topWeek,
-  mainRecipe
+  mainRecipe,
+  myOrders
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -30,7 +30,7 @@ class App extends React.Component {
     this.handleResultSelect = this.handleResultSelect.bind(this);
     this.searchOnClickHandler = this.searchOnClickHandler.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.handleWeekTopClick = this.handleWeekTopClick.bind(this)
+    
   }
 
   state = {
@@ -55,6 +55,7 @@ class App extends React.Component {
    this.props.onInitDirections();
    this.props.onInitPopular();
    this.props.onInitTopWeek();
+   this.props.onInitMyOrders();
    
   }
   componentWillUnmount() {
@@ -139,9 +140,7 @@ class App extends React.Component {
     this.onReplaceMain(recipeToReplace)
   }
  
-  handleWeekTopClick(id) {
-    console.log(id)
-  }
+
 
   render() {
    
@@ -264,7 +263,8 @@ const mapDispatchToProps = dispatch => {
      onInitIngredients: () => dispatch(actionCreators.initIngredients()),
      onInitPopular: () => dispatch(actionCreators.initPopular()),
      onInitDirections: () => dispatch(actionCreators.initDirections()),
-     onInitTopWeek: () => dispatch(actionCreators.initTopWeek())
+     onInitTopWeek: () => dispatch(actionCreators.initTopWeek()),
+     onInitMyOrders: () => dispatch(actionCreators.initMyOrders())
    };
 };
 

@@ -1,24 +1,11 @@
 import React from "react";
 import { Grid, Image, Divider, Header, Button } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import Title from "../../components/Title";
 import DisplayMyOrder from "../../components/myOrders/DisplayMyOrderCard";
-export default class MyOrders extends React.Component {
-  state = {
-    orders: []
-  };
 
-  componentDidMount() {
-    fetch("https://recipe-box-15453.firebaseio.com/orders.json")
-      .then(data => {
-        return data.json();
-      })
-      .then(orders => {
-        this.setState({
-          orders
-        });
-      })
-      .catch(response => console.log(response));
-  }
+class MyOrders extends React.Component {
   render() {
     const orders = this.state.orders;
 
@@ -73,3 +60,13 @@ export default class MyOrders extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+   orders: state.myOrders.myOrders
+  };
+};
+
+
+export default withRouter(
+  connect(mapStateToProps)(MyOrders)
+);
