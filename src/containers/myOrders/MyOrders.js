@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Title from "../../components/Title";
 import DisplayMyOrder from "../../components/myOrders/DisplayMyOrderCard";
+import Auth from "../auth/Auth";
+
 
 class MyOrders extends React.Component {
   render() {
@@ -47,6 +49,8 @@ class MyOrders extends React.Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
+             <Auth />
+
             <Grid.Column width={13}>
               <Button
                 negative
