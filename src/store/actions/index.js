@@ -29,8 +29,12 @@ export {
 
 export {
   initTopWeek
-} from './topWeek';
- 
+} from './topWeek/topWeek';
+
+export {
+  initTopWeekIndiv
+} from './topWeek/topWeekIndiv'
+
 export {
   purchaseOrderStart
 } from './order/purchaseOrder';

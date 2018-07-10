@@ -1,29 +1,20 @@
 import React from 'react';
 import { Grid, Image, Divider, Card, Icon } from 'semantic-ui-react';
 import Title from '../Title';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actionCreators from '../../store/actions/index';
 
-
-class WeekTopPage extends React.Component  {
- 
-  state = {
-   cardData: {}
-  }  
+class TopWeekPage extends React.Component  {
 
  componentDidMount() {
    const id = this.props.match.params.id;
     if (id) {
-      fetch(`https://recipe-box-15453.firebaseio.com/topWeek/${id}.json` )
-        .then(data => {
-          return data.json();
-        }).then(cardData => this.setState({cardData}))
-        .catch(error => console.log(error))
+      this.props.onInitTopWeekIndiv(id);
     }
  }
 
-
  render () {
-   console.log(this.props)
-   console.log(this.state)
     return (
       <div>
         <Grid celled stackable>
@@ -45,18 +36,18 @@ class WeekTopPage extends React.Component  {
             </Grid.Column>
 
             <Grid.Column width={10}>
-              <Card size='large' key={this.state.cardData.id}>
-                <Image size='large' src={this.state.cardData.img} />
+              <Card size='large' key={this.props.cardData.id}>
+                <Image size='large' src={this.props.cardData.img} />
                 <Card.Content>
-                  <Card.Header>{this.state.cardData.header}</Card.Header>
+                  <Card.Header>{this.props.cardData.header}</Card.Header>
                   <Card.Meta>
-                    <span className='date'>From {this.state.cardData.date}</span>
+                    <span className='date'>From {this.props.cardData.date}</span>
                   </Card.Meta>
-                  <Card.Description>{this.state.cardData.description}</Card.Description>
-                  <Card.Description>{this.state.cardData.longerDescription}</Card.Description>
+                  <Card.Description>{this.props.cardData.description}</Card.Description>
+                  <Card.Description>{this.props.cardData.longerDescription}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                  <a> <Icon name='like' />{this.state.cardData.likes}
+                  <a> <Icon name='like' />{this.props.cardData.likes}
                   </a>
                 </Card.Content>
               </Card>
@@ -80,6 +71,20 @@ class WeekTopPage extends React.Component  {
     )
   };
 } 
- 
 
-export default WeekTopPage
+const mapStateToProps = state => {
+  return {
+    cardData: state.topWeek.topWeekIndiv
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitTopWeekIndiv: (id) => dispatch(actionCreators.initTopWeekIndiv(id))
+  };
+}; 
+
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TopWeekPage)
+);

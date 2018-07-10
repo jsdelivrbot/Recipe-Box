@@ -22,7 +22,7 @@ const WeekTop = props => {
      
       <Card size='tiny' style={cardStyle}
     key={el.id}
-    onClick={() => props.handleWeekTopClick(el.id)}
+    
     >  
         <Link to={'/top' + el.id} ><div><Image size='small' src={el.img} /> </div></Link>
         <Card.Content>
