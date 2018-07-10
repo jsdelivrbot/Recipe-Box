@@ -11,7 +11,7 @@ import delivery from "./store/reducers/order/delivery";
 import placeOrder from "./store/reducers/order/placeOrder";
 import mainRecipe from "./store/reducers/mainRecipe/mainRecipe";
 import popular from "./store/reducers/popular/popular";
-import topWeek from "./store/reducers/topWeek";
+import topWeek from "./store/reducers/topWeek/topWeek";
 import myOrders from "./store/reducers/myOrders/myOrders"
 
 import App from "./App";
@@ -52,12 +52,14 @@ ReactDOM.render(<Index />, rootElement);
 
 /*
 
-1. Move fetch topWeek to redux
-2. Move things which should go into redux - into redux
-3. Get and store favourites on firebase
-4. Implement form validation eg email field
+
+1. myOrders deleteable and click for more info using routing
+--aka when order is sent to firebase more info is added
+4. Implement form validation eg email field -regex
 5. Improve general styling
 6. Delte recipe box container
 7. Add favourits post and fetch - 
 put logic in action creators
+8. Ensure consistency
+
 */
