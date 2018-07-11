@@ -146,9 +146,15 @@ const emailVal = value => {
       LoginForm = Loading;
     }
 
+    let errorMessage = null;
+    if (this.props.error) {
+      errorMessage = this.props.error.message;
+    }
+
     return (
       <div>
         {LoginForm}
+        {errorMessage}
       </div>
     );
   }
@@ -156,7 +162,8 @@ const emailVal = value => {
 
 const mapStateToProps = state => {
   return {
-    loading: state.auth.loading
+    loading: state.auth.loading,
+    error: state.auth.error
   }
 }
 
