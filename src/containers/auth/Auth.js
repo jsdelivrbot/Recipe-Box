@@ -14,6 +14,7 @@ const emailVal = value => {
   constructor(props) {
     super(props) 
     this.authOnSubmit = this.authOnSubmit.bind(this)
+    this.authLoginHandler = this.authLoginHandler.bind(this)
   }
 
   state = {
@@ -75,6 +76,11 @@ const emailVal = value => {
     const password = this.state.controls.password.value;
     this.props.onAuth(email, password);
   }
+  authLoginHandler() {
+    const email = this.state.controls.email.value;
+    const password = this.state.controls.password.value;
+    this.props.onAuthLogin(email, password);
+  }
 
   checkValidity(value, rules) {
     let isValid = true;
@@ -92,6 +98,7 @@ const emailVal = value => {
 
     return isValid;
   }
+
 
   render() {
 
@@ -119,11 +126,19 @@ const emailVal = value => {
           </Form.Field>
           <Button
             primary
-            type="submit"
+            type="Sign up"
             disabled={validForm}
            
           >
-            Submit
+            Sign up
+          </Button>
+          <Button
+            positive
+            type="Sign in"
+            disabled={validForm}
+            onClick={this.props.authLoginHandler}
+          >
+            Sign in
           </Button>
         </Form>
       </div>
@@ -133,7 +148,8 @@ const emailVal = value => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password) => dispatch(actionCreators.auth(email, password))
+    onAuth: (email, password) => dispatch(actionCreators.auth(email, password, 'signUp')),
+    onAuthLogin: (email, password) => dispatch(actionCreators.auth(email, password, 'signIn'))
   };
 };
 
