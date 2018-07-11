@@ -5,13 +5,17 @@ import * as actionCreators from "../../store/actions/index";
 import { connect } from "react-redux"
 import { withRouter } from 'react-router-dom';
 
-
 const emailVal = value => {
   const result = validator.isEmail(value);
   return result;
 };
 
  class Auth extends Component {
+  constructor(props) {
+    super(props) 
+    this.authOnSubmit = this.authOnSubmit.bind(this)
+  }
+
   state = {
     controls: {
       email: {
@@ -66,6 +70,7 @@ const emailVal = value => {
 
   authOnSubmit(e) {
     e.preventDefault();
+ 
     const email = this.state.controls.email.value;
     const password = this.state.controls.password.value;
     this.props.onAuth(email, password);
@@ -89,10 +94,9 @@ const emailVal = value => {
   }
 
   render() {
-    console.log(this.state);
+
     const validForm = !this.state.controls.formIsValid;
     const emailErrorMsg = this.state.controls.email.warning;
-    console.log(emailErrorMsg);
     return (
       <div>
         <Form onSubmit={this.authOnSubmit}>
