@@ -101,48 +101,62 @@ const emailVal = value => {
 
 
   render() {
-
+    const Loading = <div className='loader'>Loading.. </div>
     const validForm = !this.state.controls.formIsValid;
     const emailErrorMsg = this.state.controls.email.warning;
+
+    let LoginForm = <Form onSubmit={this.authOnSubmit}>
+      <Form.Field>
+        <label>Email</label>
+        <input
+          value={this.state.controls.email.value}
+          onChange={e => this.inputChangedhandler(e, "email")}
+          placeholder="jamessmith@gmail.com"
+          error={emailErrorMsg}
+        />
+      </Form.Field>
+      <Form.Field>
+        <label>Password</label>
+        <input
+          value={this.state.controls.password.value}
+          onChange={e => this.inputChangedhandler(e, "password")}
+          placeholder="Password"
+        />
+      </Form.Field>
+      <Button
+        primary
+        type="Sign up"
+        disabled={validForm}
+
+      >
+        Sign up
+          </Button>
+      <Button
+        positive
+        type="Sign in"
+        disabled={validForm}
+        onClick={this.props.authLoginHandler}
+      >
+        Sign in
+          </Button>
+
+    </Form>
+
+    if (this.props.loading === true) {
+      LoginForm = Loading;
+    }
+
     return (
       <div>
-        <Form onSubmit={this.authOnSubmit}>
-          <Form.Field>
-            <label>Email</label>
-            <input
-              value={this.state.controls.email.value}
-              onChange={e => this.inputChangedhandler(e, "email")}
-              placeholder="jamessmith@gmail.com"
-              error={emailErrorMsg}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Password</label>
-            <input
-              value={this.state.controls.password.value}
-              onChange={e => this.inputChangedhandler(e, "password")}
-              placeholder="Password"
-            />
-          </Form.Field>
-          <Button
-            primary
-            type="Sign up"
-            disabled={validForm}
-           
-          >
-            Sign up
-          </Button>
-          <Button
-            positive
-            type="Sign in"
-            disabled={validForm}
-            onClick={this.props.authLoginHandler}
-          >
-            Sign in
-          </Button>
-        </Form>
+        {LoginForm}
       </div>
     );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    loading: state.auth.loading
   }
 }
 
@@ -154,5 +168,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default withRouter(
-  connect(null, mapDispatchToProps)(Auth)
+  connect(mapStateToProps, mapDispatchToProps)(Auth)
 );

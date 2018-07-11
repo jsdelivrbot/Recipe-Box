@@ -1,8 +1,8 @@
 import * as actionTypes from "../../actions/actionTypes";
 
 const initialState = {
-  token: null,
-  userId: [],
+  idToken: null,
+  localId: [],
   error: null,
   loading: false
 };
@@ -15,12 +15,10 @@ const authReducer = (state = initialState, action) => {
         loading: true
       };
     case actionTypes.AUTH_SUCCESS:
-    console.log(action)
-      const token = action.authData.idToken;
-      const userId = action.authData.localId;
+      const { idToken, localId } = action.authData;
       return {
-        token,
-        userId,
+        idToken,
+        localId,
         error: null,
         loading: false
       };
