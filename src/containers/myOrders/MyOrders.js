@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import Title from "../../components/Title";
 import DisplayMyOrder from "../../components/myOrders/DisplayMyOrderCard";
 import Auth from "../auth/Auth";
-import Login from "../auth/Auth2";
+
 
 class MyOrders extends React.Component {
   render() {
@@ -50,7 +50,7 @@ class MyOrders extends React.Component {
           </Grid.Row>
           <Grid.Row>
              <Auth />
-             <Login />
+       
 
             <Grid.Column width={13}>
               <Button
