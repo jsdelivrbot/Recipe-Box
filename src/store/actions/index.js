@@ -43,3 +43,6 @@ export {
   initMyOrders
 } from './myOrders/myOrders';
 
+export {
+  auth
+} from './auth/auth';

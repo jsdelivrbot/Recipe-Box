@@ -1,74 +1,81 @@
-import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react'
-import validator from 'validator';
+import React, { Component } from "react";
+import { Button, Form } from "semantic-ui-react";
+import validator from "validator";
+import * as actionCreators from "../../store/actions/index";
+import { connect } from "react-redux"
+import { withRouter } from 'react-router-dom';
 
-const emailVal = (value) => {
-   const result = validator.isEmail(value) 
-   return result
+
+const emailVal = value => {
+  const result = validator.isEmail(value);
+  return result;
 };
 
-
-export default class Auth extends Component {
+ class Auth extends Component {
   state = {
     controls: {
       email: {
-       value: '',
-       validation: {
-         required: true,
-         minLength: 4,
-         emailRequired: true
-       },
-       valid: false
-      },
-      password: {
-        value: '',
+        value: "",
         validation: {
           required: true,
-          minLength: 6,
+          minLength: 4,
+          emailRequired: true
+        },
+        warning: false,
+        valid: false
+      },
+      password: {
+        value: "",
+        validation: {
+          required: true,
+          minLength: 6
         },
         valid: false
-    },
-    formIsValid: false
-  }
-  }
+      },
+      formIsValid: false
+    }
+  };
 
   inputChangedhandler = (e, identifier) => {
     const updatedAuthForm = { ...this.state.controls };
-   
+
     const updatedFormElement = {
-       ...updatedAuthForm[identifier] 
-       };
+      ...updatedAuthForm[identifier]
+    };
     updatedFormElement.value = e.target.value;
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
-    updatedAuthForm[identifier] = updatedFormElement;    
-    
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
+    updatedAuthForm[identifier] = updatedFormElement;
 
     let formIsValid = false;
     if (updatedAuthForm.email.valid && updatedAuthForm.password.valid) {
       formIsValid = true;
     }
 
-
     const fullyUpdatedAuthForm = {
       ...updatedAuthForm,
-      formIsValid 
-    }
+      formIsValid
+    };
 
-    this.setState({ 
-     controls: fullyUpdatedAuthForm,
-   
-     });
-  }
+    this.setState({
+      controls: fullyUpdatedAuthForm
+    });
+  };
 
   authOnSubmit(e) {
-     e.preventDefault();
+    e.preventDefault();
+    const email = this.state.controls.email.value;
+    const password = this.state.controls.password.value;
+    this.props.onAuth(email, password);
   }
 
   checkValidity(value, rules) {
     let isValid = true;
 
     if (rules.required) {
-       isValid = value.trim() !== '' && isValid;
+      isValid = value.trim() !== "" && isValid;
     }
 
     if (rules.minLength) {
@@ -76,30 +83,56 @@ export default class Auth extends Component {
     }
     if (rules.emailRequired) {
       isValid = emailVal(value) && isValid;
-    } 
-
+    }
 
     return isValid;
   }
 
   render() {
- console.log(this.state)
+    console.log(this.state);
+    const validForm = !this.state.controls.formIsValid;
+    const emailErrorMsg = this.state.controls.email.warning;
+    console.log(emailErrorMsg);
     return (
       <div>
-        <Form>
+        <Form onSubmit={this.authOnSubmit}>
           <Form.Field>
             <label>Email</label>
-            <input value={this.state.controls.email.value}
-             onChange={(e) => this.inputChangedhandler(e, 'email')}
-             />
-          </Form.Field>   
+            <input
+              value={this.state.controls.email.value}
+              onChange={e => this.inputChangedhandler(e, "email")}
+              placeholder="jamessmith@gmail.com"
+              error={emailErrorMsg}
+            />
+          </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input value={this.state.controls.password.value} onChange={(e) => this.inputChangedhandler(e, 'password')} placeholder='Password' />
+            <input
+              value={this.state.controls.password.value}
+              onChange={e => this.inputChangedhandler(e, "password")}
+              placeholder="Password"
+            />
           </Form.Field>
-          <Button type='submit' disabled={this.state.formIsValid} >Submit</Button>
+          <Button
+            primary
+            type="submit"
+            disabled={validForm}
+           
+          >
+            Submit
+          </Button>
         </Form>
       </div>
-    )
+    );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth: (email, password) => dispatch(actionCreators.auth(email, password))
+  };
+};
+
+export default withRouter(
+  connect(null, mapDispatchToProps)(Auth)
+);
