@@ -19,6 +19,7 @@ import ConfirmationOrder from "./containers/order/Confirmation/ConfirmationOrder
 import MyOrders from "./containers/myOrders/MyOrders";
 import WeekTopPage from "./components/weekTop/WeekTopPage";
 import AuthPage from "./containers/auth/AuthPage";
+import Logout from "./containers/auth/logout/Logout";
 
 import * as actionCreators from "./store/actions/index";
 
@@ -225,6 +226,7 @@ class App extends React.Component {
           />
           <Route path="/top:id" exact component={WeekTopPage} />
           <Route path="/auth" exact component={AuthPage} />
+          <Route path="/logout" exact component={Logout} />
           <Route render={() => <h1> 404 Error </h1>} />
         </Switch>
       </div>

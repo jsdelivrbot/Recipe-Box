@@ -14,11 +14,20 @@ export default class MenuBar extends Component {
     const { activeItem } = this.state;
 
     let authenticated;
-    this.props.token != null ? (authenticated = true) : (authenticated = false);
+    this.props.token !== null
+      ? (authenticated = true)
+      : (authenticated = false);
+
     let logInStatus;
-    authenticated = false
+    authenticated === false
       ? (logInStatus = "Log-in")
       : (logInStatus = "Log-out");
+
+    let authenticationRoutes;
+    authenticated === false
+      ? (authenticationRoutes = "auth")
+      : (authenticationRoutes = "LogOut");
+
     return (
       <Menu inverted>
         <NavLink to="/">
@@ -43,7 +52,7 @@ export default class MenuBar extends Component {
             onClick={this.handleItemClick}
           />{" "}
         </NavLink>
-        <NavLink to="auth">
+        <NavLink to={authenticationRoutes}>
           <Menu.Item
             name={logInStatus}
             active={activeItem === "Log-in"}

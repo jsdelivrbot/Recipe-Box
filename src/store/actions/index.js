@@ -1,48 +1,23 @@
-export {
-  addCustomOrder,
-} from './customOrder';
+export { addCustomOrder } from "./customOrder";
 
-export {
-  addDelivery,
-} from './delivery';
+export { addDelivery } from "./delivery";
 
-export {
-  addRemoveFavourite,
-} from './favourite';
+export { addRemoveFavourite } from "./favourite";
 
-export {
-  initPopular
-} from './popular';
+export { initPopular } from "./popular";
 
-export {
-  editMain,
-  replaceMain
-} from './mainRecipe/main';
+export { editMain, replaceMain } from "./mainRecipe/main";
 
-export {
-  initIngredients
-} from './mainRecipe/ingredients';
+export { initIngredients } from "./mainRecipe/ingredients";
 
-export {
-  initDirections
-} from './mainRecipe/directions';
+export { initDirections } from "./mainRecipe/directions";
 
-export {
-  initTopWeek
-} from './topWeek/topWeek';
+export { initTopWeek } from "./topWeek/topWeek";
 
-export {
-  initTopWeekIndiv
-} from './topWeek/topWeekIndiv'
+export { initTopWeekIndiv } from "./topWeek/topWeekIndiv";
 
-export {
-  purchaseOrderStart
-} from './order/purchaseOrder';
+export { purchaseOrderStart } from "./order/purchaseOrder";
 
-export {
-  initMyOrders
-} from './myOrders/myOrders';
+export { initMyOrders } from "./myOrders/myOrders";
 
-export {
-  auth
-} from './auth/auth';
+export { auth, logout } from "./auth/auth";
