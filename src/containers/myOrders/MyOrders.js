@@ -4,15 +4,18 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Title from "../../components/Title";
 import DisplayMyOrder from "../../components/myOrders/DisplayMyOrderCard";
-import Auth from "../auth/Auth";
-
+import * as actionCreators from "../../store/actions/index";
 
 class MyOrders extends React.Component {
+  componentDidMount() {
+    this.props.onInitMyOrders(this.props.token);
+  }
+
   render() {
     const orders = this.props.orders;
-  
+
     const ordersArray = Object.entries(orders);
- 
+
     const DisplayOrders = ordersArray.map(order => {
       const instructionsArray = Object.entries(order);
 
@@ -49,9 +52,6 @@ class MyOrders extends React.Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-             <Auth />
-       
-
             <Grid.Column width={13}>
               <Button
                 negative
@@ -69,11 +69,19 @@ class MyOrders extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-   orders: state.myOrders.myOrders
+    orders: state.myOrders.myOrders
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitMyOrders: token => dispatch(actionCreators.initMyOrders(token))
+  };
+};
 
 export default withRouter(
-  connect(mapStateToProps)(MyOrders)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(MyOrders)
 );

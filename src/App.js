@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import R from "ramda";
@@ -20,8 +20,7 @@ import MyOrders from "./containers/myOrders/MyOrders";
 import WeekTopPage from "./components/weekTop/WeekTopPage";
 import Auth from "./containers/auth/Auth";
 
-
-import * as actionCreators from './store/actions/index';
+import * as actionCreators from "./store/actions/index";
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +30,6 @@ class App extends React.Component {
     this.handleResultSelect = this.handleResultSelect.bind(this);
     this.searchOnClickHandler = this.searchOnClickHandler.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
-    
   }
 
   state = {
@@ -51,13 +49,11 @@ class App extends React.Component {
     // });
     // this.resInterceptor = axios.interceptors.response.use(null, error => {
     //   this.setState({ error: error });
-    // }); 
-   this.props.onInitIngredients();
-   this.props.onInitDirections();
-   this.props.onInitPopular();
-   this.props.onInitTopWeek();
-   this.props.onInitMyOrders();
-   
+    // });
+    this.props.onInitIngredients();
+    this.props.onInitDirections();
+    this.props.onInitPopular();
+    this.props.onInitTopWeek();
   }
   componentWillUnmount() {
     axios.interceptors.request.eject(this.reqInterceptor);
@@ -66,21 +62,19 @@ class App extends React.Component {
 
   searchOnClickHandler() {
     setTimeout(() => {
-      
       const recipeName = this.state.searchValue;
       const recipes = [...this.state.searchResults];
       const recipeObj = recipes.find(el => el.title === recipeName);
-    
+
       if (recipeObj != undefined) {
         const id = recipeObj.recipe_id;
         const recipe = getRecipe(id);
-    
-        recipe.then(data=> {
-        
-         const recipe = data.data.recipe;
-          this.setState({ mainRecipe: recipe })
-      })
-      } 
+
+        recipe.then(data => {
+          const recipe = data.data.recipe;
+          this.setState({ mainRecipe: recipe });
+        });
+      }
     }, 300);
   }
   componentWillMount() {
@@ -95,20 +89,17 @@ class App extends React.Component {
     });
 
   addSearchHandler(searchData) {
-
     const mainRecipe = searchData.data.recipe;
     this.setState({ mainRecipe });
   }
 
-
   handleResultSelect = (e, { result }) => {
-     this.setState({ searchValue: result.title });
-  }
-   
+    this.setState({ searchValue: result.title });
+  };
 
   handleSearchChange = e => {
     const searchValue = e.target.value;
-  
+
     this.setState({
       searchIsLoading: true,
       searchValue
@@ -118,9 +109,8 @@ class App extends React.Component {
       if (this.state.searchValue.length < 1) return this.resetComponent();
       const source = getResults(searchValue);
       source.then(data => {
-      
-       const reducedList = data.slice(0, 10);
-      
+        const reducedList = data.slice(0, 10);
+
         this.setState({
           searchIsLoading: false,
           searchResults: reducedList
@@ -131,26 +121,20 @@ class App extends React.Component {
 
   deleteRecipeHandler() {
     const popularRecipes = [...this.state.popularRecipes];
-    
-   // Use Ramda to sort popular recipes by id
+
+    // Use Ramda to sort popular recipes by id
     const sortById = R.sortBy(R.compose(R.prop("id")));
     const sorted = sortById(popularRecipes);
     const recipeToReplace = sorted[sorted.length - 1];
 
     // Update redux with the new main recipe
-    this.onReplaceMain(recipeToReplace)
+    this.onReplaceMain(recipeToReplace);
   }
- 
-
 
   render() {
-   
-
     return (
       <div className="App">
-        <Route render={props => (
-          <Menu {...props} />
-        ) } />
+        <Route render={props => <Menu {...props} />} />
         <Switch>
           <Route
             path="/"
@@ -161,14 +145,12 @@ class App extends React.Component {
                 popularRecipes={this.props.popularRecipes}
                 mainRecipe={this.props.mainRecipe}
                 addRecipe={data => this.addRecipeHandler(data)}
-                addFav={(id) => this.props.onAddFavourite(id) }
+                addFav={id => this.props.onAddFavourite(id)}
                 addSearch={this.addSearchHandler}
                 deleteRecipe={this.deleteRecipeHandler}
                 editRecipe={this.editRecipeHandler}
-               
                 topWeek={this.props.topWeek}
-                handleWeekTopClick={this.handleWeekTopClick}   
-
+                handleWeekTopClick={this.handleWeekTopClick}
                 searchValue={this.state.searchValue}
                 searchResults={this.state.searchResults}
                 searchID={this.state.searchID}
@@ -176,7 +158,6 @@ class App extends React.Component {
                 searchHandleResultSelect={this.handleResultSelect}
                 searchOnClickHandler={this.searchOnClickHandler}
                 handleSearchChange={this.handleSearchChange}
-
               />
             )}
           />
@@ -185,34 +166,36 @@ class App extends React.Component {
             path="/order"
             exact
             render={props => (
-              <ReviewInitial {...props}
-               mainRecipe={this.props.mainRecipe}
-               searchValue={this.state.searchValue}
-               searchResults={this.state.searchResults}
-               searchID={this.state.searchID}
-               searchIsLoading={this.state.searchIsLoading}
-               searchHandleResultSelect={this.handleResultSelect}
-               searchOnClickHandler={this.searchOnClickHandler}
-               handleSearchChange={this.handleSearchChange} />
+              <ReviewInitial
+                {...props}
+                mainRecipe={this.props.mainRecipe}
+                searchValue={this.state.searchValue}
+                searchResults={this.state.searchResults}
+                searchID={this.state.searchID}
+                searchIsLoading={this.state.searchIsLoading}
+                searchHandleResultSelect={this.handleResultSelect}
+                searchOnClickHandler={this.searchOnClickHandler}
+                handleSearchChange={this.handleSearchChange}
+              />
             )}
           />
-          <Route 
+          <Route
             path="/custom-order"
             exact
             render={props => (
-              <CustomOrder {...props}
-             
-            addSearch={this.addSearchHandler} 
-            searchValue={this.state.searchValue}
-            searchResults={this.state.searchResults}
-            searchID={this.state.searchID}
-            searchIsLoading={this.state.searchIsLoading}
-            searchHandleResultSelect={this.handleResultSelect}
-            searchOnClickHandler={this.searchOnClickHandler}
-            handleSearchChange={this.handleSearchChange}
+              <CustomOrder
+                {...props}
+                addSearch={this.addSearchHandler}
+                searchValue={this.state.searchValue}
+                searchResults={this.state.searchResults}
+                searchID={this.state.searchID}
+                searchIsLoading={this.state.searchIsLoading}
+                searchHandleResultSelect={this.handleResultSelect}
+                searchOnClickHandler={this.searchOnClickHandler}
+                handleSearchChange={this.handleSearchChange}
               />
             )}
-            />
+          />
           <Route
             path="/delivery"
             exact
@@ -224,24 +207,25 @@ class App extends React.Component {
               />
             )}
           />
-          <Route path="/confirmation" exact render={props =>
-             <ConfirmationOrder
-               {...props}              
-               orderAccepted={this.state.orderAccepted}
-               orderLoaded={this.state.orderLoaded}
-                   
-             />
-           } />
-          <Route path="/my-orders" exact render={props =>
-            <MyOrders
-              {...props}
-            
-            />
-          } />
+          <Route
+            path="/confirmation"
+            exact
+            render={props => (
+              <ConfirmationOrder
+                {...props}
+                orderAccepted={this.state.orderAccepted}
+                orderLoaded={this.state.orderLoaded}
+              />
+            )}
+          />
+          <Route
+            path="/my-orders"
+            exact
+            render={props => <MyOrders {...props} />}
+          />
           <Route path="/top:id" exact component={WeekTopPage} />
           <Route path="/auth" exact component={Auth} />
           <Route render={() => <h1> 404 Error </h1>} />
-          
         </Switch>
       </div>
     );
@@ -250,26 +234,29 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-     mainRecipe: state.mainRecipe.mainRecipe,
-     popularRecipes: state.popular.popularRecipes,
-     topWeek: state.topWeek.topWeek
+    mainRecipe: state.mainRecipe.mainRecipe,
+    popularRecipes: state.popular.popularRecipes,
+    topWeek: state.topWeek.topWeek,
+    token: state.auth.idToken
   };
 };
 
 const mapDispatchToProps = dispatch => {
-   return {
-     onAddFavourite: (id) => dispatch(actionCreators.addRemoveFavourite(id)),
-     onFetchPopular: (data) => dispatch(actionCreators.fetchPopular(data)),
-     onEditMain: (data) => dispatch(actionCreators.editMain(data)),
-     onReplaceMain: (newMain) => dispatch(actionCreators.replaceMain(newMain)),
-     onInitIngredients: () => dispatch(actionCreators.initIngredients()),
-     onInitPopular: () => dispatch(actionCreators.initPopular()),
-     onInitDirections: () => dispatch(actionCreators.initDirections()),
-     onInitTopWeek: () => dispatch(actionCreators.initTopWeek()),
-     onInitMyOrders: () => dispatch(actionCreators.initMyOrders())
-   };
+  return {
+    onAddFavourite: id => dispatch(actionCreators.addRemoveFavourite(id)),
+    onFetchPopular: data => dispatch(actionCreators.fetchPopular(data)),
+    onEditMain: data => dispatch(actionCreators.editMain(data)),
+    onReplaceMain: newMain => dispatch(actionCreators.replaceMain(newMain)),
+    onInitIngredients: () => dispatch(actionCreators.initIngredients()),
+    onInitPopular: () => dispatch(actionCreators.initPopular()),
+    onInitDirections: () => dispatch(actionCreators.initDirections()),
+    onInitTopWeek: () => dispatch(actionCreators.initTopWeek())
+  };
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(App)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
 );
