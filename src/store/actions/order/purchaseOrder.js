@@ -16,7 +16,7 @@ export const purchaseOrderFail = orderStatus => {
   };
 };
 
-export const purchaseOrderStart = (instructions, deliveryInfo) => {
+export const purchaseOrderStart = (instructions, deliveryInfo, token) => {
   const price = "$20";
   const order = {
     instructions,
@@ -26,7 +26,7 @@ export const purchaseOrderStart = (instructions, deliveryInfo) => {
 
   return dispatch => {
     axios
-      .post("orders.json", order)
+      .post("orders.json?auth=" + token, order)
       .then(response => {
         if (response !== undefined) {
           const orderStatus = {
