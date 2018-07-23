@@ -134,7 +134,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Route render={props => <Menu {...props} />} />
+        <Route render={props => <Menu token={this.props.token} {...props} />} />
         <Switch>
           <Route
             path="/"
