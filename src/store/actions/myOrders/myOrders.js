@@ -1,30 +1,28 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from "../actionTypes";
 
-export const myOrdersSuccess = (myOrders) => {
-
+export const myOrdersSuccess = myOrders => {
   return {
     type: actionTypes.SET_MYORDERS_SUCCESS,
-    myOrders,  
+    myOrders
   };
 };
 
 export const myOrdersFail = error => {
   return {
     type: actionTypes.SET_MYORDERS_FAIL,
-     error
+    error
   };
 };
 
-export const initMyOrders = () => {
- 
+export const initMyOrders = token => {
   return dispatch => {
-    fetch("https://recipe-box-15453.firebaseio.com/orders.json")
-    .then(data => {
-      return data.json();
-    })
-    .then(orders => {
-        dispatch(myOrdersSuccess(orders))
-    })
-    .catch(response => myOrdersFail(response));
+    fetch("https://recipe-box-15453.firebaseio.com/orders.json?auth=" + token)
+      .then(data => {
+        return data.json();
+      })
+      .then(orders => {
+        dispatch(myOrdersSuccess(orders));
+      })
+      .catch(response => myOrdersFail(response));
   };
 };

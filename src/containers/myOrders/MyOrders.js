@@ -69,7 +69,8 @@ class MyOrders extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    orders: state.myOrders.myOrders
+    orders: state.myOrders.myOrders,
+    token: state.auth.idToken
   };
 };
 
