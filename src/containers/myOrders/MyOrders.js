@@ -38,9 +38,10 @@ class MyOrders extends React.Component {
                 className="icon"
                 src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/xeT5-soup.png"
                 size="large"
+                only="computer"
               />
             </Grid.Column>
-            <Grid.Column width={12}>
+            <Grid.Column only="computer" width={12}>
               <Title />
               <Divider />
             </Grid.Column>

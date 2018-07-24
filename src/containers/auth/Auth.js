@@ -2,19 +2,19 @@ import React, { Component } from "react";
 import { Button, Form } from "semantic-ui-react";
 import validator from "validator";
 import * as actionCreators from "../../store/actions/index";
-import { connect } from "react-redux"
-import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 const emailVal = value => {
   const result = validator.isEmail(value);
   return result;
 };
 
- class Auth extends Component {
+class Auth extends Component {
   constructor(props) {
-    super(props) 
-    this.authOnSubmit = this.authOnSubmit.bind(this)
-    this.authLoginHandler = this.authLoginHandler.bind(this)
+    super(props);
+    this.authOnSubmit = this.authOnSubmit.bind(this);
+    this.authLoginHandler = this.authLoginHandler.bind(this);
   }
 
   state = {
@@ -71,7 +71,7 @@ const emailVal = value => {
 
   authOnSubmit(e) {
     e.preventDefault();
- 
+
     const email = this.state.controls.email.value;
     const password = this.state.controls.password.value;
     this.props.onAuth(email, password);
@@ -99,48 +99,43 @@ const emailVal = value => {
     return isValid;
   }
 
-
   render() {
-    const Loading = <div className='loader'>Loading.. </div>
+    const Loading = <div className="loader">Loading.. </div>;
     const validForm = !this.state.controls.formIsValid;
     const emailErrorMsg = this.state.controls.email.warning;
 
-    let LoginForm = <Form onSubmit={this.authOnSubmit}>
-      <Form.Field>
-        <label>Email</label>
-        <input
-          value={this.state.controls.email.value}
-          onChange={e => this.inputChangedhandler(e, "email")}
-          placeholder="jamessmith@gmail.com"
-          error={emailErrorMsg}
-        />
-      </Form.Field>
-      <Form.Field>
-        <label>Password</label>
-        <input
-          value={this.state.controls.password.value}
-          onChange={e => this.inputChangedhandler(e, "password")}
-          placeholder="Password"
-        />
-      </Form.Field>
-      <Button
-        primary
-        type="Sign up"
-        disabled={validForm}
-
-      >
-        Sign up
-          </Button>
-      <Button
-        positive
-        type="Sign in"
-        disabled={validForm}
-        onClick={this.props.authLoginHandler}
-      >
-        Sign in
-          </Button>
-
-    </Form>
+    let LoginForm = (
+      <Form onSubmit={this.authOnSubmit}>
+        <Form.Field>
+          <label>Email</label>
+          <input
+            value={this.state.controls.email.value}
+            onChange={e => this.inputChangedhandler(e, "email")}
+            placeholder="jamessmith@gmail.com"
+            error={emailErrorMsg}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
+          <input
+            value={this.state.controls.password.value}
+            onChange={e => this.inputChangedhandler(e, "password")}
+            placeholder="Password"
+          />
+        </Form.Field>
+        <Button primary type="Sign up" disabled={validForm}>
+          Sign up
+        </Button>
+        <Button
+          positive
+          type="Sign in"
+          disabled={validForm}
+          onClick={this.props.authLoginHandler}
+        >
+          Sign in
+        </Button>
+      </Form>
+    );
 
     if (this.props.loading === true) {
       LoginForm = Loading;
@@ -152,7 +147,7 @@ const emailVal = value => {
     }
 
     return (
-      <div>
+      <div style={{ width: "400px" }}>
         {LoginForm}
         {errorMessage}
       </div>
@@ -164,16 +159,21 @@ const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
     error: state.auth.error
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password) => dispatch(actionCreators.auth(email, password, 'signUp')),
-    onAuthLogin: (email, password) => dispatch(actionCreators.auth(email, password, 'signIn'))
+    onAuth: (email, password) =>
+      dispatch(actionCreators.auth(email, password, "signUp")),
+    onAuthLogin: (email, password) =>
+      dispatch(actionCreators.auth(email, password, "signIn"))
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Auth)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Auth)
 );

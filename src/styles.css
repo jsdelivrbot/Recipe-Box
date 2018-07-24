@@ -1,8 +1,8 @@
 .App {
   text-align: center;
-  background: linear-gradient(to right, #dee4ed , #b4cff7);
+  background: linear-gradient(to right, #dee4ed, #b4cff7);
   height: 1100px;
-  font-family: 'Copse', serif;
+  font-family: "Copse", serif;
 }
 
 .recipeList {
@@ -20,16 +20,15 @@
 }
 
 .popHeartStyle {
-   padding-left: 10px;
+  padding-left: 10px;
 }
 
 .popHeartStyle:hover {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .icon:hover {
   cursor: pointer;
-
 }
 
 .addIcon:hover {
@@ -48,7 +47,6 @@
   display: flex;
 }
 
-
 .loader {
   font-size: 5px;
   margin: 50px auto;
@@ -57,11 +55,27 @@
   height: 11em;
   border-radius: 50%;
   background: #77eef4;
-  background: -moz-linear-gradient(left, #77eef4 10%, rgba(119,238,244, 0) 42%);
-  background: -webkit-linear-gradient(left, #77eef4 10%, rgba(119,238,244, 0) 42%);
-  background: -o-linear-gradient(left, #77eef4 10%, rgba(119,238,244, 0) 42%);
-  background: -ms-linear-gradient(left, #77eef4 10%, rgba(119,238,244, 0) 42%);
-  background: linear-gradient(to right, #77eef4 10%, rgba(119,238,244, 0) 42%);
+  background: -moz-linear-gradient(
+    left,
+    #77eef4 10%,
+    rgba(119, 238, 244, 0) 42%
+  );
+  background: -webkit-linear-gradient(
+    left,
+    #77eef4 10%,
+    rgba(119, 238, 244, 0) 42%
+  );
+  background: -o-linear-gradient(left, #77eef4 10%, rgba(119, 238, 244, 0) 42%);
+  background: -ms-linear-gradient(
+    left,
+    #77eef4 10%,
+    rgba(119, 238, 244, 0) 42%
+  );
+  background: linear-gradient(
+    to right,
+    #77eef4 10%,
+    rgba(119, 238, 244, 0) 42%
+  );
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
   animation: load3 1.4s infinite linear;
@@ -77,14 +91,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  content: '';
+  content: "";
 }
 .loader:after {
   background: #77eef4;
   width: 75%;
   height: 75%;
   border-radius: 50%;
-  content: '';
+  content: "";
   margin: auto;
   position: absolute;
   top: 0;
@@ -112,4 +126,3 @@
     transform: rotate(360deg);
   }
 }
-
