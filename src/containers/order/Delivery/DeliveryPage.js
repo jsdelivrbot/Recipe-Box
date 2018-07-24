@@ -23,6 +23,11 @@ class DeliveryPage extends React.Component {
     warning: false
   };
 
+  sendToAuthHandler() {
+    console.log(this.props);
+    this.props.history.replace("/auth");
+  }
+
   proceedHandler() {
     const { name, street, email } = this.props.deliveryInfo;
 
@@ -48,7 +53,14 @@ class DeliveryPage extends React.Component {
 
     let authWarning;
     this.props.authentication == false
-      ? (authWarning = <Message warning>Please log-in to continue</Message>)
+      ? (authWarning = (
+          <div>
+            <Message warning>Please log-in to continue</Message>
+            <Button color="green" onClick={this.sendToAuthHandler.bind(this)}>
+              Log-in!{" "}
+            </Button>
+          </div>
+        ))
       : (authWarning = null);
 
     return (
@@ -99,6 +111,7 @@ class DeliveryPage extends React.Component {
                 Go back{" "}
               </Button>
               {authWarning}
+
               <Button
                 primary
                 icon
