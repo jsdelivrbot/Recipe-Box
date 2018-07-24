@@ -29,11 +29,11 @@ const authReducer = (state = initialState, action) => {
         loading: false
       };
 
-    case actionTypes.AUTH_LOGOUT: 
-    return {
-      idToken: null,
-      localId: null
-    }  
+    case actionTypes.AUTH_LOGOUT:
+      return {
+        idToken: null,
+        localId: null
+      };
     default:
       return state;
   }
