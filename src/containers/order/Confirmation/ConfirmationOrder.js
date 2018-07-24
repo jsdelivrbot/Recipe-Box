@@ -18,9 +18,9 @@ class ConfirmationOrder extends React.Component {
     this.setState({ orderSent: true });
     const deliveryInfo = this.props.deliveryInfo;
     const orderInfo = this.props.customOrder;
-    const token = this.props.idToken;
-
-    this.props.onOrderRecipe(orderInfo, deliveryInfo, token);
+    const token = this.props.token;
+    const localId = this.props.localId;
+    this.props.onOrderRecipe(orderInfo, deliveryInfo, token, localId);
   }
   componentDidMount() {
     this.setState({ orderSent: false });
@@ -119,7 +119,8 @@ const mapStateToProps = state => {
   return {
     customOrder: state.placeOrder.customOrder,
     deliveryInfo: state.delivery.deliveryInfo,
-    token: state.auth.idToken
+    token: state.auth.idToken,
+    localId: state.auth.localId
   };
 };
 

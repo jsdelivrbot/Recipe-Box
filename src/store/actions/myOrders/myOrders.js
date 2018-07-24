@@ -14,9 +14,10 @@ export const myOrdersFail = error => {
   };
 };
 
-export const initMyOrders = token => {
+export const initMyOrders = (token, userId) => {
   return dispatch => {
-    fetch("https://recipe-box-15453.firebaseio.com/orders.json?auth=" + token)
+    const queryParams = `?auth=${token}&orderBy"="userId"&equalTo="${userId}"`;
+    fetch("https://recipe-box-15453.firebaseio.com/orders.json" + queryParams)
       .then(data => {
         return data.json();
       })

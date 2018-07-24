@@ -8,7 +8,7 @@ import * as actionCreators from "../../store/actions/index";
 
 class MyOrders extends React.Component {
   componentDidMount() {
-    this.props.onInitMyOrders(this.props.token);
+    this.props.onInitMyOrders(this.props.token, this.props.localId);
   }
 
   render() {
@@ -71,7 +71,8 @@ class MyOrders extends React.Component {
 const mapStateToProps = state => {
   return {
     orders: state.myOrders.myOrders,
-    token: state.auth.idToken
+    token: state.auth.idToken,
+    localId: state.auth.localId
   };
 };
 

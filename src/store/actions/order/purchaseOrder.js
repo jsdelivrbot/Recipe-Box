@@ -16,12 +16,18 @@ export const purchaseOrderFail = orderStatus => {
   };
 };
 
-export const purchaseOrderStart = (instructions, deliveryInfo, token) => {
+export const purchaseOrderStart = (
+  instructions,
+  deliveryInfo,
+  token,
+  idToken
+) => {
   const price = "$20";
   const order = {
     instructions,
     price,
-    deliveryInfo
+    deliveryInfo,
+    idToken
   };
 
   return dispatch => {
