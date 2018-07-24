@@ -147,7 +147,6 @@ class Auth extends Component {
     }
 
     let display;
-    console.log(this.props.authenticated);
 
     if (this.props.authenticated) {
       display = <Redirect to="/" />;
