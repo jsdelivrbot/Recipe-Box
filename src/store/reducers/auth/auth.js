@@ -4,7 +4,8 @@ const initialState = {
   idToken: null,
   localId: [],
   error: null,
-  loading: false
+  loading: false,
+  redirectUrl: "/"
 };
 
 const authReducer = (state = initialState, action) => {
@@ -33,6 +34,11 @@ const authReducer = (state = initialState, action) => {
       return {
         idToken: null,
         localId: null
+      };
+
+    case actionTypes.AUTH_REDIRECT:
+      return {
+        redirectUrl: action.url
       };
     default:
       return state;

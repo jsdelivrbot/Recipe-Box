@@ -24,8 +24,8 @@ class DeliveryPage extends React.Component {
   };
 
   sendToAuthHandler() {
-    console.log(this.props);
-    this.props.history.replace("/auth");
+    this.props.onRedirect("/delivery");
+    this.props.history.push("/auth");
   }
 
   proceedHandler() {
@@ -131,7 +131,8 @@ class DeliveryPage extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddDelivery: info => dispatch(actionCreators.addDelivery(info))
+    onAddDelivery: info => dispatch(actionCreators.addDelivery(info)),
+    onRedirect: url => dispatch(actionCreators.redirectChange(url))
   };
 };
 

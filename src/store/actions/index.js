@@ -20,4 +20,4 @@ export { purchaseOrderStart } from "./order/purchaseOrder";
 
 export { initMyOrders } from "./myOrders/myOrders";
 
-export { auth, logout } from "./auth/auth";
+export { auth, logout, redirectChange } from "./auth/auth";

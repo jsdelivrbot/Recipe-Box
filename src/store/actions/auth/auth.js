@@ -64,3 +64,10 @@ export const auth = (email, password, method) => {
       });
   };
 };
+
+export const redirectChange = url => {
+  return {
+    type: actionTypes.AUTH_REDIRECT,
+    url
+  };
+};

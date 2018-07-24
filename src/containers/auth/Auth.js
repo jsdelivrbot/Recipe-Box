@@ -149,7 +149,7 @@ class Auth extends Component {
     let display;
 
     if (this.props.authenticated) {
-      display = <Redirect to="/" />;
+      display = <Redirect to={this.props.redirectUrl} />;
     } else {
       display = (
         <div style={{ width: "400px" }}>
@@ -166,7 +166,8 @@ const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
-    authenticated: state.auth.idToken != null
+    authenticated: state.auth.idToken != null,
+    redirectUrl: state.auth.redirectUrl
   };
 };
 
