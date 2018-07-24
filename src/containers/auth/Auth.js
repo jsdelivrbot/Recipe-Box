@@ -3,7 +3,7 @@ import { Button, Form } from "semantic-ui-react";
 import validator from "validator";
 import * as actionCreators from "../../store/actions/index";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 const emailVal = value => {
   const result = validator.isEmail(value);
@@ -146,19 +146,28 @@ class Auth extends Component {
       errorMessage = this.props.error.message;
     }
 
-    return (
-      <div style={{ width: "400px" }}>
-        {LoginForm}
-        {errorMessage}
-      </div>
-    );
+    let display;
+    console.log(this.props.authenticated);
+
+    if (this.props.authenticated) {
+      display = <Redirect to="/" />;
+    } else {
+      display = (
+        <div style={{ width: "400px" }}>
+          {LoginForm}
+          {errorMessage}
+        </div>
+      );
+    }
+
+    return display;
   }
 }
-
 const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    error: state.auth.error,
+    authenticated: state.auth.idToken != null
   };
 };
 
