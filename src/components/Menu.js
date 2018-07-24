@@ -28,6 +28,19 @@ export default class MenuBar extends Component {
       ? (authenticationRoutes = "auth")
       : (authenticationRoutes = "LogOut");
 
+    let showMyOrders;
+    authenticated === false
+      ? (showMyOrders = null)
+      : (showMyOrders = (
+          <Menu.Item
+            name="My Orders"
+            active={activeItem === "My Orders"}
+            onClick={this.handleMyOrdersClick}
+            position="right"
+            link={false}
+          />
+        ));
+
     return (
       <Menu inverted>
         <NavLink to="/">
@@ -60,13 +73,7 @@ export default class MenuBar extends Component {
             link={false}
           />
         </NavLink>
-        <Menu.Item
-          name="My Orders"
-          active={activeItem === "My Orders"}
-          onClick={this.handleMyOrdersClick}
-          position="right"
-          link={false}
-        />
+        {showMyOrders}
       </Menu>
     );
   }

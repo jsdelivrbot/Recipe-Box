@@ -1,8 +1,6 @@
 import React from "react";
-import { Grid, Image, Divider, Header, Search, Card } from "semantic-ui-react";
+import { Grid, Image, Divider, Header, Card } from "semantic-ui-react";
 import Title from "../../components/Title";
-import SearchRecipes from "../../components/search/Search";
-import Auth from "../auth/Auth";
 
 export default class WhoWeAre extends React.Component {
   state = {
@@ -78,7 +76,6 @@ export default class WhoWeAre extends React.Component {
           <Grid.Row>
             <Grid.Column width={2} />
             <Grid.Column width={12}>
-              <Auth />
               <p>
                 Our aim is to provide you with an easy way to get high-quality
                 dishes wherever you are{" "}
