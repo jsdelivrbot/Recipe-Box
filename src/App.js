@@ -55,6 +55,7 @@ class App extends React.Component {
     this.props.onInitDirections();
     this.props.onInitPopular();
     this.props.onInitTopWeek();
+    this.props.onTryAutoSignup();
   }
   componentWillUnmount() {
     axios.interceptors.request.eject(this.reqInterceptor);
@@ -252,7 +253,8 @@ const mapDispatchToProps = dispatch => {
     onInitIngredients: () => dispatch(actionCreators.initIngredients()),
     onInitPopular: () => dispatch(actionCreators.initPopular()),
     onInitDirections: () => dispatch(actionCreators.initDirections()),
-    onInitTopWeek: () => dispatch(actionCreators.initTopWeek())
+    onInitTopWeek: () => dispatch(actionCreators.initTopWeek()),
+    onTryAutoSignup: () => dispatch(actionCreators.authCheckState())
   };
 };
 
