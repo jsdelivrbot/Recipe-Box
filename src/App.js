@@ -134,6 +134,33 @@ class App extends React.Component {
   }
 
   render() {
+    let authCheckRoutes;
+    if (this.props.authenticated) {
+      authCheckRoutes = (
+        <div>
+          {" "}
+          <Route
+            path="/confirmation"
+            exact
+            render={props => (
+              <ConfirmationOrder
+                {...props}
+                orderAccepted={this.state.orderAccepted}
+                orderLoaded={this.state.orderLoaded}
+              />
+            )}
+          />
+          <Route
+            path="/my-orders"
+            exact
+            render={props => <MyOrders {...props} />}
+          />
+        </div>
+      );
+    } else {
+      authCheckRoutes = null;
+    }
+
     return (
       <div className="App">
         <Route render={props => <Menu token={this.props.token} {...props} />} />
@@ -209,22 +236,7 @@ class App extends React.Component {
               />
             )}
           />
-          <Route
-            path="/confirmation"
-            exact
-            render={props => (
-              <ConfirmationOrder
-                {...props}
-                orderAccepted={this.state.orderAccepted}
-                orderLoaded={this.state.orderLoaded}
-              />
-            )}
-          />
-          <Route
-            path="/my-orders"
-            exact
-            render={props => <MyOrders {...props} />}
-          />
+          {authCheckRoutes}
           <Route path="/top:id" exact component={WeekTopPage} />
           <Route path="/auth" exact component={AuthPage} />
           <Route path="/logout" exact component={Logout} />
@@ -240,7 +252,8 @@ const mapStateToProps = state => {
     mainRecipe: state.mainRecipe.mainRecipe,
     popularRecipes: state.popular.popularRecipes,
     topWeek: state.topWeek.topWeek,
-    token: state.auth.idToken
+    token: state.auth.idToken,
+    authenticated: state.auth.idToken != null
   };
 };
 
