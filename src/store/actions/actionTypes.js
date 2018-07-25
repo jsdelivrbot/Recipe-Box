@@ -1,5 +1,6 @@
 export const EDIT_MAIN = "EDIT_MAIN";
 export const DELETE_MAIN = "DELETE_MAIN";
+export const REPLACE_MAIN = "REPLACE_MAIN";
 
 export const SET_INGREDIENTS = "SET_INGREDIENTS";
 export const SET_INGREDIENTS_FAILED = "SET_INGREDIENTS_FAILED";

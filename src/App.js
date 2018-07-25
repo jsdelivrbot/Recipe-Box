@@ -121,7 +121,7 @@ class App extends React.Component {
   };
 
   deleteRecipeHandler() {
-    const popularRecipes = [...this.state.popularRecipes];
+    const popularRecipes = [...this.props.popularRecipes];
 
     // Use Ramda to sort popular recipes by id
     const sortById = R.sortBy(R.compose(R.prop("id")));
@@ -129,7 +129,7 @@ class App extends React.Component {
     const recipeToReplace = sorted[sorted.length - 1];
 
     // Update redux with the new main recipe
-    this.onReplaceMain(recipeToReplace);
+    this.props.onReplaceMain(recipeToReplace);
   }
 
   render() {
@@ -149,8 +149,8 @@ class App extends React.Component {
                 addFav={id =>
                   this.props.onAddFavourite(
                     id,
-                    props.favourites,
-                    props.popularRecipes
+                    this.props.favourites,
+                    this.props.popularRecipes
                   )
                 }
                 addSearch={this.addSearchHandler}

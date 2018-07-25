@@ -4,7 +4,7 @@ import axios from "../../components/axios-orders";
 export const addRemoveFavourite = (id, favourites, popularRecipes) => {
   const popularRecipesSafe = [...popularRecipes];
   let favouritesSafe = [...favourites];
-  const recipe = popularRecipesSafe.find(el => el.id === action.id);
+  const recipe = popularRecipesSafe.find(el => el.id === id);
   const alreadyThere = favouritesSafe.indexOf(recipe);
 
   if (alreadyThere === -1) {
