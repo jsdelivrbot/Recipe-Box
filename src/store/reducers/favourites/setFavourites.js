@@ -1,9 +1,10 @@
-import * as actionTypes from '../../actions/actionTypes';
+import * as actionTypes from "../../actions/actionTypes";
 
 const initialState = {
   favourites: [],
-  error: false
-}
+  error: false,
+  popularRecipes: []
+};
 
 const setFavouritesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -18,9 +19,26 @@ const setFavouritesReducer = (state = initialState, action) => {
         ...state,
         error: true
       };
+    case actionTypes.ADD_REMOVE_FAVOURITE:
+      const popularRecipes = [...this.state.popularRecipes];
+      let favourites = [...this.state.favourites];
+      const recipe = popularRecipes.find(el => el.id === action.id);
+      const alreadyThere = favourites.indexOf(recipe);
 
-    default: return state;
+      if (alreadyThere === -1) {
+        favourites.push(recipe);
+      } else {
+        const index = favourites.findIndex(el => el.id === action.id);
+        favourites.splice(index, 1);
+      }
+      return {
+        ...state,
+        favourites
+      };
+
+    default:
+      return state;
   }
 };
 
-export default setFavouritesReducer
+export default setFavouritesReducer;

@@ -55,7 +55,6 @@ class App extends React.Component {
     this.props.onInitDirections();
     this.props.onInitPopular();
     this.props.onInitTopWeek();
-    this.props.onTryAutoSignup();
   }
   componentWillUnmount() {
     axios.interceptors.request.eject(this.reqInterceptor);
@@ -134,33 +133,6 @@ class App extends React.Component {
   }
 
   render() {
-    let authCheckRoutes;
-    if (this.props.authenticated) {
-      authCheckRoutes = (
-        <div>
-          {" "}
-          <Route
-            path="/confirmation"
-            exact
-            render={props => (
-              <ConfirmationOrder
-                {...props}
-                orderAccepted={this.state.orderAccepted}
-                orderLoaded={this.state.orderLoaded}
-              />
-            )}
-          />
-          <Route
-            path="/my-orders"
-            exact
-            render={props => <MyOrders {...props} />}
-          />
-        </div>
-      );
-    } else {
-      authCheckRoutes = null;
-    }
-
     return (
       <div className="App">
         <Route render={props => <Menu token={this.props.token} {...props} />} />
@@ -174,7 +146,13 @@ class App extends React.Component {
                 popularRecipes={this.props.popularRecipes}
                 mainRecipe={this.props.mainRecipe}
                 addRecipe={data => this.addRecipeHandler(data)}
-                addFav={id => this.props.onAddFavourite(id)}
+                addFav={id =>
+                  this.props.onAddFavourite(
+                    id,
+                    props.favourites,
+                    props.popularRecipes
+                  )
+                }
                 addSearch={this.addSearchHandler}
                 deleteRecipe={this.deleteRecipeHandler}
                 editRecipe={this.editRecipeHandler}
@@ -236,7 +214,22 @@ class App extends React.Component {
               />
             )}
           />
-          {authCheckRoutes}
+          <Route
+            path="/confirmation"
+            exact
+            render={props => (
+              <ConfirmationOrder
+                {...props}
+                orderAccepted={this.state.orderAccepted}
+                orderLoaded={this.state.orderLoaded}
+              />
+            )}
+          />
+          <Route
+            path="/my-orders"
+            exact
+            render={props => <MyOrders {...props} />}
+          />
           <Route path="/top:id" exact component={WeekTopPage} />
           <Route path="/auth" exact component={AuthPage} />
           <Route path="/logout" exact component={Logout} />
@@ -251,23 +244,25 @@ const mapStateToProps = state => {
   return {
     mainRecipe: state.mainRecipe.mainRecipe,
     popularRecipes: state.popular.popularRecipes,
+    favourites: state.setFavourites.favourites,
     topWeek: state.topWeek.topWeek,
-    token: state.auth.idToken,
-    authenticated: state.auth.idToken != null
+    token: state.auth.idToken
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddFavourite: id => dispatch(actionCreators.addRemoveFavourite(id)),
+    onAddFavourite: (id, favourites, popularRecipes) =>
+      dispatch(
+        actionCreators.addRemoveFavourite(id, favourites, popularRecipes)
+      ),
     onFetchPopular: data => dispatch(actionCreators.fetchPopular(data)),
     onEditMain: data => dispatch(actionCreators.editMain(data)),
     onReplaceMain: newMain => dispatch(actionCreators.replaceMain(newMain)),
     onInitIngredients: () => dispatch(actionCreators.initIngredients()),
     onInitPopular: () => dispatch(actionCreators.initPopular()),
     onInitDirections: () => dispatch(actionCreators.initDirections()),
-    onInitTopWeek: () => dispatch(actionCreators.initTopWeek()),
-    onTryAutoSignup: () => dispatch(actionCreators.authCheckState())
+    onInitTopWeek: () => dispatch(actionCreators.initTopWeek())
   };
 };
 

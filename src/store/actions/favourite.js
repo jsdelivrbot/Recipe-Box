@@ -1,11 +1,9 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from "./actionTypes";
 import axios from "../../components/axios-orders";
 
-
 export const addRemoveFavourite = (id, favourites, popularRecipes) => {
-  
-  const popularRecipesSafe = [...this.state.popularRecipes];
-  let favouritesSafe = [...this.state.favourites];
+  const popularRecipesSafe = [...popularRecipes];
+  let favouritesSafe = [...favourites];
   const recipe = popularRecipesSafe.find(el => el.id === action.id);
   const alreadyThere = favouritesSafe.indexOf(recipe);
 
@@ -17,8 +15,8 @@ export const addRemoveFavourite = (id, favourites, popularRecipes) => {
   }
 
   return dispatch => {
-     dispatch(updateFavouritesLocal(favouritesSafe))
-     dispatch(postFavouritesStart)
+    dispatch(updateFavouritesLocal(favouritesSafe));
+    dispatch(postFavouritesStart);
   };
 };
 
@@ -26,21 +24,20 @@ const updateFavouritesLocal = favourites => {
   return {
     type: actionTypes.UPDATE_FAVOURITES_LOCAL,
     favourites
-  }
-}
+  };
+};
 
-
- const postFavouritesStart = favourites => {
+const postFavouritesStart = favourites => {
   return dispatch => {
     axios
-      .post('favourites.json', favourites)
+      .post("favourites.json", favourites)
       .then(response => {
         if (response !== undefined) {
-          dispatch(postFavouritesSuccess(response))
+          dispatch(postFavouritesSuccess(response));
         }
       })
       .catch(error => {
-        dispatch(postFavouritesFail(error))
+        dispatch(postFavouritesFail(error));
       });
   };
 };
@@ -48,14 +45,13 @@ const updateFavouritesLocal = favourites => {
 const postFavouritesSuccess = (favourites, id) => {
   return {
     type: actionTypes.POST_FAVOURITES_SUCCESS,
-    favourites,
+    favourites
   };
 };
 
- const postFavouritesFail = error => {
+const postFavouritesFail = error => {
   return {
     type: actionTypes.POST_FAVOURITES_FAILED,
     error
   };
 };
-
