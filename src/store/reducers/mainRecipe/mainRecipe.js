@@ -52,7 +52,7 @@ const mainRecipeReducer = (state = initialState, action) => {
       let { header, ingredients, directions } = action.editedInfo;
       return {
         mainRecipe: {
-          header,
+          title: header,
           ingredients,
           directions
         }

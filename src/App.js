@@ -155,7 +155,7 @@ class App extends React.Component {
                 }
                 addSearch={this.addSearchHandler}
                 deleteRecipe={this.deleteRecipeHandler}
-                editRecipe={this.editRecipeHandler}
+                editRecipe={info => this.props.onEditMain(info)}
                 topWeek={this.props.topWeek}
                 handleWeekTopClick={this.handleWeekTopClick}
                 searchValue={this.state.searchValue}
