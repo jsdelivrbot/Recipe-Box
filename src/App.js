@@ -11,7 +11,7 @@ import getRecipe from "./components/search/getRecipe";
 import Recipe from "./containers/recipeBox/Recipe";
 import ReviewInitial from "./containers/order/ReviewInitial";
 import CustomOrder from "./containers/order/Custom/CustomOrder";
-import Menu from "./components/Menu";
+import Menu from "./components/navigation/Menu";
 import WhoWeAre from "./containers/whoWeAre/WhoWeAreGrid";
 
 import DeliveryPage from "./containers/order/Delivery/DeliveryPage";
