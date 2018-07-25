@@ -59,12 +59,18 @@ const mainRecipeReducer = (state = initialState, action) => {
       };
     }
     case actionTypes.REPLACE_MAIN: {
-      const { header, directions, ingredients } = action.replacedMain;
+      const {
+        header,
+        directions,
+        ingredients,
+        image_url
+      } = action.replacedMain;
       return {
         mainRecipe: {
           title: header,
           directions,
-          ingredients
+          ingredients,
+          image_url
         }
       };
     }

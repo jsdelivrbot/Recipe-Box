@@ -50,11 +50,9 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(<Index />, rootElement);
 
 /*
-
-5. Improve general styling
-6. Delte recipe box container
-7. Add favourits post and fetch - 
-put logic in action creators
-8. Ensure consistency
+1. Retreive favourties from firebase
+2. Improve general styling - make main page look better
+3. Log-in problem - retreive only user order
+4. Search throguh code= Ensure consistency
 
 */

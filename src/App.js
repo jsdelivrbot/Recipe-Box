@@ -55,6 +55,7 @@ class App extends React.Component {
     this.props.onInitDirections();
     this.props.onInitPopular();
     this.props.onInitTopWeek();
+    this.props.onInitFavourites();
   }
   componentWillUnmount() {
     axios.interceptors.request.eject(this.reqInterceptor);
@@ -73,7 +74,15 @@ class App extends React.Component {
 
         recipe.then(data => {
           const recipe = data.data.recipe;
-          this.setState({ mainRecipe: recipe });
+          const { title } = data.data.recipe;
+          const header = title;
+          const formattedRecipe = {
+            ...recipe,
+            header
+          };
+          console.log(formattedRecipe);
+
+          this.props.onReplaceMain(formattedRecipe);
         });
       }
     }, 300);
@@ -263,7 +272,8 @@ const mapDispatchToProps = dispatch => {
     onInitIngredients: () => dispatch(actionCreators.initIngredients()),
     onInitPopular: () => dispatch(actionCreators.initPopular()),
     onInitDirections: () => dispatch(actionCreators.initDirections()),
-    onInitTopWeek: () => dispatch(actionCreators.initTopWeek())
+    onInitTopWeek: () => dispatch(actionCreators.initTopWeek()),
+    onInitFavourites: () => dispatch(actionCreators.initFavourites())
   };
 };
 

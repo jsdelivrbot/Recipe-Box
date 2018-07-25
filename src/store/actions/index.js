@@ -2,7 +2,7 @@ export { addCustomOrder } from "./customOrder";
 
 export { addDelivery } from "./delivery";
 
-export { addRemoveFavourite } from "./favourite";
+export { addRemoveFavourite, initFavourites } from "./favourite";
 
 export { initPopular } from "./popular";
 
@@ -20,4 +20,4 @@ export { purchaseOrderStart } from "./order/purchaseOrder";
 
 export { initMyOrders } from "./myOrders/myOrders";
 
-export { auth, logout, redirectChange, authCheckState } from "./auth/auth";
+export { auth, logout, redirectChange } from "./auth/auth";

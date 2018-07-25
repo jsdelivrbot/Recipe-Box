@@ -16,7 +16,7 @@ export const addRemoveFavourite = (e, id, favourites, popularRecipes) => {
 
   return dispatch => {
     dispatch(updateFavouritesLocal(favouritesSafe));
-    dispatch(postFavouritesStart);
+    dispatch(postFavouritesStart(favouritesSafe));
   };
 };
 
@@ -42,16 +42,28 @@ const postFavouritesStart = favourites => {
   };
 };
 
-const postFavouritesSuccess = (favourites, id) => {
+const postFavouritesSuccess = () => {
   return {
-    type: actionTypes.POST_FAVOURITES_SUCCESS,
-    favourites
+    type: actionTypes.SET_FAVOURITES_SUCCESS
   };
 };
 
 const postFavouritesFail = error => {
   return {
-    type: actionTypes.POST_FAVOURITES_FAILED,
+    type: actionTypes.SET_FAVOURITES_FAILED,
     error
+  };
+};
+
+export const initFavourites = () => {
+  return dispatch => {
+    fetch("https://recipe-box-15453.firebaseio.com/favourites.json")
+      .then(data => {
+        return data.json();
+      })
+      .then(ingredients => {
+        dispatch(updateFavouritesLocal(favourites));
+      })
+      .catch(error => dispatch(postFavouritesFail(error)));
   };
 };
