@@ -10,8 +10,16 @@ import MenuBar from "./Menu";
 configure({ adapter: new Adapter() });
 
 describe("<Menu />", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<MenuBar />);
+  });
   it("should not show myOrders if not authenticated", () => {
-    const wrapper = shallow(<MenuBar />);
-    expect(wrapper.find(NavLink)).toHaveLength(4);
+    wrapper.setProps({ token: null });
+    expect(wrapper.find(Menu.Item)).toHaveLength(4);
+  });
+  it("should show myOrders if authenticated", () => {
+    wrapper.setProps({ token: true });
+    expect(wrapper.find(Menu.Item)).toHaveLength(5);
   });
 });
