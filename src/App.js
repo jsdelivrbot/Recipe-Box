@@ -146,8 +146,9 @@ class App extends React.Component {
                 popularRecipes={this.props.popularRecipes}
                 mainRecipe={this.props.mainRecipe}
                 addRecipe={data => this.addRecipeHandler(data)}
-                addFav={id =>
+                addFav={(e, id) =>
                   this.props.onAddFavourite(
+                    e,
                     id,
                     this.props.favourites,
                     this.props.popularRecipes
@@ -252,9 +253,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddFavourite: (id, favourites, popularRecipes) =>
+    onAddFavourite: (e, id, favourites, popularRecipes) =>
       dispatch(
-        actionCreators.addRemoveFavourite(id, favourites, popularRecipes)
+        actionCreators.addRemoveFavourite(e, id, favourites, popularRecipes)
       ),
     onFetchPopular: data => dispatch(actionCreators.fetchPopular(data)),
     onEditMain: data => dispatch(actionCreators.editMain(data)),

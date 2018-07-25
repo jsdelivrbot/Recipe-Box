@@ -27,7 +27,7 @@ const GridLayout = props => {
         </Grid.Row>
 
         <Grid.Row>
-          <Grid.Column width={3}>
+          <Grid.Column width={3} only="computer">
             <SearchRecipes
               searchHandleResultSelect={props.searchHandleResultSelect}
               handleSearchChange={props.handleSearchChange}

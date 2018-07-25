@@ -19,23 +19,13 @@ const setFavouritesReducer = (state = initialState, action) => {
         ...state,
         error: true
       };
-    case actionTypes.ADD_REMOVE_FAVOURITE:
-      const popularRecipes = [...this.state.popularRecipes];
-      let favourites = [...this.state.favourites];
-      const recipe = popularRecipes.find(el => el.id === action.id);
-      const alreadyThere = favourites.indexOf(recipe);
-
-      if (alreadyThere === -1) {
-        favourites.push(recipe);
-      } else {
-        const index = favourites.findIndex(el => el.id === action.id);
-        favourites.splice(index, 1);
-      }
+    case actionTypes.UPDATE_FAVOURITES_LOCAL:
+      const favourites = action.favourites;
+      console.log(favourites);
       return {
         ...state,
         favourites
       };
-
     default:
       return state;
   }

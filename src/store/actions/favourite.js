@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../components/axios-orders";
 
-export const addRemoveFavourite = (id, favourites, popularRecipes) => {
+export const addRemoveFavourite = (e, id, favourites, popularRecipes) => {
   const popularRecipesSafe = [...popularRecipes];
   let favouritesSafe = [...favourites];
   const recipe = popularRecipesSafe.find(el => el.id === id);
@@ -10,7 +10,7 @@ export const addRemoveFavourite = (id, favourites, popularRecipes) => {
   if (alreadyThere === -1) {
     favouritesSafe.push(recipe);
   } else {
-    const index = favouritesSafe.findIndex(el => el.id === action.id);
+    const index = favouritesSafe.findIndex(el => el.id === id);
     favouritesSafe.splice(index, 1);
   }
 

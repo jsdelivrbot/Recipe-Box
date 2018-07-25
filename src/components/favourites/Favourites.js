@@ -15,7 +15,7 @@ const Favourites = props => (
     >
       Favvs
     </Popup>
-    
+
     <Modal
       size="small"
       trigger={
@@ -28,8 +28,7 @@ const Favourites = props => (
     >
       {" "}
       <Modal.Header>All your favourite recipes</Modal.Header>
-      
-        <Modal.Content> 
+      <Modal.Content>
         <Modal.Description>
           <FavList favs={props.favourites} />
         </Modal.Description>
@@ -39,10 +38,9 @@ const Favourites = props => (
 );
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
-    favourites: state.favourites
-  }
-}
+    favourites: state.setFavourites.favourites
+  };
+};
 
 export default connect(mapStateToProps)(Favourites);
