@@ -32,7 +32,7 @@ class ConfirmationOrder extends React.Component {
     const customOrder = this.props.customOrder;
 
     let title, directions, specialRequests, img;
-    if (customOrder != null) {
+    if (customOrder.title != null) {
       title = customOrder.title;
       directions = customOrder.directions;
       specialRequests = customOrder.specialRequests;
@@ -41,7 +41,7 @@ class ConfirmationOrder extends React.Component {
       title = mainRecipe.title;
       directions = mainRecipe.directions;
       specialRequests = mainRecipe.specialRequests;
-      img = <Image src={mainRecipe.image_url} />;
+      img = <Image size="small" circular src={mainRecipe.image_url} />;
     }
 
     // const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
