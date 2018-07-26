@@ -47,7 +47,6 @@ const mainRecipeReducer = (state = initialState, action) => {
         ...state,
         error: true
       };
-
     case actionTypes.EDIT_MAIN: {
       let { header, ingredients, directions } = action.editedInfo;
       return {

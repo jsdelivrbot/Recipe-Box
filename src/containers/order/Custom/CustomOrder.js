@@ -7,7 +7,6 @@ import {
   Image,
   Divider,
   Header,
-  Card,
   Button,
   Message
 } from "semantic-ui-react";
@@ -86,17 +85,7 @@ class CustomOrder extends React.Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={3}>
-              <SearchRecipes
-                searchHandleResultSelect={this.props.searchHandleResultSelect}
-                handleSearchChange={this.props.handleSearchChange}
-                searchValue={this.props.searchValue}
-                searchResults={this.props.searchResults}
-                searchID={this.props.searchID}
-                searchIsLoading={this.props.searchIsLoading}
-                searchOnClickHandler={this.props.searchOnClickHandler}
-              />
-            </Grid.Column>
+            <Grid.Column width={3} />
 
             <Grid.Column width={12}>
               <Header>

@@ -123,9 +123,7 @@ class Auth extends Component {
             placeholder="Password"
           />
         </Form.Field>
-        <Button primary type="Sign up" disabled={validForm}>
-          Sign up
-        </Button>
+
         <Button
           positive
           type="Sign in"

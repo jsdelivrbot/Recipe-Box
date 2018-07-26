@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Message, Header, List, Button } from "semantic-ui-react";
+import { Message, Header, List, Button, Image } from "semantic-ui-react";
 import Title from "../../../components/Title";
 import StepsSecond from "../../../components/mainView/orders/steps/StepsSecond";
 import DisplayCustomOrder from "../../../components/mainView/orders/DisplayCustomOrder";
@@ -28,13 +28,20 @@ class ConfirmationOrder extends React.Component {
 
   render() {
     const { name, street, town, postcode, email } = this.props.deliveryInfo;
-
+    const mainRecipe = this.props.mainRecipe;
     const customOrder = this.props.customOrder;
-    let title, directions, specialRequests;
-    if (customOrder !== null) {
+
+    let title, directions, specialRequests, img;
+    if (customOrder != null) {
       title = customOrder.title;
       directions = customOrder.directions;
       specialRequests = customOrder.specialRequests;
+      img = null;
+    } else {
+      title = mainRecipe.title;
+      directions = mainRecipe.directions;
+      specialRequests = mainRecipe.specialRequests;
+      img = <Image src={mainRecipe.image_url} />;
     }
 
     // const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
@@ -88,6 +95,7 @@ class ConfirmationOrder extends React.Component {
             directions={directions}
             specialRequests={specialRequests}
           />
+          {img}
           <DisplayDelivery
             namer={name}
             street={street}
@@ -118,6 +126,7 @@ class ConfirmationOrder extends React.Component {
 const mapStateToProps = state => {
   return {
     customOrder: state.placeOrder.customOrder,
+    mainRecipe: state.mainRecipe.mainRecipe,
     deliveryInfo: state.delivery.deliveryInfo,
     token: state.auth.idToken,
     localId: state.auth.localId

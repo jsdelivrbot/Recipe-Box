@@ -27,18 +27,21 @@ const authReducer = (state = initialState, action) => {
     case actionTypes.AUTH_FAIL:
       const error = action.error;
       return {
+        ...state,
         error,
         loading: false
       };
 
     case actionTypes.AUTH_LOGOUT:
       return {
+        ...state,
         idToken: null,
         localId: null
       };
 
     case actionTypes.AUTH_REDIRECT:
       return {
+        ...state,
         redirectUrl: action.url
       };
     default:

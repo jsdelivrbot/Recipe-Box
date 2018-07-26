@@ -32,10 +32,10 @@ class TopWeekPage extends React.Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={3} />
+            <Grid.Column width={6} />
             <Grid.Column only="mobile" width={3} />
 
-            <Grid.Column width={10}>
+            <Grid.Column width={8}>
               <Card size="large" key={this.props.cardData.id}>
                 <Image size="large" circular src={this.props.cardData.img} />
                 <Card.Content>

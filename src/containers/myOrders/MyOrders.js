@@ -13,21 +13,24 @@ class MyOrders extends React.Component {
 
   render() {
     const orders = this.props.orders;
+    let DisplayOrders;
+    if (!orders[0] == null) {
+      const ordersArray = Object.entries(orders);
+      DisplayOrders = ordersArray.map(order => {
+        const instructionsArray = Object.entries(order);
 
-    const ordersArray = Object.entries(orders);
-
-    const DisplayOrders = ordersArray.map(order => {
-      const instructionsArray = Object.entries(order);
-
-      return (
-        <DisplayMyOrder
-          title={instructionsArray[1][1].instructions.title}
-          directions={instructionsArray[1][1].instructions.directions}
-          specialRequests={instructionsArray[1][1].instructions.specialRequests}
-          price={instructionsArray[1][1].price}
-        />
-      );
-    });
+        return (
+          <DisplayMyOrder
+            title={instructionsArray[1][1].instructions.title}
+            directions={instructionsArray[1][1].instructions.directions}
+            specialRequests={
+              instructionsArray[1][1].instructions.specialRequests
+            }
+            price={instructionsArray[1][1].price}
+          />
+        );
+      });
+    }
 
     return (
       <div>
@@ -57,7 +60,7 @@ class MyOrders extends React.Component {
               <Button
                 negative
                 style={{ margin: "15px" }}
-                onClick={() => this.props.history.goBack()}
+                onClick={() => this.props.history.push("/")}
               >
                 Go back{" "}
               </Button>

@@ -50,7 +50,7 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(<Index />, rootElement);
 
 /*
-1. Retreive favourties from firebase
+
 2. Confirmation page - conditional for own order or not
 2. Improve general styling - make main page look better
 3. Log-in problem - retreive only user order

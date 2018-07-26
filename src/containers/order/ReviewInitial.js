@@ -1,17 +1,7 @@
 import React from "react";
-import {
-  Icon,
-  Grid,
-  Image,
-  Divider,
-  Header,
-  Search,
-  Card,
-  Button
-} from "semantic-ui-react";
+import { Icon, Grid, Image, Divider, Header, Button } from "semantic-ui-react";
 import Title from "../../components/Title";
 import ingredientsCleaner from "../../components/mainView/cleaners/ingredientsCleaner";
-import SearchRecipes from "../../components/search/Search";
 
 export default class ReviewInitial extends React.Component {
   render() {
@@ -19,8 +9,10 @@ export default class ReviewInitial extends React.Component {
 
     const DisplayOrder = (
       <div>
-        <Header as="h4">{title}</Header>
-        <Image src={image_url} size="small" />
+        <Header color="red" as="h2">
+          {title}
+        </Header>
+        <Image circular src={image_url} size="large" />
         <p>{ingredientsCleaner(ingredients)} </p>
       </div>
     );
@@ -43,17 +35,7 @@ export default class ReviewInitial extends React.Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={3}>
-              <SearchRecipes
-                searchHandleResultSelect={this.props.searchHandleResultSelect}
-                handleSearchChange={this.props.handleSearchChange}
-                searchValue={this.props.searchValue}
-                searchResults={this.props.searchResults}
-                searchID={this.props.searchID}
-                searchIsLoading={this.props.searchIsLoading}
-                searchOnClickHandler={this.props.searchOnClickHandler}
-              />
-            </Grid.Column>
+            <Grid.Column width={3} />
 
             <Grid.Column width={10}>
               <Header>You are close to getting your delicious meal! </Header>
