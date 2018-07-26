@@ -3,7 +3,13 @@ import axios from "../../components/axios-orders";
 
 export const addRemoveFavourite = (e, id, favourites, popularRecipes) => {
   const popularRecipesSafe = [...popularRecipes];
-  let favouritesSafe = [...favourites];
+  let favouritesSafe;
+  if (favourites != null) {
+    favouritesSafe = [...favourites];
+  } else {
+    favouritesSafe = [];
+  }
+
   const recipe = popularRecipesSafe.find(el => el.id === id);
   const alreadyThere = favouritesSafe.indexOf(recipe);
 
@@ -44,13 +50,13 @@ const postFavouritesStart = favourites => {
 
 const postFavouritesSuccess = () => {
   return {
-    type: actionTypes.SET_FAVOURITES_SUCCESS
+    type: actionTypes.POST_FAVOURITES_SUCCESS
   };
 };
 
 const postFavouritesFail = error => {
   return {
-    type: actionTypes.SET_FAVOURITES_FAILED,
+    type: actionTypes.POST_FAVOURITES_FAILED,
     error
   };
 };
@@ -61,9 +67,18 @@ export const initFavourites = () => {
       .then(data => {
         return data.json();
       })
-      .then(ingredients => {
-        dispatch(updateFavouritesLocal(favourites));
+      .then(favourites => {
+        console.log(favourites);
+        const formattedFavourites = formatFavourites(favourites);
+        dispatch(updateFavouritesLocal(formattedFavourites));
       })
       .catch(error => dispatch(postFavouritesFail(error)));
   };
+};
+
+const formatFavourites = favourites => {
+  const resultArray = [];
+  const keyValuePairs = Object.entries(favourites);
+  keyValuePairs.map(e => resultArray.push(e[1][0]));
+  return resultArray;
 };

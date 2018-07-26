@@ -16,10 +16,24 @@ const setFavouritesReducer = (state = initialState, action) => {
         error: false
       };
     case actionTypes.SET_FAVOURITES_FAILED:
+      let error = action.error;
       return {
         ...state,
         favouriteUploaded: false,
-        error: true
+        error
+      };
+    case actionTypes.POST_FAVOURITES_SUCCESS:
+      return {
+        ...state,
+        favouriteUploaded: true,
+        error: false
+      };
+    case actionTypes.POST_FAVOURITES_FAILED:
+      error = action.error;
+      return {
+        ...state,
+        favouriteUploaded: false,
+        error
       };
     case actionTypes.UPDATE_FAVOURITES_LOCAL:
       const favourites = action.favourites;

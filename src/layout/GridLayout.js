@@ -27,7 +27,7 @@ const GridLayout = props => {
         </Grid.Row>
 
         <Grid.Row>
-          <Grid.Column width={3} only="computer">
+          <Grid.Column width={3}>
             <SearchRecipes
               searchHandleResultSelect={props.searchHandleResultSelect}
               handleSearchChange={props.handleSearchChange}
@@ -41,23 +41,6 @@ const GridLayout = props => {
           <Grid.Column only="mobile" width={3} />
 
           <Grid.Column width={10}>
-            <Header as="h2">Popular recipes this week</Header>
-            <WeekTop
-              handleWeekTopClick={props.handleWeekTopClick}
-              weekTop={props.topWeek}
-            />
-            <RecipeList
-              popularRecipes={props.popularRecipes}
-              addFav={props.addFav}
-            />
-          </Grid.Column>
-          <Grid.Column width={3}>
-            <Favourites />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column only="computer" width={3} />
-          <Grid.Column width={11}>
             <Divider />
             <MainView
               mainRecipe={props.mainRecipe}
@@ -72,6 +55,24 @@ const GridLayout = props => {
               match={props.match}
               history={props.history}
               location={props.location}
+            />
+          </Grid.Column>
+          <Grid.Column width={3}>
+            <Favourites />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column only="computer" width={3} />
+          <Grid.Column width={11}>
+            <Divider />
+            <Header as="h2">Popular recipes this week</Header>
+            <WeekTop
+              handleWeekTopClick={props.handleWeekTopClick}
+              weekTop={props.topWeek}
+            />
+            <RecipeList
+              popularRecipes={props.popularRecipes}
+              addFav={props.addFav}
             />
           </Grid.Column>
           <Grid.Column width={1} />
