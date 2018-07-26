@@ -12,14 +12,9 @@ const ingredientsCleaner = props => {
       const ingredientsArray = Object.entries(props);
 
       createList = ingredientsArray.map(el => {
-        let [item, num] = el;
-
+        let [item] = el;
         const upper = item[0].toUpperCase() + item.substr(1);
-        return (
-          <List.Item key={el.id}>
-            {upper} : {num}
-          </List.Item>
-        );
+        return <List.Item key={el.id}>{upper}</List.Item>;
       });
     }
   } else {

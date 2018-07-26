@@ -1,8 +1,8 @@
 import React from "react";
-import OrderForm from './OrderForm';
-import EditOrder from '../editRecipe/EditOrder';
-import directionsCleaner from './cleaners/directionsCleaner';
-import ingredientsCleaner from './cleaners/ingredientsCleaner';
+import OrderForm from "./OrderForm";
+import EditOrder from "../editRecipe/EditOrder";
+import directionsCleaner from "./cleaners/directionsCleaner";
+import ingredientsCleaner from "./cleaners/ingredientsCleaner";
 
 import {
   Container,
@@ -11,7 +11,7 @@ import {
   Image,
   Header,
   Button,
-  Modal,
+  Modal
 } from "semantic-ui-react";
 
 const mainViewStyle = {
@@ -33,7 +33,7 @@ const iconStyle = {
   padding: "5px 15px"
 };
 
-const MainView = props =>  (
+const MainView = props => (
   <div style={mainViewStyle}>
     <Container>
       <Segment raised>
@@ -43,51 +43,59 @@ const MainView = props =>  (
           image="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/7J0H-pan.png"
           content={props.mainRecipe.title}
         />
-      <div style={{display: 'flex'}}>
-        <Image
-          className="icon"
-          style={iconStyle}
-          onClick={props.deleteOnClick}
-          src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png"
-        />
-      
-        <EditOrder 
-         recipe={props.mainRecipe}
-         editSubmit={props.editOnClick}
-         />
-        </div> 
+        <div style={{ display: "flex" }}>
+          <Image
+            className="icon"
+            style={iconStyle}
+            onClick={props.deleteOnClick}
+            src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png"
+          />
+
+          <EditOrder recipe={props.mainRecipe} editSubmit={props.editOnClick} />
+        </div>
       </Segment>
       <Item.Group>
         <Item>
-          <Item.Image size="large" src={props.mainRecipe.image_url} />
+          <Item.Image
+            size="large"
+            circular
+            bordered={true}
+            src={props.mainRecipe.image_url}
+          />
 
           <Item.Content>
             <Item.Header as="a">Ingredients</Item.Header>
 
-            <Item.Description>{ingredientsCleaner(props.mainRecipe.ingredients)}</Item.Description>
+            <Item.Description>
+              {ingredientsCleaner(props.mainRecipe.ingredients)}
+            </Item.Description>
             <Item.Header as="a">Directions</Item.Header>
 
-            <Item.Description>{directionsCleaner(props.mainRecipe)}</Item.Description>
+            <Item.Description>
+              {directionsCleaner(props.mainRecipe)}
+            </Item.Description>
           </Item.Content>
         </Item>
       </Item.Group>
-      <Button 
-        inverted color='red'
-        onClick={() => props.history.push('/custom-order')} 
-       >
+      <Button
+        inverted
+        color="red"
+        onClick={() => props.history.push("/custom-order")}
+      >
         {" "}
         Add a custom order!
         <Image
           className="icon"
-          style={iconStyle}         
+          style={iconStyle}
           src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/v_LL-001-plus.png"
         />
       </Button>
-               
+
       <Button
-       inverted color="orange"
-       onClick={() => props.history.push('/order')}
-        >
+        inverted
+        color="orange"
+        onClick={() => props.history.push("/order")}
+      >
         Order this recipe now!
       </Button>
     </Container>

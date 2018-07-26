@@ -68,7 +68,6 @@ export const initFavourites = () => {
         return data.json();
       })
       .then(favourites => {
-        console.log(favourites);
         const formattedFavourites = formatFavourites(favourites);
         dispatch(updateFavouritesLocal(formattedFavourites));
       })

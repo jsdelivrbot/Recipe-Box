@@ -5,6 +5,13 @@
   font-family: "Copse", serif;
 }
 
+a {
+  color: inherit;
+}
+a:hover {
+  color: #7ca1dd;
+}
+
 .recipeList {
   overflow-y: scroll;
   height: 150px;
