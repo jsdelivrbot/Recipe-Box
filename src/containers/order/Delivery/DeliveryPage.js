@@ -139,7 +139,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     deliveryInfo: state.delivery.deliveryInfo,
-    authentication: state.auth.tokenId != null
+    authentication: state.auth.idToken != null,
+    token: state.auth.idToken
   };
 };
 

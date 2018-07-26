@@ -17,6 +17,7 @@ const authReducer = (state = initialState, action) => {
       };
     case actionTypes.AUTH_SUCCESS:
       const { idToken, localId } = action.authData;
+
       return {
         ...state,
         idToken,
