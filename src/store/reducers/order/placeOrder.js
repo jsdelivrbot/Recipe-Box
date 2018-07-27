@@ -17,6 +17,7 @@ const placeOrderReducer = (state = initialState, action) => {
 
     case actionTypes.PURCHASE_ORDER_SUCCESS: {
       const { orderLoaded, orderAccepted } = action.orderStatus;
+
       return {
         ...state,
         orderLoaded,
