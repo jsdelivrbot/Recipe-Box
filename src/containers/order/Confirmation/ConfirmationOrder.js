@@ -31,19 +31,17 @@ class ConfirmationOrder extends React.Component {
     const mainRecipe = this.props.mainRecipe;
     const customOrder = this.props.customOrder;
 
-    let title, directions, specialRequests, img;
+    let title, directions, specialRequests;
 
     if (customOrder.directions != null) {
       title = customOrder.title;
       directions = customOrder.directions;
       specialRequests = customOrder.specialRequests;
-      img = null;
     } else {
       title = mainRecipe.title;
       directions =
         "The expert team of chefs will wow you with their creativity and skill.";
       specialRequests = mainRecipe.specialRequests;
-      img = <Image size="small" circular src={mainRecipe.image_url} />;
     }
 
     // const ingredientsArray = Object.entries(this.props.recipeInfo.ingredients)
@@ -106,7 +104,7 @@ class ConfirmationOrder extends React.Component {
             email={email}
           />
         </div>
-        {img}
+
         <Button
           negative
           style={{ margin: "15px" }}

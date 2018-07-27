@@ -18,7 +18,7 @@ import StepsFirst from "../../../components/mainView/orders/steps/StepsFirst";
 
 import * as actionCreators from "../../../store/actions/index";
 
-class DeliveryPage extends React.Component {
+export class DeliveryPage extends React.Component {
   state = {
     warning: false
   };
