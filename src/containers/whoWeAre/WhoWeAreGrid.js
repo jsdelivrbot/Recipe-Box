@@ -6,6 +6,7 @@ export default class WhoWeAre extends React.Component {
   state = {
     team: [
       {
+        id: 0,
         name: "Oliver Yates",
         role: "Developer",
         description: "Makes all the gears and cogs, and keeps them well oiled",
@@ -14,6 +15,7 @@ export default class WhoWeAre extends React.Component {
           "https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/TN1m-myAvatar%20(1).png"
       },
       {
+        id: 1,
         name: "James Steevenson",
         role: "Chef",
         description: "Comes up with all the good ideas",
@@ -45,6 +47,7 @@ export default class WhoWeAre extends React.Component {
           meta={teamMember.role}
           description={teamMember.description}
           extra={teamMember.quote}
+          key={teamMember.id}
         />
       );
     });
