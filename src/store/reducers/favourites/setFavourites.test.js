@@ -10,4 +10,24 @@ describe("setFavourites reducer", () => {
       popularRecipes: []
     });
   });
+  it("should update favourite uploaded when favourite sent to firebase", () => {
+    expect(
+      reducer(
+        {
+          favourites: [],
+          error: false,
+          favouriteUploaded: false,
+          popularRecipes: []
+        },
+        {
+          type: actionTypes.POST_FAVOURITES_SUCCESS
+        }
+      )
+    ).toEqual({
+      favourites: [],
+      error: false,
+      favouriteUploaded: true,
+      popularRecipes: []
+    });
+  });
 });

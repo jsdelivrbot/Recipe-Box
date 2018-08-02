@@ -37,7 +37,6 @@ const setFavouritesReducer = (state = initialState, action) => {
       };
     case actionTypes.UPDATE_FAVOURITES_LOCAL:
       const favourites = action.favourites;
-      console.log(favourites);
       return {
         ...state,
         favourites

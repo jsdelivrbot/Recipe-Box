@@ -39,3 +39,26 @@ describe("auth reducer", () => {
     });
   });
 });
+
+it("should updating loading when request initially sent", () => {
+  expect(
+    reducer(
+      {
+        idToken: null,
+        localId: [],
+        error: null,
+        loading: false,
+        redirectUrl: "/"
+      },
+      {
+        type: actionTypes.AUTH_START
+      }
+    )
+  ).toEqual({
+    idToken: null,
+    localId: [],
+    error: null,
+    loading: true,
+    redirectUrl: "/"
+  });
+});
