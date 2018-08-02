@@ -5,7 +5,7 @@ import Auth from "./Auth";
 
 const AuthPage = props => {
   return (
-    <div>
+    <div className="backgroundPages">
       <Grid celled stackable>
         <Grid.Row>
           <Grid.Column only="computer" width={2}>

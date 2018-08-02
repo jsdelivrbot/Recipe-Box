@@ -11,7 +11,7 @@ class RecipeBox extends React.Component {
 
   render() {
     return (
-      <div className="">
+      <div className="mainPage">
         <ErrorHandler error={this.props.error} />
         <GridLayout
           mainRecipe={this.props.mainRecipe}
