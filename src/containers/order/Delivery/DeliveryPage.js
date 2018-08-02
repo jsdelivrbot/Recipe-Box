@@ -67,7 +67,7 @@ export class DeliveryPage extends React.Component {
       <div>
         <Grid celled stackable>
           <Grid.Row>
-            <Grid.Column width={2}>
+            <Grid.Column only="computer" width={2}>
               <Image
                 className="icon"
                 src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/xeT5-soup.png"
