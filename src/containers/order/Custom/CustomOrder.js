@@ -17,7 +17,7 @@ import DisplayCustomOrder from "../../../components/mainView/orders/DisplayCusto
 
 import * as actionCreators from "../../../store/actions/index";
 
-class CustomOrder extends React.Component {
+export class CustomOrder extends React.Component {
   state = {
     title: "",
     directions: "",
