@@ -1,9 +1,6 @@
-import React from 'react';
-import {
-  Image,
-  Modal,
-} from "semantic-ui-react";
-import EditForm from './EditForm';
+import React from "react";
+import { Image, Modal } from "semantic-ui-react";
+import EditForm from "./EditForm";
 
 const iconStyle = {
   display: "inline",
@@ -11,36 +8,36 @@ const iconStyle = {
   padding: "5px 15px"
 };
 
-const icon = <Image
-  className="icon"
-  style={iconStyle}
-  src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/ekQ6-edit.png"
-/>
+const icon = (
+  <Image
+    className="icon"
+    style={iconStyle}
+    src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/ekQ6-edit.png"
+  />
+);
 
 const EditOrder = props => {
- const ingredients = {...props.recipe.ingredients}
- const stringifiedIngredients = JSON.stringify(ingredients, undefined, 2)
- const replaced = stringifiedIngredients.replace('"', '')
- .replace('{', '')
- .replace('}', '')
-
   return (
     <div>
-    <Modal trigger={icon}>
+      <Modal trigger={icon}>
         <Modal.Header>Edit your meal</Modal.Header>
         <Modal.Content image>
-          <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
+          <Image
+            wrapped
+            size="medium"
+            src="/assets/images/avatar/large/rachel.png"
+          />
           <Modal.Description>
-             <EditForm 
-             recipe={props.recipe}
-            ingredients={replaced}
-             editSubmit={props.editSubmit}
-             />
+            <EditForm
+              recipe={props.recipe}
+              ingredients={props.recipe.ingredients}
+              editSubmit={props.editSubmit}
+            />
           </Modal.Description>
         </Modal.Content>
-    </Modal>
+      </Modal>
     </div>
-  )
-}
+  );
+};
 
 export default EditOrder;
