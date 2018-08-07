@@ -14,7 +14,6 @@ describe("<CustomOrder /> ", () => {
   });
   const img = (
     <Image
-      className="icon"
       src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/xeT5-soup.png"
       size="large"
     />

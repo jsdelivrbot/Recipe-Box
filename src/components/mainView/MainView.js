@@ -45,8 +45,8 @@ const MainView = props => (
         />
         <div style={{ display: "flex" }}>
           <Image
-            className="icon"
             style={iconStyle}
+            className="icon"
             onClick={props.deleteOnClick}
             src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/mdQP-002-delete.png"
           />

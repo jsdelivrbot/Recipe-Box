@@ -24,9 +24,6 @@ describe("<GridLayout /> ", () => {
       size="large"
     />
   );
-  it("should render the logo", () => {
-    expect(wrapper.contains(image)).toEqual(true);
-  });
   it("should render the search bar", () => {
     expect(wrapper.contains(<SearchRecipes />)).toEqual(true);
   });

@@ -58,7 +58,6 @@ export default class WhoWeAre extends React.Component {
           <Grid.Row>
             <Grid.Column only="computer" width={2}>
               <Image
-                className="icon"
                 src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/xeT5-soup.png"
                 size="large"
               />

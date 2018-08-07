@@ -10,7 +10,6 @@ const iconStyle = {
 
 const icon = (
   <Image
-    className="icon"
     style={iconStyle}
     src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/ekQ6-edit.png"
   />

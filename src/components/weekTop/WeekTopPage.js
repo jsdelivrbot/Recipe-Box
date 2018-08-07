@@ -12,7 +12,6 @@ class TopWeekPage extends React.Component {
       this.props.onInitTopWeekIndiv(id);
     }
   }
-
   render() {
     return (
       <div>
@@ -20,7 +19,6 @@ class TopWeekPage extends React.Component {
           <Grid.Row>
             <Grid.Column width={2}>
               <Image
-                className="icon"
                 src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/xeT5-soup.png"
                 size="large"
               />
@@ -75,7 +73,6 @@ class TopWeekPage extends React.Component {
     );
   }
 }
-
 const mapStateToProps = state => {
   return {
     cardData: state.topWeek.topWeekIndiv
