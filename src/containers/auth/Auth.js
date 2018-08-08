@@ -4,6 +4,7 @@ import validator from "validator";
 import * as actionCreators from "../../store/actions/index";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
+import R from "ramda";
 
 const emailVal = value => {
   const result = validator.isEmail(value);
@@ -72,8 +73,14 @@ class Auth extends Component {
   authOnSubmit(e) {
     e.preventDefault();
 
-    const email = this.state.controls.email.value;
-    const password = this.state.controls.password.value;
+    const email = R.pathOr("", ["controls", "email", "value"], this.state);
+
+    const password = R.pathOr(
+      "",
+      ["controls", "password", "value"],
+      this.state
+    );
+
     this.props.onAuth(email, password);
   }
   authLoginHandler() {
