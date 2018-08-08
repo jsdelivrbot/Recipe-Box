@@ -27,11 +27,10 @@ export class DeliveryPage extends React.Component {
     this.props.onRedirect("/delivery");
     this.props.history.push("/auth");
   }
-
   proceedHandler() {
     const { name, street, email } = this.props.deliveryInfo;
 
-    // If the deliveryInformation has been submmited
+    // If the deliveryInformation has been submmited cannot continue
     if (name && street && email) {
       this.props.history.replace("/confirmation");
     } else {
@@ -41,16 +40,13 @@ export class DeliveryPage extends React.Component {
   componentDidMount() {
     this.setState({ warning: false });
   }
-
   submitted() {
     this.setState({ warning: false });
   }
-
   render() {
     const DeliveryWarningMsg = (
       <Message negative>Please input your delivery details </Message>
     );
-
     let authWarning;
     this.props.authentication == false
       ? (authWarning = (
@@ -134,7 +130,6 @@ const mapDispatchToProps = dispatch => {
     onRedirect: url => dispatch(actionCreators.redirectChange(url))
   };
 };
-
 const mapStateToProps = state => {
   return {
     deliveryInfo: state.delivery.deliveryInfo,
@@ -142,7 +137,6 @@ const mapStateToProps = state => {
     token: state.auth.idToken
   };
 };
-
 export default withRouter(
   connect(
     mapStateToProps,

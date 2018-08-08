@@ -21,11 +21,11 @@ export default class DeliveryForm extends React.Component {
   }
 
   componentDidMount() {
-    const { name } = {...this.state};
-    const newInfo = {...this.props.deliveryInfo};
+    const { name } = { ...this.state };
+    const newInfo = { ...this.props.deliveryInfo };
     const oldName = name;
-    if ( oldName != false || oldName !== newInfo.name) {
-       this.setState( {...newInfo })
+    if (oldName != false || oldName !== newInfo.name) {
+      this.setState({ ...newInfo });
     }
   }
 
@@ -63,19 +63,16 @@ export default class DeliveryForm extends React.Component {
         sent: true
       };
     });
-  
   }
-
   render() {
-
     const successMsg = (
       <Message positive>
-      <Message.Header> Success!</Message.Header>  
-<p>Your details have been saved, go to the next page to finalise!</p>
+        <Message.Header> Success!</Message.Header>
+        <p>Your details have been saved, go to the next page to finalise!</p>
       </Message>
     );
     return (
-      <Form size='small' onSubmit={this.handleSubmit}>
+      <Form size="small" onSubmit={this.handleSubmit}>
         <Form.Input
           label="Name"
           value={this.state.name}
@@ -84,27 +81,27 @@ export default class DeliveryForm extends React.Component {
           error={this.props.warning}
         />
         <Form.Group inline>
-        <Form.Input
-          label="Street"
-          value={this.state.street}
-          onChange={this.handleChangeStreet}
-          placeholder="Street"
-          error={this.props.warning}
-        />
-        <Form.Input
-          label="Town"
-          value={this.state.town}
-          onChange={this.handleChangeTown}
-          placeholder="Town"
-          error={this.props.warning}
-        />
-        <Form.Input
-          label="Postcode"
-          value={this.state.postcode}
-          onChange={this.handleChangePostcode}
-          placeholder="Postcode"
-          error={this.props.warning}
-        />
+          <Form.Input
+            label="Street"
+            value={this.state.street}
+            onChange={this.handleChangeStreet}
+            placeholder="Street"
+            error={this.props.warning}
+          />
+          <Form.Input
+            label="Town"
+            value={this.state.town}
+            onChange={this.handleChangeTown}
+            placeholder="Town"
+            error={this.props.warning}
+          />
+          <Form.Input
+            label="Postcode"
+            value={this.state.postcode}
+            onChange={this.handleChangePostcode}
+            placeholder="Postcode"
+            error={this.props.warning}
+          />
         </Form.Group>
         <Form.Input
           label="Email"

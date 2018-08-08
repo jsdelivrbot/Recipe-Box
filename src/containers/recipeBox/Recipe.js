@@ -43,13 +43,11 @@ class RecipeBox extends React.Component {
     );
   }
 }
-
 const mapDispatchToProps = dispatch => {
   return {
     onRedirect: url => dispatch(actionCreators.redirectChange(url))
   };
 };
-
 export default withRouter(
   connect(
     null,

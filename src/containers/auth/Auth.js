@@ -45,16 +45,24 @@ class Auth extends Component {
   inputChangedhandler = (e, identifier) => {
     const updatedAuthForm = { ...this.state.controls };
 
+    // Select part of form e.g password
     const updatedFormElement = {
       ...updatedAuthForm[identifier]
     };
+    // Add value that user has typed
     updatedFormElement.value = e.target.value;
+
+    // Check whether this is valid depending on the identifier
+    // e.g password and email have different rules
     updatedFormElement.valid = this.checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );
+
     updatedAuthForm[identifier] = updatedFormElement;
 
+    // If one part of form is invalid the whole form is invalid
+    // and therefore it can't be submitted
     let formIsValid = false;
     if (updatedAuthForm.email.valid && updatedAuthForm.password.valid) {
       formIsValid = true;
@@ -72,37 +80,29 @@ class Auth extends Component {
 
   authOnSubmit(e) {
     e.preventDefault();
-
     const email = R.pathOr("", ["controls", "email", "value"], this.state);
-
-    const password = R.pathOr(
-      "",
-      ["controls", "password", "value"],
-      this.state
-    );
+    const password = R.pathOr("", ["controls", "password", "value"], this.state);
 
     this.props.onAuth(email, password);
   }
   authLoginHandler() {
-    const email = this.state.controls.email.value;
-    const password = this.state.controls.password.value;
+    const email = R.pathOr("", ["controls", "email", "value"], this.state);
+    const password = R.pathOr("", ["controls", "password", "value"], this.state);
+
     this.props.onAuthLogin(email, password);
   }
 
   checkValidity(value, rules) {
     let isValid = true;
-
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
     }
-
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
     }
     if (rules.emailRequired) {
       isValid = emailVal(value) && isValid;
     }
-
     return isValid;
   }
 
@@ -152,7 +152,6 @@ class Auth extends Component {
     }
 
     let display;
-
     if (this.props.authenticated) {
       display = <Redirect to={this.props.redirectUrl} />;
     } else {
@@ -163,7 +162,6 @@ class Auth extends Component {
         </div>
       );
     }
-
     return display;
   }
 }
@@ -184,7 +182,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(actionCreators.auth(email, password, "signIn"))
   };
 };
-
 export default withRouter(
   connect(
     mapStateToProps,

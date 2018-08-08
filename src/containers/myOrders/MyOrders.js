@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import Title from "../../components/Title";
 import DisplayMyOrder from "../../components/myOrders/DisplayMyOrderCard";
 import * as actionCreators from "../../store/actions/index";
+import R from "ramda";
 
 class MyOrders extends React.Component {
   componentDidMount() {
@@ -12,13 +13,14 @@ class MyOrders extends React.Component {
   }
 
   render() {
-    const orders = this.props.orders;
+    const orders = R.pathOr(null, ["orders"], this.props);
+
     let DisplayOrders;
     if (!orders[0] == null) {
       const ordersArray = Object.entries(orders);
+
       DisplayOrders = ordersArray.map(order => {
         const instructionsArray = Object.entries(order);
-
         return (
           <DisplayMyOrder
             title={instructionsArray[1][1].instructions.title}
@@ -38,7 +40,6 @@ class MyOrders extends React.Component {
           <Grid.Row>
             <Grid.Column only="computer" width={2}>
               <Image
-                className="icon"
                 src="https://uploads.codesandbox.io/uploads/user/e276cc26-2428-467a-a9cf-7ba3ffd6415c/xeT5-soup.png"
                 size="large"
                 only="computer"
