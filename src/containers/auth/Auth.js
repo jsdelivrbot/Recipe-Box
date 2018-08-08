@@ -81,21 +81,13 @@ class Auth extends Component {
   authOnSubmit(e) {
     e.preventDefault();
     const email = R.pathOr("", ["controls", "email", "value"], this.state);
-    const password = R.pathOr(
-      "",
-      ["controls", "password", "value"],
-      this.state
-    );
+    const password = R.pathOr("", ["controls", "password", "value"], this.state);
 
     this.props.onAuth(email, password);
   }
   authLoginHandler() {
     const email = R.pathOr("", ["controls", "email", "value"], this.state);
-    const password = R.pathOr(
-      "",
-      ["controls", "password", "value"],
-      this.state
-    );
+    const password = R.pathOr("", ["controls", "password", "value"], this.state);
 
     this.props.onAuthLogin(email, password);
   }
