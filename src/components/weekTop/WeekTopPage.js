@@ -9,6 +9,7 @@ class TopWeekPage extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     if (id) {
+      // Import data from firebase when page has loaded
       this.props.onInitTopWeekIndiv(id);
     }
   }
