@@ -1,33 +1,32 @@
 {
   "name": "recipe-box",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "main": "src/index.js",
-  "dependencies": {
-    "axios": "0.18.0",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
-    "lodash": "4.17.10",
-    "ramda": "0.25.0",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
-    "react-redux": "5.0.7",
-    "react-router-dom": "4.3.1",
-    "react-scripts": "1.1.4",
-    "react-test-renderer": "16.4.1",
-    "react-validation": "3.0.7",
-    "redux": "4.0.0",
-    "redux-thunk": "2.3.0",
-    "semantic-ui-css": "2.3.1",
-    "semantic-ui-react": "0.81.1",
-    "validator": "10.4.0"
-  },
-  "devDependencies": {},
+  "description": "Order your favourite food",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+  },
+   "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "engines": {
+    "node": "8.9.4",
+    "npm": "6.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olijyat/Recipe-Box.git"
+  },
+  "author": "Oliver Yates",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olijyat/Recipe-Box/issues"
+  },
+  "homepage": "https://github.com/olijyat/Recipe-Box#readme",
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
