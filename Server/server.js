@@ -12,6 +12,7 @@ app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../react-ui/build', 'index.html'));
 });
+ 
   
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
