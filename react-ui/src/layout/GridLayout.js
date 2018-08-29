@@ -11,7 +11,7 @@ import WeekTop from "../components/weekTop/WeekTop";
 const GridLayout = props => {
   return (
     <div>
-      <Grid celled stackable>
+      <Grid stackable>
         <Grid.Row>
           <Grid.Column only="computer" width={2}>
             <Image
@@ -19,11 +19,11 @@ const GridLayout = props => {
               size="large"
             />
           </Grid.Column>
-          <Grid.Column width={7}>
+          <Grid.Column width={16}>
             <Title />
             <Divider />
           </Grid.Column>
-          <Grid.Column width={7}/>
+         
         </Grid.Row>
 
         <Grid.Row>
@@ -40,7 +40,7 @@ const GridLayout = props => {
           </Grid.Column>
           <Grid.Column only="mobile" width={3} />
 
-          <Grid.Column width={6}>
+          <Grid.Column width={12}>
             <Divider />
             <MainView
               mainRecipe={props.mainRecipe}
@@ -58,13 +58,13 @@ const GridLayout = props => {
             />
           </Grid.Column>
          
-          <Grid.Column width={8}>
+          <Grid.Column width={2}>
             <Favourites />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column only="computer" width={3} />
-          <Grid.Column width={5}>
+          <Grid.Column width={16}>
             <Divider />
             <Header as="h2">Popular recipes this week</Header>
             <WeekTop
@@ -76,7 +76,6 @@ const GridLayout = props => {
               addFav={props.addFav}
             />
           </Grid.Column>
-          <Grid.Column width={11} />
         </Grid.Row>
       </Grid>
     </div>

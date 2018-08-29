@@ -21,7 +21,6 @@ const mainViewStyle = {
   borderSpacing: "20px",
   borderRadius: "20px",
   background: "#e0ecff",
-  width: "800px",
   cursor: "default"
 };
 
@@ -55,6 +54,7 @@ const MainView = props => (
           <EditOrder recipe={props.mainRecipe} editSubmit={props.editOnClick} />
         </div>
       </Segment>
+      <Item.Group>
         <Item>
           <Item.Image
             size="large"
@@ -75,6 +75,7 @@ const MainView = props => (
             </Item.Description>
           </Item.Content>
         </Item>
+      </Item.Group>  
       <Button
         inverted
         color="red"
