@@ -42,3 +42,4 @@ The application is served with Express.js and is deployed on Heroku.
 * This project would not have been possible without gaining foundations in functional programming from -https://www.udemy.com/functional-programming-for-beginners-with-javascript/learn/v4/overview
 * An excellent React guide - https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/overview
 * Anybody wanting to learn about Redux should check - https://leanpub.com/redux-book/read 
+
